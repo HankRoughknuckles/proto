@@ -10,7 +10,7 @@ describe "The landing page" do
     before { landing_page.visit_page_as user }
 
     it 'should redirect to the ideas index' do
-      expect(page).to have_title "Ideas"
+      expect(page).to have_title ideas.title
     end
   end
 
@@ -28,7 +28,7 @@ describe "The landing page" do
     it 'should have a link to the sign in page' do
       landing_page.click_sign_in_link
 
-      expect(landing_page).to have_sign_in_page_title
+      expect(page).to have_title login.title
     end
   end
 
