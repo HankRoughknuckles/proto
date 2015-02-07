@@ -7,7 +7,7 @@ class LandingPage
   def initialize
     @page_url = root_path
     @title = "Proto"
-    @signup_form =      "form#signup"
+    @signup_form =      "form.signup"
   end
 
   def visit_page
