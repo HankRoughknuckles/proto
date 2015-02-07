@@ -36,12 +36,11 @@ describe "The landing page" do
     before { landing_page.visit_page_as nil }
 
     it 'should go to the Ideas index upon logging in' do
-      pending
       attrs = FactoryGirl.attributes_for(:user)
 
       landing_page.sign_up_using attrs
 
-      expect(landing_page).to_have
+      expect(page).to have_title ideas.title
     end
 
     it 'should flash an error if the email is missing'

@@ -9,6 +9,10 @@ class LandingPage
     @title =                      "Proto"
     @sign_in_link =               "a.sign_in"
     @signup_form =                "form.new_user"
+    @email_input =                "input#user_email"
+    @password_input =             "input#user_password"
+    @password_confirmation_input =  "input#user_password_confirmation"
+    @sign_up_button =              "input[type=submit]"
   end
 
   def visit_page
@@ -34,5 +38,12 @@ class LandingPage
 
   def click_sign_in_link
     page.find(@sign_in_link).click
+  end
+
+  def sign_up_using(inputs)
+    page.find(@email_input).set     inputs[:email]
+    page.find(@password_input).set  inputs[:password]
+    page.find(@password_confirmation_input).set  inputs[:password]
+    page.find(@sign_up_button).click
   end
 end
