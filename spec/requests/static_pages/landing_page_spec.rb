@@ -4,9 +4,11 @@ describe "The landing page" do
   let(:ui) { LandingPage.new() }
 
   context 'when logged in' do
+    let(:user) { FactoryGirl.create(:user) }
+    before { ui.visit_page_as user }
+
     it 'should redirect to the ideas index' do
-      pending
-      expect(page).to have_title "hey"
+      expect(page).to have_title "Ideas"
     end
   end
 
