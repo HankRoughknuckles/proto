@@ -43,7 +43,16 @@ describe "The landing page" do
       expect(page).to have_title ideas.title
     end
 
-    it 'should flash an error if the email is missing'
+    it 'should flash an error if the email is missing' do
+      attrs = {
+        :password =>                "asdfasdfasdf",
+        :password_confirmation =>   "asdfasdfasdf"
+      }
+
+      landing_page.sign_up_using attrs
+
+      expect(landing_page).to have_email_error
+    end
 
     it 'should flash an error if the password is missing'
   end

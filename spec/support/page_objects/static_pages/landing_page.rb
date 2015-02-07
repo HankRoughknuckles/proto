@@ -12,7 +12,9 @@ class LandingPage
     @email_input =                "input#user_email"
     @password_input =             "input#user_password"
     @password_confirmation_input =  "input#user_password_confirmation"
-    @sign_up_button =              "input[type=submit]"
+    @sign_up_button =             "input[type=submit]"
+
+    @email_error =                "#error_explanation"
   end
 
   def visit_page
@@ -45,5 +47,9 @@ class LandingPage
     page.find(@password_input).set  inputs[:password]
     page.find(@password_confirmation_input).set  inputs[:password]
     page.find(@sign_up_button).click
+  end
+
+  def has_email_error?
+    has_css? @email_error, text: "blank"
   end
 end
