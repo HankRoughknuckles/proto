@@ -19,6 +19,10 @@ class LandingPage
     visit @page_url
   end
 
+  def has_proper_title?
+    has_title? @title
+  end
+
   def has_signup_form?
     has_css? @signup_form
   end

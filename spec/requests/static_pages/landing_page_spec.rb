@@ -18,7 +18,7 @@ describe "The landing page" do
     end
 
     it 'should have proto for a title' do
-      expect(ui).to have_the_proper_title
+      expect(ui).to have_proper_title
     end
   end
 end
