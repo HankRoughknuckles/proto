@@ -1,8 +1,9 @@
 require "spec_helper"
 
 describe "The idea index page" do
-  let(:ideas_page) { IdeaIndexPage.new() }
-  let(:landing_page) { LandingPage.new() }
+  let(:ideas_page)            { IdeaIndexPage.new() }
+  let(:landing_page)          { LandingPage.new() }
+  let(:new_idea_page)         { NewIdeaPage.new() }
 
 
   context 'when signed in' do
@@ -14,6 +15,12 @@ describe "The idea index page" do
 
       expect(page.title).to match /^#{landing_page.title}$/
     end
+
+    it 'should have a working "new idea" button' do
+      ideas_page.click_new_idea_button
+
+      expect(page).to have_title new_idea_page.title
+    end
   end
 
 
@@ -23,6 +30,8 @@ describe "The idea index page" do
     it 'should not have a sign out button' do
       expect(ideas_page).not_to have_sign_out_button
     end
+
+    it 'should go to sign up page when new "idea button" is clicked'
   end
 
 end

@@ -9,6 +9,7 @@ class IdeaIndexPage
     @title = "Ideas"
 
     @sign_out_button =        ".sign_out"
+    @new_idea_button =        ".new_idea"
   end
 
   def visit_page
@@ -26,5 +27,9 @@ class IdeaIndexPage
 
   def click_sign_out_button
     find(@sign_out_button).click
+  end
+
+  def click_new_idea_button
+    find(@new_idea_button).click
   end
 end
