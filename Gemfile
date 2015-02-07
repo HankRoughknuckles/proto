@@ -57,5 +57,4 @@ group :test do
   gem 'selenium-webdriver', '~> 2.44.0'  #allows js in tests
   gem 'database_cleaner', '~> 1.4.0'    #clean the database in tests easily
   gem 'launchy', '~> 2.4.3'             #for opening up the page while debugging tests
-  gem 'shoulda', '3.5.0'
 end
