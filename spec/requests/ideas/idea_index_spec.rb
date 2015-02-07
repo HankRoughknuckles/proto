@@ -15,4 +15,14 @@ describe "The idea index page" do
       expect(page.title).to match /^#{landing_page.title}$/
     end
   end
+
+
+  context 'when not signed in' do
+    before { ideas_page.visit_page_as nil }
+
+    it 'should not have a sign out button' do
+      expect(ideas_page).not_to have_sign_out_button
+    end
+  end
+
 end
