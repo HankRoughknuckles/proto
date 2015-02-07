@@ -8,6 +8,7 @@ class LandingPage
     @page_url = root_path
     @title =            "Proto"
     @signup_form =      "form.new_user"
+    @sign_in_link =     "a.sign_in"
   end
 
   def visit_page
@@ -25,5 +26,9 @@ class LandingPage
 
   def has_signup_form?
     has_css? @signup_form
+  end
+
+  def has_sign_in_link?
+    has_css? @sign_in_link
   end
 end

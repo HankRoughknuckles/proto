@@ -23,7 +23,9 @@ describe "The landing page" do
       expect(ui).to have_proper_title
     end
 
-    it 'should have a link to the login page'
+    it 'should have a link to the sign in page' do
+      expect(ui).to have_sign_in_link
+    end
   end
 
   describe "the signup form" do
