@@ -7,6 +7,8 @@ class IdeaIndexPage
   def initialize
     @page_url = ideas_path
     @title = "Ideas"
+
+    @sign_out_button =        ".sign_out"
   end
 
   def visit_page
@@ -16,5 +18,13 @@ class IdeaIndexPage
   def visit_page_as(user)
     user.present? ? login_as(user) : logout
     visit @page_url
+  end
+
+  def has_sign_out_button?
+    has_css? @sign_out_button
+  end
+
+  def click_sign_out_button
+    find(@sign_out_button).click
   end
 end
