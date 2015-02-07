@@ -23,7 +23,6 @@ describe "The idea index page" do
     end
   end
 
-
   context 'when not signed in' do
     before { ideas_page.visit_page_as nil }
 
