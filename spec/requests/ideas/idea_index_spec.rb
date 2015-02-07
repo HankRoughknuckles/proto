@@ -31,7 +31,11 @@ describe "The idea index page" do
       expect(ideas_page).not_to have_sign_out_button
     end
 
-    it 'should go to sign up page when new "idea button" is clicked'
+    it 'should go to sign up page when new "idea button" is clicked' do
+      ideas_page.click_new_idea_button
+
+      expect(page.title).to match /^#{landing_page.title}$/
+    end
   end
 
 end
