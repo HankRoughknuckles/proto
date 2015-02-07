@@ -15,6 +15,8 @@ class LandingPage
     @sign_up_button =             "input[type=submit]"
 
     @email_error =                "#error_explanation"
+    @password_error =             "#error_explanation"
+    @icon_link =                  "#icon"
   end
 
   def visit_page
@@ -50,6 +52,14 @@ class LandingPage
   end
 
   def has_email_error?
-    has_css? @email_error, text: "blank"
+    has_css? @email_error, text: "Email"
+  end
+
+  def has_password_error?
+    has_css? @password_error, text: "Password"
+  end
+
+  def click_icon_link
+    find(@icon_link).click
   end
 end

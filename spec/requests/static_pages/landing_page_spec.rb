@@ -17,6 +17,12 @@ describe "The landing page" do
   context 'when not logged in' do
     before { landing_page.visit_page_as(nil) }
 
+    it 'should have an icon image link' do
+      landing_page.click_icon_link
+
+      expect(page).to have_title landing_page.title
+    end
+
     it 'should have a signup form' do
       expect(landing_page).to have_signup_form
     end
@@ -54,6 +60,14 @@ describe "The landing page" do
       expect(landing_page).to have_email_error
     end
 
-    it 'should flash an error if the password is missing'
+    it 'should flash an error if the password is missing' do
+      attrs = {
+        :email =>                   "asdfasdf@asdf.com"
+      }
+
+      landing_page.sign_up_using attrs
+
+      expect(landing_page).to have_password_error
+    end
   end
 end
