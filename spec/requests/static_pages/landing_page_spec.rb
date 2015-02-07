@@ -11,8 +11,14 @@ describe "The landing page" do
   end
 
   context 'when not logged in' do
+    before { ui.visit_page_as(nil) }
+
     it 'should have a signup form' do
       expect(ui).to have_signup_form
+    end
+
+    it 'should have proto for a title' do
+      expect(ui).to have_the_proper_title
     end
   end
 end
