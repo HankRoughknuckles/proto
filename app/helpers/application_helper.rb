@@ -1,6 +1,5 @@
 module ApplicationHelper
   def full_title(title)
-    puts "&&&&&& title = #{title} &&&&&&"
     return "Proto" if title.blank?
     return "Proto | #{title}"
   end
