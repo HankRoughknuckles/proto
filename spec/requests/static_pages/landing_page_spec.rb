@@ -24,7 +24,9 @@ describe "The landing page" do
     end
 
     it 'should have a link to the sign in page' do
-      expect(ui).to have_sign_in_link
+      ui.click_sign_in_link
+
+      expect(ui).to have_sign_in_page_title
     end
   end
 

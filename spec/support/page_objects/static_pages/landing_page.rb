@@ -6,9 +6,10 @@ class LandingPage
 
   def initialize
     @page_url = root_path
-    @title =            "Proto"
-    @signup_form =      "form.new_user"
-    @sign_in_link =     "a.sign_in"
+    @title =                      "Proto"
+    @sign_in_page_title =         "Sign in"
+    @sign_in_link =               "a.sign_in"
+    @signup_form =                "form.new_user"
   end
 
   def visit_page
@@ -28,7 +29,11 @@ class LandingPage
     has_css? @signup_form
   end
 
-  def has_sign_in_link?
-    has_css? @sign_in_link
+  def has_sign_in_page_title?
+    has_title? @sign_in_page_title
+  end
+
+  def click_sign_in_link
+    page.find(@sign_in_link).click
   end
 end
