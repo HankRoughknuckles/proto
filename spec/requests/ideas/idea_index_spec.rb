@@ -56,20 +56,24 @@ describe "The idea index page" do
   #%% The upvote buttons
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'the upvote buttons' do
-    it 'should redirect to the landing page when signed out' do
-      some_owner = FactoryGirl.create(:user)
-      someones_idea = FactoryGirl.create(:idea, user: some_owner)
+    let!(:some_owner) { FactoryGirl.create(:user) }
+    let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
 
+    it 'should redirect to the landing page when signed out' do
       ideas_page.visit_page_as nil
       ideas_page.click_upvote_button_for someones_idea
 
-      expect(page.title).to match /^#{landing_page.title}$/
+      expect(page).to have_title "Sign in"
     end
 
 
-    context 'when signed in' do
-      let(:user) { FactoryGirl.create(:user) }
-      before { ideas_page.visit_page_as user }
+    it 'should increment the ideas vote count by 1 when signed in' do
+      user = FactoryGirl.create(:user)
+
+      ideas_page.visit_page_as user
+
+      expect{ideas_page.click_upvote_button_for someones_idea}
+        .to change{someones_idea.get_upvotes.size}.by(1)
     end
   end
 end

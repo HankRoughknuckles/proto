@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :authenticate_user!, only: [:upvote]
 
   # GET /ideas
   # GET /ideas.json
@@ -64,7 +65,10 @@ class IdeasController < ApplicationController
 
   # PUT /ideas/1/upvote
   def upvote
-    redirect_to root_path
+    render root_path if not user_signed_in?
+
+    @idea.liked_by current_user
+    redirect_to :back
   end
 
 
