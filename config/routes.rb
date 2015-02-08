@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :ideas do
     member do
       put "upvote", to:    "ideas#upvote"
+      put "downvote", to:    "ideas#downvote"
     end
   end
 

@@ -12,6 +12,7 @@ class IdeaIndexPage
     @new_idea_button =        ".new_idea"
 
     @upvote_button_prefix =   ".upvote, .upvote-"
+    @downvote_button_prefix = ".downvote, .downvote-"
   end
 
   def visit_page
@@ -47,5 +48,15 @@ class IdeaIndexPage
 
   def click_upvote_button_for(idea)
     find(upvote_button_for(idea)).click
+  end
+
+
+  #Downvote buttons
+  def downvote_button_for(idea)
+    @downvote_button_prefix + idea.id.to_s
+  end
+
+  def click_downvote_button_for(idea)
+    find(downvote_button_for(idea)).click
   end
 end
