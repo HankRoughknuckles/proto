@@ -83,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: proto_production
-  username: proto
+  database: danh9i49ggjmpf
+  username: ywvtmwwkuxukog
   password: <%= ENV['PROTO_DATABASE_PASSWORD'] %>
