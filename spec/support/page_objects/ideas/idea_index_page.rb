@@ -10,6 +10,8 @@ class IdeaIndexPage
 
     @sign_out_button =        ".sign_out"
     @new_idea_button =        ".new_idea"
+
+    @upvote_button_prefix =   ".upvote, .upvote-"
   end
 
   def visit_page
@@ -21,6 +23,8 @@ class IdeaIndexPage
     visit @page_url
   end
 
+
+  #Sign out button
   def has_sign_out_button?
     has_css? @sign_out_button
   end
@@ -29,7 +33,19 @@ class IdeaIndexPage
     find(@sign_out_button).click
   end
 
+
+  #New Idea button
   def click_new_idea_button
     find(@new_idea_button).click
+  end
+
+
+  #Upvote buttons
+  def upvote_button_for(idea)
+    @upvote_button_prefix + idea.id.to_s
+  end
+
+  def click_upvote_button_for(idea)
+    find(upvote_button_for(idea)).click
   end
 end

@@ -50,4 +50,26 @@ describe "The idea index page" do
       end
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The upvote buttons
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe 'the upvote buttons' do
+    it 'should redirect to the landing page when signed out' do
+      some_owner = FactoryGirl.create(:user)
+      someones_idea = FactoryGirl.create(:idea, user: some_owner)
+
+      ideas_page.visit_page_as nil
+      ideas_page.click_upvote_button_for someones_idea
+
+      expect(page.title).to match /^#{landing_page.title}$/
+    end
+
+
+    context 'when signed in' do
+      let(:user) { FactoryGirl.create(:user) }
+      before { ideas_page.visit_page_as user }
+    end
+  end
 end
