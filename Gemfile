@@ -26,12 +26,16 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro', '1.1.0'
 # user authentication with devise
 gem 'devise', '3.4.1'
+# allow voting
+gem 'acts_as_votable', '0.10.0' 
+#upload images and such
+gem "paperclip", "~> 4.2"
 
-gem 'acts_as_votable', '0.10.0'
 
 group :development do
   gem "spring-commands-rspec", "1.0.4"
 end
+
 
 group :development, :test do
   # Call 'byebug' anywhere to stop execution and get a debug console
@@ -44,6 +48,7 @@ group :development, :test do
   gem 'rspec-rails', '3.2.0'
   gem 'factory_girl_rails', '4.5.0'
 end
+
 
 group :test do
   gem 'capybara', '~> 2.4.4'            #intuitive testing language

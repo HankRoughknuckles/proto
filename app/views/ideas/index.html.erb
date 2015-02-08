@@ -21,6 +21,7 @@
   <tbody>
     <% @ideas.each do |idea| %>
       <tr>
+        <td><%= image_tag idea.main_image.url(:poster) %></td>
         <td><%= idea.title %></td>
         <td><%= idea.description %></td>
         <td><%= upvote_link_for idea %></td>
