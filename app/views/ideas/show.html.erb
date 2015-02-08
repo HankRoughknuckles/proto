@@ -10,5 +10,10 @@
   <%= @idea.description %>
 </p>
 
+<p>
+  <strong>Main image:</strong>
+  <%= image_tag @idea.main_image.url(:poster) %>
+</p>
+
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>

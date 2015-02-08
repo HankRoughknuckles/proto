@@ -3,6 +3,12 @@
 
 <h1>Listing Ideas</h1>
 
+<% if user_signed_in? %>
+  <%= link_to "Post an idea", new_idea_path, class: "new_idea" %>
+<% else %>
+  <%= link_to "Post an idea", root_path, class: "new_idea" %>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -15,8 +21,11 @@
   <tbody>
     <% @ideas.each do |idea| %>
       <tr>
+        <td><%= image_tag idea.main_image.url(:poster) %></td>
         <td><%= idea.title %></td>
         <td><%= idea.description %></td>
+        <td><%= upvote_link_for idea %></td>
+        <td><%= downvote_link_for idea %></td>
         <td><%= link_to 'Show', idea %></td>
         <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
         <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>

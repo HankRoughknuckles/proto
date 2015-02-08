@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'static_pages#landing_page'
-  resources :ideas
+  resources :ideas do
+    member do
+      put "upvote", to:    "ideas#upvote"
+      put "downvote", to:    "ideas#downvote"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

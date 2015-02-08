@@ -1,5 +1,7 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy]
+  before_action :set_idea, only: [:show, :edit, :update, :destroy,
+                                  :upvote, :downvote]
+  before_action :authenticate_user!, only: [:upvote, :downvote]
 
   # GET /ideas
   # GET /ideas.json
@@ -61,6 +63,21 @@ class IdeasController < ApplicationController
     end
   end
 
+
+  # PUT /ideas/1/upvote
+  def upvote
+    @idea.liked_by current_user
+    redirect_to :back
+  end
+
+
+  # PUT /ideas/1/downvote
+  def downvote
+    @idea.disliked_by current_user
+    redirect_to :back
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
@@ -69,6 +86,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :description)
+      params.require(:idea).permit(:title, :description, :main_image)
     end
 end
