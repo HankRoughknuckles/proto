@@ -4,7 +4,8 @@ module IdeasHelper
       {
         method: :put, 
         class: "upvote upvote-#{idea.id}",
-        title: "Click if you like this idea"
+        title: "Click if you like this idea",
+        remote: true
       }
   end
 
@@ -13,7 +14,8 @@ module IdeasHelper
       {
         method: :put, 
         class: "downvote downvote-#{idea.id}",
-        title: "Click if you think this is a bad idea"
+        title: "Click if you think this is a bad idea",
+        remote: true
       }
   end
 end

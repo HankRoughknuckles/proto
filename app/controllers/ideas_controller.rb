@@ -67,14 +67,18 @@ class IdeasController < ApplicationController
   # PUT /ideas/1/upvote
   def upvote
     @idea.liked_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.json { render :show, status: :ok, location: @idea }
+    end
   end
 
 
   # PUT /ideas/1/downvote
   def downvote
     @idea.disliked_by current_user
-    redirect_to :back
+    respond_to do |format|
+      format.json { render :show, status: :ok, location: @idea }
+    end
   end
 
 

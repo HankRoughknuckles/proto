@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'static_pages#landing_page'
   resources :ideas do
     member do
-      put "upvote", to:    "ideas#upvote"
-      put "downvote", to:    "ideas#downvote"
+      put "upvote", to:       "ideas#upvote"
+      put "downvote", to:     "ideas#downvote"
     end
   end
 
