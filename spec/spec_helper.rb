@@ -13,9 +13,13 @@ require "minitest/autorun"
 require 'rspec/rails'
 require 'rack/test'
 require 'capybara/rspec'
+require 'capybara/webkit/matchers'
 require 'database_cleaner'
 include Warden::Test::Helpers
 Warden.test_mode!
+
+Capybara.javascript_driver = :webkit
+
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -31,10 +35,10 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+  # If you're not using ActiveRecord, or you'd prefer not to run each of
+  # your examples within a transaction, remove the following line or
+  # assign false instead of true.
+  config.use_transactional_fixtures = false
   
   config.include(MailerMacros)
   
@@ -54,6 +58,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    #DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end
 
@@ -67,4 +72,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   config.include Capybara::DSL
+  config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 end
