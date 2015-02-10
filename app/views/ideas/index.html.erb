@@ -22,6 +22,7 @@
     <% @ideas.each do |idea| %>
       <tr>
         <td><%= image_tag idea.main_image.url(:poster) %></td>
+        <td><%= idea.get_upvotes.size - idea.get_downvotes.size %></td>
         <td><%= idea.title %></td>
         <td><%= idea.description %></td>
         <td><%= upvote_link_for idea %></td>

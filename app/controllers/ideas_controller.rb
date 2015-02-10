@@ -68,7 +68,7 @@ class IdeasController < ApplicationController
   def upvote
     @idea.liked_by current_user
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @idea }
+      format.json { render text: @idea.vote_tally, status: :ok, location: @idea }
     end
   end
 
@@ -77,7 +77,7 @@ class IdeasController < ApplicationController
   def downvote
     @idea.disliked_by current_user
     respond_to do |format|
-      format.json { render :show, status: :ok, location: @idea }
+      format.json { render text: @idea.vote_tally, status: :ok, location: @idea }
     end
   end
 
