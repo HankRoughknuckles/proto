@@ -9,10 +9,9 @@ describe "The idea index page" do
     let(:user) { FactoryGirl.create(:user) }
     before { ideas_page.visit_page_as user }
 
-    # it 'should not have JavaScript errors', :js => true do
-    #   visit(root_path)
-    #   expect(page).not_to have_errors
-    # end
+    it 'should not have JavaScript errors', js: true do
+      expect(page).not_to have_errors
+    end
 
     it 'should have a sign out button' do
       ideas_page.click_sign_out_button
@@ -63,7 +62,7 @@ describe "The idea index page" do
     let!(:some_owner) { FactoryGirl.create(:user) }
     let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
 
-    it 'should redirect to the landing page when signed out' do
+    it 'should redirect to the sign-in page when signed out', js: true do
       ideas_page.visit_page_as nil
       ideas_page.click_upvote_button_for someones_idea
 
@@ -71,14 +70,16 @@ describe "The idea index page" do
     end
 
 
-    # it 'should increment the ideas vote count by 1 when signed in' do
-    #   user = FactoryGirl.create(:user)
-    #
-    #   ideas_page.visit_page_as user
-    #
-    #   expect{ideas_page.click_upvote_button_for someones_idea}
-    #     .to change{someones_idea.get_upvotes.size}.by(1)
-    # end
+    it 'should increment vote count for idea when signed in', js: true do
+      user = FactoryGirl.create(:user)
+      votes = someones_idea.get_upvotes.size
+
+      ideas_page.visit_page_as user
+      ideas_page.click_upvote_button_for someones_idea
+
+      expect(ideas_page.vote_tally_for someones_idea)
+        .to eq((votes + 1).to_s)
+    end
   end
 
 

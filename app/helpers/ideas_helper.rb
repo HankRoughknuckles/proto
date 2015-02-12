@@ -1,11 +1,27 @@
 module IdeasHelper
+  # displays the vote tally for the passed idea
+  def vote_tally_for(idea)
+    content_tag :span, idea.get_upvotes.size - idea.get_downvotes.size,
+      {
+        class: "votes votes-#{idea.id}",
+        data: {
+          dbid: idea.id
+        }
+      }
+  end
+
+
+  # displays the link for upvoting for the passed idea
   def upvote_link_for(idea)
     if user_signed_in?
       return link_to 'Upvote', upvote_idea_path(idea), {
         method: :put, 
-        class: "upvote upvote-#{idea.id}",
-        title: "Click if you like this idea",
-        remote: true
+        class:        "upvote upvote-#{idea.id}",
+        title:        "Click if you like this idea",
+        remote:       true,
+        data: {
+          dbid: idea.id
+        }
       }
     else
       return link_to "Upvote", new_user_session_path, {
@@ -15,6 +31,8 @@ module IdeasHelper
     end
   end
 
+
+  # displays the link for downvoting for the passed idea
   def downvote_link_for(idea)
     link_to 'Downvote', downvote_idea_path(idea), 
       {

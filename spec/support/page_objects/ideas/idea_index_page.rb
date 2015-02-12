@@ -11,6 +11,7 @@ class IdeaIndexPage
     @sign_out_button =        ".sign_out"
     @new_idea_button =        ".new_idea"
 
+    @vote_tally_prefix =      ".votes, .votes-"
     @upvote_button_prefix =   ".upvote, .upvote-"
     @downvote_button_prefix = ".downvote, .downvote-"
   end
@@ -38,6 +39,12 @@ class IdeaIndexPage
   #New Idea button
   def click_new_idea_button
     find(@new_idea_button).click
+  end
+
+
+  #Vote tally
+  def vote_tally_for(idea)
+    find(@vote_tally_prefix + idea.id.to_s).text
   end
 
 
