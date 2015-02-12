@@ -4,7 +4,11 @@
 $ ->
   $("a.upvote").click ->
     ideaId = $(this).attr("data-dbid")
-    voteForIdea ideaId, 1
+
+    if not $(this).hasClass("selected")
+      voteForIdea ideaId, 1
+      addChosenClassTo $(this)
+
 
 
   # finds the vote tally element in the DOM that has the passed dbid and
@@ -14,3 +18,7 @@ $ ->
     currentAmount =     parseInt $voteCounter.text()
 
     $voteCounter.text( currentAmount + amount )
+
+
+  addChosenClassTo = (element) ->
+    $(element).addClass("selected")

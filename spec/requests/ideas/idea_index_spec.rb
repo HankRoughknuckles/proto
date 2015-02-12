@@ -80,6 +80,18 @@ describe "The idea index page" do
       expect(ideas_page.vote_tally_for someones_idea)
         .to eq((votes + 1).to_s)
     end
+
+    it 'should only increment the vote count one time', js: true do
+      user = FactoryGirl.create(:user)
+      votes = someones_idea.get_upvotes.size
+
+      ideas_page.visit_page_as user
+      ideas_page.click_upvote_button_for someones_idea
+      ideas_page.click_upvote_button_for someones_idea
+
+      expect(ideas_page.vote_tally_for someones_idea)
+        .to eq((votes + 1).to_s)
+    end
   end
 
 
