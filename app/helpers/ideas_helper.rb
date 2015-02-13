@@ -38,9 +38,12 @@ module IdeasHelper
   # displays the link for downvoting for the passed idea
   def downvote_link_for(idea)
     if user_signed_in?
+      class_attr = "downvote downvote-#{idea.id}"
+      class_attr = class_attr + " selected" if current_user.voted_for? idea
+
       return link_to 'Downvote', downvote_idea_path(idea), {
         method:       :put, 
-        class:        "downvote downvote-#{idea.id}",
+        class:        class_attr,
         title:        "Click if you think this is a bad idea",
         remote:       true,
         data: {

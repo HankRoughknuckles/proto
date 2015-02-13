@@ -143,5 +143,14 @@ describe "The idea index page" do
       expect(ideas_page.vote_tally_for someones_idea)
         .to eq((votes - 1).to_s)
     end
+
+    it 'should load on the page as selected if previously upvoted' do
+      user = FactoryGirl.create(:user)
+      someones_idea.disliked_by user
+
+      ideas_page.visit_page_as user
+
+      expect(ideas_page).to have_selected_downvote_button_for someones_idea
+    end
   end
 end

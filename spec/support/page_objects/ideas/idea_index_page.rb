@@ -15,6 +15,7 @@ class IdeaIndexPage
     @upvote_button_prefix =           ".upvote.upvote-"
     @selected_upvote_button_prefix =  ".selected#{@upvote_button_prefix}"
     @downvote_button_prefix =         ".downvote.downvote-"
+    @selected_downvote_button_prefix = ".selected#{@downvote_button_prefix}"
   end
 
   def visit_page
@@ -70,5 +71,10 @@ class IdeaIndexPage
 
   def click_downvote_button_for(idea)
     find(downvote_button_for(idea)).click
+  end
+
+
+  def has_selected_downvote_button_for?(idea)
+    has_css? @selected_downvote_button_prefix + idea.id.to_s
   end
 end
