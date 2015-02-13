@@ -13,7 +13,11 @@ $ ->
     ideaId = $(this).attr("data-dbid")
 
     if not $(this).hasClass("selected")
-      changeVoteFor ideaId, 1
+      if downvoteButtonFor(ideaId).hasClass("selected")
+        changeVoteFor ideaId, 2
+      else
+        changeVoteFor ideaId, 1
+
       addChosenClassTo $(this)
       downvoteButtonFor(ideaId).removeClass("selected")
 
@@ -25,7 +29,10 @@ $ ->
     ideaId = $(this).attr("data-dbid")
 
     if not $(this).hasClass("selected")
-      changeVoteFor ideaId, -1
+      if upvoteButtonFor(ideaId).hasClass("selected")
+        changeVoteFor ideaId, -2
+      else
+        changeVoteFor ideaId, -1
       addChosenClassTo $(this)
       upvoteButtonFor(ideaId).removeClass("selected")
 
