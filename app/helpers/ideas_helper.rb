@@ -15,7 +15,7 @@ module IdeasHelper
   def upvote_link_for(idea)
     if user_signed_in?
       class_attr = "upvote upvote-#{idea.id}"
-      class_attr = class_attr + " selected" if current_user.voted_for? idea
+      class_attr = class_attr + " selected" if current_user.voted_as_when_voted_for idea
 
       return link_to 'Upvote', upvote_idea_path(idea), {
         method:       :put, 
@@ -39,7 +39,10 @@ module IdeasHelper
   def downvote_link_for(idea)
     if user_signed_in?
       class_attr = "downvote downvote-#{idea.id}"
-      class_attr = class_attr + " selected" if current_user.voted_for? idea
+      vote = current_user.voted_as_when_voted_for idea
+      if (vote != nil) && (vote == false)
+        class_attr = class_attr + " selected" 
+      end
 
       return link_to 'Downvote', downvote_idea_path(idea), {
         method:       :put, 
