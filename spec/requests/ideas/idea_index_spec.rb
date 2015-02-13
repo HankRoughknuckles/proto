@@ -9,11 +9,6 @@ describe "The idea index page" do
     let(:user) { FactoryGirl.create(:user) }
     before { ideas_page.visit_page_as user }
 
-    # it 'should not have JavaScript errors', :js => true do
-    #   visit(root_path)
-    #   expect(page).not_to have_errors
-    # end
-
     it 'should have a sign out button' do
       ideas_page.click_sign_out_button
 
@@ -62,23 +57,15 @@ describe "The idea index page" do
   describe 'the upvote buttons' do
     let!(:some_owner) { FactoryGirl.create(:user) }
     let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
+    let!(:user) { FactoryGirl.create(:user) }
 
-    it 'should redirect to the landing page when signed out' do
-      ideas_page.visit_page_as nil
-      ideas_page.click_upvote_button_for someones_idea
+    it 'should load on the page as selected if previously upvoted' do
+      someones_idea.liked_by user
 
-      expect(page).to have_title "Sign in"
+      ideas_page.visit_page_as user
+
+      expect(ideas_page).to have_selected_upvote_button_for someones_idea
     end
-
-
-    # it 'should increment the ideas vote count by 1 when signed in' do
-    #   user = FactoryGirl.create(:user)
-    #
-    #   ideas_page.visit_page_as user
-    #
-    #   expect{ideas_page.click_upvote_button_for someones_idea}
-    #     .to change{someones_idea.get_upvotes.size}.by(1)
-    # end
   end
 
 
@@ -88,6 +75,7 @@ describe "The idea index page" do
   describe 'the downvote buttons' do
     let!(:some_owner) { FactoryGirl.create(:user) }
     let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
+    let!(:user) { FactoryGirl.create(:user) }
 
     it 'should redirect to the landing page when signed out' do
       ideas_page.visit_page_as nil
@@ -97,13 +85,13 @@ describe "The idea index page" do
     end
 
 
-    # it 'should decrement the ideas vote count by 1 when signed in' do
-    #   user = FactoryGirl.create(:user)
-    #
-    #   ideas_page.visit_page_as user
-    #
-    #   expect{ideas_page.click_downvote_button_for someones_idea}
-    #     .to change{someones_idea.get_downvotes.size}.by(1)
-    # end
+    it 'should load on the page as selected if previously upvoted' do
+      user = FactoryGirl.create(:user)
+      someones_idea.disliked_by user
+
+      ideas_page.visit_page_as user
+
+      expect(ideas_page).to have_selected_downvote_button_for someones_idea
+    end
   end
 end

@@ -8,11 +8,14 @@ class IdeaIndexPage
     @page_url = ideas_path
     @title = "Ideas"
 
-    @sign_out_button =        ".sign_out"
-    @new_idea_button =        ".new_idea"
+    @sign_out_button =                ".sign_out"
+    @new_idea_button =                ".new_idea"
 
-    @upvote_button_prefix =   ".upvote, .upvote-"
-    @downvote_button_prefix = ".downvote, .downvote-"
+    @vote_tally_prefix =              ".votes.votes-"
+    @upvote_button_prefix =           ".upvote.upvote-"
+    @selected_upvote_button_prefix =  ".selected#{@upvote_button_prefix}"
+    @downvote_button_prefix =         ".downvote.downvote-"
+    @selected_downvote_button_prefix = ".selected#{@downvote_button_prefix}"
   end
 
   def visit_page
@@ -41,6 +44,12 @@ class IdeaIndexPage
   end
 
 
+  #Vote tally
+  def vote_tally_for(idea)
+    find(@vote_tally_prefix + idea.id.to_s).text
+  end
+
+
   #Upvote buttons
   def upvote_button_for(idea)
     @upvote_button_prefix + idea.id.to_s
@@ -48,6 +57,10 @@ class IdeaIndexPage
 
   def click_upvote_button_for(idea)
     find(upvote_button_for(idea)).click
+  end
+
+  def has_selected_upvote_button_for?(idea)
+    has_css? @selected_upvote_button_prefix + idea.id.to_s
   end
 
 
@@ -58,5 +71,10 @@ class IdeaIndexPage
 
   def click_downvote_button_for(idea)
     find(downvote_button_for(idea)).click
+  end
+
+
+  def has_selected_downvote_button_for?(idea)
+    has_css? @selected_downvote_button_prefix + idea.id.to_s
   end
 end

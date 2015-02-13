@@ -52,7 +52,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.4.4'            #intuitive testing language
-  gem 'capybara-webkit', '1.0.0'
+  gem 'capybara-webkit', '1.4.1'
   gem 'selenium-webdriver', '~> 2.44.0'  #allows js in tests
   gem 'database_cleaner', '~> 1.4.0'    #clean the database in tests easily
   gem 'launchy', '~> 2.4.3'             #for opening up the page while debugging tests
