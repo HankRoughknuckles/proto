@@ -66,6 +66,7 @@ class IdeasController < ApplicationController
 
   # PUT /ideas/1/upvote
   def upvote
+    @idea.liked_by current_user
     respond_to do |format|
       format.json { render text: @idea.vote_tally, status: :ok, location: @idea }
     end

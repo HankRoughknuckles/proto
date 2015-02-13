@@ -81,6 +81,7 @@ describe "The idea index page" do
         .to eq((votes + 1).to_s)
     end
 
+
     it 'should only increment the vote count one time', js: true do
       user = FactoryGirl.create(:user)
       votes = someones_idea.get_upvotes.size
@@ -91,6 +92,16 @@ describe "The idea index page" do
 
       expect(ideas_page.vote_tally_for someones_idea)
         .to eq((votes + 1).to_s)
+    end
+
+
+    it 'should load on the page as selected if previously upvoted' do
+      user = FactoryGirl.create(:user)
+      someones_idea.liked_by user
+
+      ideas_page.visit_page_as user
+
+      expect(ideas_page).to have_selected_upvote_button_for someones_idea
     end
   end
 
@@ -110,13 +121,27 @@ describe "The idea index page" do
     end
 
 
-    # it 'should decrement the ideas vote count by 1 when signed in' do
-    #   user = FactoryGirl.create(:user)
-    #
-    #   ideas_page.visit_page_as user
-    #
-    #   expect{ideas_page.click_downvote_button_for someones_idea}
-    #     .to change{someones_idea.get_downvotes.size}.by(1)
-    # end
+    it 'should decrement vote count for idea when signed in', js: true do
+      user = FactoryGirl.create(:user)
+      votes = someones_idea.get_downvotes.size
+
+      ideas_page.visit_page_as user
+      ideas_page.click_downvote_button_for someones_idea
+
+      expect(ideas_page.vote_tally_for someones_idea)
+        .to eq((votes - 1).to_s)
+    end
+
+    it 'should only decrement the vote count one time', js: true do
+      user = FactoryGirl.create(:user)
+      votes = someones_idea.get_downvotes.size
+
+      ideas_page.visit_page_as user
+      ideas_page.click_downvote_button_for someones_idea
+      ideas_page.click_downvote_button_for someones_idea
+
+      expect(ideas_page.vote_tally_for someones_idea)
+        .to eq((votes - 1).to_s)
+    end
   end
 end

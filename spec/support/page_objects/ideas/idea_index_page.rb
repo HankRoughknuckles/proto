@@ -8,12 +8,13 @@ class IdeaIndexPage
     @page_url = ideas_path
     @title = "Ideas"
 
-    @sign_out_button =        ".sign_out"
-    @new_idea_button =        ".new_idea"
+    @sign_out_button =                ".sign_out"
+    @new_idea_button =                ".new_idea"
 
-    @vote_tally_prefix =      ".votes, .votes-"
-    @upvote_button_prefix =   ".upvote, .upvote-"
-    @downvote_button_prefix = ".downvote, .downvote-"
+    @vote_tally_prefix =              ".votes.votes-"
+    @upvote_button_prefix =           ".upvote.upvote-"
+    @selected_upvote_button_prefix =  ".selected#{@upvote_button_prefix}"
+    @downvote_button_prefix =         ".downvote.downvote-"
   end
 
   def visit_page
@@ -55,6 +56,10 @@ class IdeaIndexPage
 
   def click_upvote_button_for(idea)
     find(upvote_button_for(idea)).click
+  end
+
+  def has_selected_upvote_button_for?(idea)
+    has_css? @selected_upvote_button_prefix + idea.id.to_s
   end
 
 
