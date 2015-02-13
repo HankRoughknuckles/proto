@@ -9,10 +9,6 @@ describe "The idea index page" do
     let(:user) { FactoryGirl.create(:user) }
     before { ideas_page.visit_page_as user }
 
-    it 'should not have JavaScript errors', js: true do
-      expect(page).not_to have_errors
-    end
-
     it 'should have a sign out button' do
       ideas_page.click_sign_out_button
 
@@ -63,25 +59,6 @@ describe "The idea index page" do
     let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
     let!(:user) { FactoryGirl.create(:user) }
 
-    it 'should redirect to the sign-in page when signed out', js: true do
-      ideas_page.visit_page_as nil
-      ideas_page.click_upvote_button_for someones_idea
-
-      expect(page).to have_title "Sign in"
-    end
-
-
-    it 'should increment vote count for idea when signed in', js: true do
-      votes = someones_idea.get_upvotes.size
-
-      ideas_page.visit_page_as user
-      ideas_page.click_upvote_button_for someones_idea
-
-      expect(ideas_page.vote_tally_for someones_idea)
-        .to eq((votes + 1).to_s)
-    end
-
-
     it 'should load on the page as selected if previously upvoted' do
       someones_idea.liked_by user
 
@@ -105,17 +82,6 @@ describe "The idea index page" do
       ideas_page.click_downvote_button_for someones_idea
 
       expect(page).to have_title "Sign in"
-    end
-
-
-    it 'should decrement vote count for idea when signed in', js: true do
-      votes = someones_idea.get_downvotes.size
-
-      ideas_page.visit_page_as user
-      ideas_page.click_downvote_button_for someones_idea
-
-      expect(ideas_page.vote_tally_for someones_idea)
-        .to eq((votes - 1).to_s)
     end
 
 
