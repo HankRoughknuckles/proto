@@ -37,8 +37,8 @@ $ ->
 
 
   upvoteButtonFor = ( id ) ->
-    return $(".upvote upvote-#{id}")
+    return $(".upvote.upvote-#{id}")
 
 
   downvoteButtonFor = ( id ) ->
-    return $(".downvote downvote-#{id}")
+    return $(".downvote.downvote-#{id}")
