@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
 # TODO: Use ajax here, and only send it if the element does not have the
-# 'seelected' class
+# 'seelected' class. Use this when you implement the tests to help them
+# pass
   $("a.upvote").click ->
     ideaId = $(this).attr("data-dbid")
 
