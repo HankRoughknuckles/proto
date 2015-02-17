@@ -38,24 +38,4 @@ RSpec.describe Idea, type: :model do
       expect(idea.vote_tally).to eq 0
     end
   end
-
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  #%% Idea.get_string_for_category
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  describe ".get_string_for_category" do
-    it 'should work with Technology' do
-      category = Idea::TECHNOLOGY
-      expect(Idea.get_string_for_category(category)).to eq "Technology"
-    end
-
-    it 'should work with Film' do
-      category = Idea::FILM
-      expect(Idea.get_string_for_category(category)).to eq "Film"
-    end
-
-    it 'should work with Education' do
-      category = Idea::EDUCATION
-      expect(Idea.get_string_for_category(category)).to eq "Education"
-    end
-  end
 end
