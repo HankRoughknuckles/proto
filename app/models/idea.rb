@@ -2,6 +2,11 @@ class Idea < ActiveRecord::Base
   acts_as_votable
   belongs_to :user
 
+  MISCELLANEOUS =     0
+  TECHNOLOGY =        1
+  EDUCATION =         2
+  FILM =              3
+
   has_attached_file :main_image, 
     :styles => { :poster => "100x300>", 
                  :medium => "300x300>", 
