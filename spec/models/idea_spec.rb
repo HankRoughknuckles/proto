@@ -5,6 +5,9 @@ RSpec.describe Idea, type: :model do
   it { expect(Idea.new).to respond_to :category }
 
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Idea#vote_tally
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "#vote_tally" do
     let!(:idea) { FactoryGirl.create(:idea) }
 
@@ -34,6 +37,9 @@ RSpec.describe Idea, type: :model do
 
       expect(idea.vote_tally).to eq 0
     end
-
   end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Idea#get_readable_name_for
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
