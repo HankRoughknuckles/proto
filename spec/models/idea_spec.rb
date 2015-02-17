@@ -40,9 +40,22 @@ RSpec.describe Idea, type: :model do
   end
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  #%% Idea.get_readable_name_for
+  #%% Idea.get_string_for_category
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  describe ".get_category_name_for" do
+  describe ".get_string_for_category" do
+    it 'should work with Technology' do
+      category = Idea::TECHNOLOGY
+      expect(Idea.get_string_for_category(category)).to eq "Technology"
+    end
 
+    it 'should work with Film' do
+      category = Idea::FILM
+      expect(Idea.get_string_for_category(category)).to eq "Film"
+    end
+
+    it 'should work with Education' do
+      category = Idea::EDUCATION
+      expect(Idea.get_string_for_category(category)).to eq "Education"
+    end
   end
 end

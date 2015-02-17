@@ -7,6 +7,13 @@ class Idea < ActiveRecord::Base
   EDUCATION =         2
   FILM =              3
 
+  @@categoryHash = {
+    MISCELLANEOUS =>    "Miscellaneous",
+    TECHNOLOGY =>       "Technology",
+    EDUCATION =>        "Education",
+    FILM  =>            "Film"
+  }
+
   has_attached_file :main_image, 
     :styles => { :poster => "100x300>", 
                  :medium => "300x300>", 
@@ -22,5 +29,9 @@ class Idea < ActiveRecord::Base
 
   def vote_tally
     return self.get_upvotes.size - self.get_downvotes.size
+  end
+
+  def self.get_string_for_category(category)
+    return @@categoryHash[category]
   end
 end
