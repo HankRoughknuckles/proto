@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Idea, type: :model do
 
+  it { expect(Idea.new).to respond_to :category }
+
+
   describe "#vote_tally" do
     let!(:idea) { FactoryGirl.create(:idea) }
 

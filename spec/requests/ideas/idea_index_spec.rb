@@ -94,4 +94,11 @@ describe "The idea index page" do
       expect(ideas_page).to have_selected_downvote_button_for someones_idea
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The category buttons
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe 'the category buttons' do
+ end
 end
