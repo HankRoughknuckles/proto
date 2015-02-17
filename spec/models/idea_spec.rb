@@ -40,6 +40,9 @@ RSpec.describe Idea, type: :model do
   end
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  #%% Idea#get_readable_name_for
+  #%% Idea.get_readable_name_for
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe ".get_category_name_for" do
+
+  end
 end
