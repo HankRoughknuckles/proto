@@ -36,6 +36,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
+    puts "&&&&&& idea_params.to_yaml = #{idea_params.to_yamll} &&&&&&"
 
     respond_to do |format|
       if @idea.save
