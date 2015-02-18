@@ -21,7 +21,11 @@
   <tbody>
     <% @ideas.each do |idea| %>
       <tr>
-        <td><%= image_tag idea.main_image.url(:poster) %></td>
+        <td>
+          <%= link_to idea_path(idea), class: "idea idea-#{idea.id}" do %>
+            <%= image_tag idea.main_image.url(:poster) %>
+          <% end %>
+        </td>
         <td><%= vote_tally_for idea %></td>
         <td><%= idea.title %></td>
         <td><%= idea.description %></td>
