@@ -16,8 +16,8 @@ class IdeaIndexPage
     @selected_upvote_button_prefix =  ".selected#{@upvote_button_prefix}"
     @downvote_button_prefix =         ".downvote.downvote-"
     @selected_downvote_button_prefix = ".selected#{@downvote_button_prefix}"
-    @detail_link_prefix =             ".idea .idea-"
-    @category_button_prefix =         "category .category-"
+    @detail_link_prefix =             ".idea.idea-"
+    @category_button_prefix =         ".category.category-"
     @all_categories_button =          "#{@category_button_prefix}all"
   end
 
