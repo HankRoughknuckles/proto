@@ -107,7 +107,7 @@ describe "The idea index page" do
     let!(:tech_idea)   { FactoryGirl.create(:idea, 
                                             category: tech_category)  }
 
-    describe "the all button" do
+    describe "the 'all categories' button" do
       before :each do
         ideas_page.visit_page_as nil
         ideas_page.click_all_categories_button
