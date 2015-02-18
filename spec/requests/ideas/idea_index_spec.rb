@@ -100,10 +100,12 @@ describe "The idea index page" do
   #%% The category buttons
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'the category buttons' do
-    let(:film_idea)   { FactoryGirl.create(:idea, 
-                                          category: Idea::FILM) }
-    let(:tech_idea)   { FactoryGirl.create(:idea, 
-                                           category: Idea::TECHNOLOGY) }
+    let(:film_category) { FactoryGirl.create(:category, name: "Film") }
+    let(:tech_category) { FactoryGirl.create(:category, name: "Technology") }
+    let!(:film_idea)   { FactoryGirl.create(:idea, 
+                                            category: film_category) }
+    let!(:tech_idea)   { FactoryGirl.create(:idea, 
+                                            category: tech_category)  }
 
     describe "the all button" do
       before :each do
@@ -113,6 +115,10 @@ describe "The idea index page" do
 
       it 'should display the film idea' do
         expect(ideas_page).to have_detail_link_for film_idea
+      end
+
+      it 'should display the tech idea' do
+        expect(ideas_page).to have_detail_link_for tech_idea
       end
     end
   end
