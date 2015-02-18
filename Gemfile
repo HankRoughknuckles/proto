@@ -33,7 +33,7 @@ gem "paperclip", "~> 4.2"
 #for use with heroku
 gem "rails_12factor", group: :production
 #use amazon aws for storing images
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 
 group :development do
