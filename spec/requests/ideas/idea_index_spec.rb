@@ -100,5 +100,20 @@ describe "The idea index page" do
   #%% The category buttons
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'the category buttons' do
- end
+    let(:film_idea)   { FactoryGirl.create(:idea, 
+                                          category: Idea::FILM) }
+    let(:tech_idea)   { FactoryGirl.create(:idea, 
+                                           category: Idea::TECHNOLOGY) }
+
+    describe "the all button" do
+      before :each do
+        ideas_page.visit_page_as nil
+        ideas_page.click_all_categories_button
+      end
+
+      it 'should display the film idea' do
+        expect(ideas_page).to have_detail_link_for film_idea
+      end
+    end
+  end
 end
