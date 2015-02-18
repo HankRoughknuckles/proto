@@ -32,6 +32,8 @@ gem 'acts_as_votable', '0.10.0'
 gem "paperclip", "~> 4.2"
 #for use with heroku
 gem "rails_12factor", group: :production
+#use amazon aws for storing images
+gem 'aws-sdk'
 
 
 group :development do
