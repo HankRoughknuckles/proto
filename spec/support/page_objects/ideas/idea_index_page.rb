@@ -95,6 +95,6 @@ class IdeaIndexPage
   end
 
   def category_button_for(category)
-    @category_button_prefix + category.id
+    @category_button_prefix + category.id.to_s
   end
 end

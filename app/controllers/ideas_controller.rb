@@ -4,9 +4,18 @@ class IdeasController < ApplicationController
   before_action :authenticate_user!, only: [:upvote, :downvote]
 
   # GET /ideas
+  # GET /ideas/?category=Technology
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+    # filter the shown ideas by the category in the query string.  If
+    # none specified, return all
+    category_name = ideas_index_params[:category]
+    if category_name.present?
+      category = Category.find_by_name category_name
+      @ideas = category.ideas
+    else
+      @ideas = Idea.all
+    end
   end
 
   # GET /ideas/1
@@ -91,5 +100,9 @@ class IdeasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:title, :description, :main_image)
+    end
+
+    def ideas_index_params
+      params.permit(:category)
     end
 end

@@ -121,5 +121,20 @@ describe "The idea index page" do
         expect(ideas_page).to have_detail_link_for tech_idea
       end
     end
+
+    describe "the 'film' category buton" do
+      before :each do
+        ideas_page.visit_page_as nil
+        ideas_page.click_category_button film_category
+      end
+
+      it 'should display the film idea' do
+        expect(ideas_page).to have_detail_link_for film_idea
+      end
+
+      it 'should display the tech idea' do
+        expect(ideas_page).not_to have_detail_link_for tech_idea
+      end
+    end
   end
 end

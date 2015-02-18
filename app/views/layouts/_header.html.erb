@@ -1,6 +1,10 @@
 <nav>
   <%= link_to "Icon here", root_path, id: "icon" %>
   <%= link_to "All", ideas_path, class: "category category-all" %>
+  <%= Category.all.each do |category| %>
+    <%= link_to category.name, ideas_path(category: category.name), 
+      class: "category category-#{category.id}" %>
+  <% end %>
 </nav>
 
 <% flash.each do |name, msg| %>
