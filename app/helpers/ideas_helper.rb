@@ -19,7 +19,7 @@ module IdeasHelper
 
     else
       path = new_user_session_path
-      return link_to "Upvote", path, login_link_attrs(:upvote)
+      return link_to "Upvote", path, login_link_attrs(idea, :upvote)
     end
   end
 
@@ -32,7 +32,7 @@ module IdeasHelper
 
     else
       path = new_user_session_path
-      return link_to "Downvote", path, login_link_attrs(:downvote)    
+      return link_to "Downvote", path, login_link_attrs(idea, :downvote)    
     end
   end
 
@@ -71,7 +71,7 @@ module IdeasHelper
   end
 
 
-  def login_link_attrs(votetype)
+  def login_link_attrs(idea, votetype)
     if votetype == :upvote
       class_attr = "upvote upvote-#{idea.id}"
     elsif votetype == :downvote

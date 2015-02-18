@@ -1,6 +1,7 @@
 class Idea < ActiveRecord::Base
   acts_as_votable
   belongs_to :user
+  belongs_to :category
 
   has_attached_file :main_image, 
     :styles => { :poster => "100x300>", 

@@ -94,4 +94,62 @@ describe "The idea index page" do
       expect(ideas_page).to have_selected_downvote_button_for someones_idea
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The category buttons
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe 'the category buttons' do
+    let(:film_category) { FactoryGirl.create(:category, name: "Film") }
+    let(:tech_category) { FactoryGirl.create(:category, name: "Technology") }
+    let!(:film_idea)   { FactoryGirl.create(:idea, 
+                                            category: film_category) }
+    let!(:tech_idea)   { FactoryGirl.create(:idea, 
+                                            category: tech_category)  }
+
+    describe "the 'all categories' button" do
+      before :each do
+        ideas_page.visit_page_as nil
+        ideas_page.click_all_categories_button
+      end
+
+      it 'should display the film idea' do
+        expect(ideas_page).to have_detail_link_for film_idea
+      end
+
+      it 'should display the tech idea' do
+        expect(ideas_page).to have_detail_link_for tech_idea
+      end
+    end
+
+    describe "the 'film' category buton" do
+      before :each do
+        ideas_page.visit_page_as nil
+        ideas_page.click_category_button film_category
+      end
+
+      it 'should display the film idea' do
+        expect(ideas_page).to have_detail_link_for film_idea
+      end
+
+      it 'should display the tech idea' do
+        expect(ideas_page).not_to have_detail_link_for tech_idea
+      end
+    end
+
+    describe "the 'tech' category buton" do
+      before :each do
+        ideas_page.visit_page_as nil
+        ideas_page.click_category_button tech_category
+      end
+
+      it 'should display the tech idea' do
+        expect(ideas_page).to have_detail_link_for tech_idea
+      end
+
+      it 'should display the film idea' do
+        expect(ideas_page).not_to have_detail_link_for film_idea
+      end
+    end
+  end
 end

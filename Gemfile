@@ -30,6 +30,8 @@ gem 'devise', '3.4.1'
 gem 'acts_as_votable', '0.10.0' 
 #upload images and such
 gem "paperclip", "~> 4.2"
+#for use with heroku
+gem "rails_12factor", group: :production
 
 
 group :development do

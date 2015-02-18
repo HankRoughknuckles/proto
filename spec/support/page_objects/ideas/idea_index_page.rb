@@ -16,6 +16,9 @@ class IdeaIndexPage
     @selected_upvote_button_prefix =  ".selected#{@upvote_button_prefix}"
     @downvote_button_prefix =         ".downvote.downvote-"
     @selected_downvote_button_prefix = ".selected#{@downvote_button_prefix}"
+    @detail_link_prefix =             ".idea.idea-"
+    @category_button_prefix =         ".category.category-"
+    @all_categories_button =          "#{@category_button_prefix}all"
   end
 
   def visit_page
@@ -73,8 +76,25 @@ class IdeaIndexPage
     find(downvote_button_for(idea)).click
   end
 
-
   def has_selected_downvote_button_for?(idea)
     has_css? @selected_downvote_button_prefix + idea.id.to_s
+  end
+
+
+  def has_detail_link_for?(idea)
+    has_css? @detail_link_prefix + idea.id.to_s
+  end
+
+
+  def click_all_categories_button
+    find(@all_categories_button).click
+  end
+
+  def click_category_button(category)
+    find(category_button_for(category)).click
+  end
+
+  def category_button_for(category)
+    @category_button_prefix + category.id.to_s
   end
 end
