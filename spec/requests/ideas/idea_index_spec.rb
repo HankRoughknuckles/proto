@@ -3,6 +3,7 @@ require "spec_helper"
 describe "The idea index page" do
   let(:ideas_page)            { IdeaIndexPage.new() }
   let(:landing_page)          { LandingPage.new() }
+  let(:login_page)            { LoginPage.new() }
   let(:new_idea_page)         { NewIdeaPage.new() }
 
   context 'when signed in' do
@@ -30,10 +31,11 @@ describe "The idea index page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "the new idea button" do
     it 'should go to sign up page when not signed in' do
+      idea = FactoryGirl.create(:idea)
       ideas_page.visit_page_as nil
-      ideas_page.click_new_idea_button
+      ideas_page.click_upvote_button_for(idea)
 
-      expect(page.title).to match /^#{landing_page.title}$/
+      expect(page.title).to match /#{login_page.title}/
     end
 
 
@@ -160,8 +162,8 @@ describe "The idea index page" do
   describe "The description" do
     let!(:some_owner) { FactoryGirl.create(:user) }
     let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner,
-                                              summary: "Twitter for
-                                              rodents with hats") }
+                                              summary: "Twitter for cats")
+    }
 
     before {  ideas_page.visit_page_as nil }
 

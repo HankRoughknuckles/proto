@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  it 'should have a unique email'
+
   describe "#voted_for?" do
     let(:user) { FactoryGirl.create(:user) }
     let(:idea) { FactoryGirl.create(:idea) }

@@ -32,8 +32,27 @@ module IdeasHelper
 
     else
       path = new_user_session_path
-      return link_to "Downvote", path, login_link_attrs(idea, :downvote)    
+      return link_to "Downvote", path, login_link_attrs(idea, :downvote)
     end
+  end
+
+
+  def add_email_link_for(idea)
+    if user_signed_in?
+      path = add_email_idea_path(idea)
+      attrs = {
+        method: :post,
+        # remote: true,
+        class: "add_email"
+      }
+    else
+      path = new_user_session_path
+      attrs = {
+        class: "add_email"
+      }
+    end
+
+    return link_to "Let me know when this happens", path, attrs
   end
 
 
@@ -80,7 +99,7 @@ module IdeasHelper
 
     return {
       class: class_attr, 
-      title: "You must be logged in to upvote"
+      title: "You must be logged in to vote"
     }
   end
 end

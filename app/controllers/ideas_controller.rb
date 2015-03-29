@@ -1,7 +1,8 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy,
-                                  :upvote, :downvote]
-  before_action :authenticate_user!, only: [:upvote, :downvote]
+                                  :upvote, :downvote, :add_email]
+  before_action :authenticate_user!, only: [:upvote, :downvote,
+                                            :add_email]
 
   # GET /ideas
   # GET /ideas/?category=Technology
@@ -36,7 +37,6 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-    puts "&&&&&& idea_params.to_yaml = #{idea_params.to_yamll} &&&&&&"
 
     respond_to do |format|
       if @idea.save
@@ -74,20 +74,38 @@ class IdeasController < ApplicationController
   end
 
 
-  # PUT /ideas/1/upvote
+  # PUT /ideas/1/upvote.json
   def upvote
     @idea.liked_by current_user
     respond_to do |format|
-      format.json { render text: @idea.vote_tally, status: :ok, location: @idea }
+      format.json { render(text: @idea.vote_tally, 
+                           status: :ok, 
+                           location: @idea) }
+    end
+  end
+
+  # PUT /ideas/1/downvote.json
+  def downvote
+    @idea.disliked_by current_user
+    respond_to do |format|
+      format.json { render(text: @idea.vote_tally, 
+                           status: :ok, 
+                           location: @idea) }
     end
   end
 
 
-  # PUT /ideas/1/downvote
-  def downvote
-    @idea.disliked_by current_user
+  # POST /ideas/1/add_email
+  def add_email
+    @idea.add_subscriber! current_user
+
     respond_to do |format|
-      format.json { render text: @idea.vote_tally, status: :ok, location: @idea }
+      format.html { redirect_to(@idea, 
+                                notice: "You've added your email to the
+                                        list.") }
+      format.json { render(text: "ok", 
+                           status: :created, 
+                           location: @idea) }
     end
   end
 

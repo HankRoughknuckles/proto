@@ -15,5 +15,13 @@
   <%= image_tag @idea.main_image.url(:poster) %>
 </p>
 
+<p class="votes votes-<%= @idea.id %>">
+ <%= @idea.vote_tally %>
+</p>
+
+<p><%= upvote_link_for @idea %></p>
+<p><%= downvote_link_for @idea %></p>
+<p><%= add_email_link_for(@idea) %></p>
+
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>

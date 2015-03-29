@@ -1,5 +1,13 @@
 class User < ActiveRecord::Base
   has_many :ideas
+
+  # each user can be subscribed to several ideas (i.e. - give their email
+  # address for several ideas)
+  has_many :subscriptions,  {foreign_key:   "subscriber_id", 
+                             dependent:     :destroy}
+  has_many :followed_ideas, {through:       :subscriptions, 
+                             source:        :idea}
+
   acts_as_voter
 
   # Include default devise modules. Others available are:

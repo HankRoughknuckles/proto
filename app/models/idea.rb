@@ -3,6 +3,12 @@ class Idea < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  # each idea can have several different subscribers
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscribers, through: :subscriptions, source: :user
+
+
+
   validates_presence_of   :title
   validates               :summary, length: { maximum: 50 }
 
@@ -19,7 +25,14 @@ class Idea < ActiveRecord::Base
                       "image/gif"]
 
 
+  # Returns the tally of votes for the idea (upvotes - downvotes)
   def vote_tally
     return self.get_upvotes.size - self.get_downvotes.size
+  end
+
+
+  # Registers the passed user as a subscriber to the idea
+  def add_subscriber!(user)
+    self.subscribers << user
   end
 end
