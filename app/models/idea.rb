@@ -3,6 +3,9 @@ class Idea < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
+  validates_presence_of   :title
+  validates               :summary, length: { maximum: 50 }
+
   has_attached_file :main_image, 
     :styles => { :poster => "100x300>", 
                  :medium => "300x300>", 

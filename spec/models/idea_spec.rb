@@ -38,4 +38,18 @@ RSpec.describe Idea, type: :model do
       expect(idea.vote_tally).to eq 0
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Validations
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  it 'Should not be valid if summary is longer than 50 characters' do
+    idea = FactoryGirl.build(:idea, summary: "a" * 51)
+    expect(idea).not_to be_valid
+  end
+
+  it 'should not be valid if the title is not present' do
+    idea = FactoryGirl.build(:idea, title: "")
+    expect(idea).not_to be_valid
+  end
 end

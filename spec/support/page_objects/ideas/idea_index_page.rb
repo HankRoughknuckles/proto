@@ -86,6 +86,7 @@ class IdeaIndexPage
   end
 
 
+  # Category buttons
   def click_all_categories_button
     find(@all_categories_button).click
   end

@@ -152,4 +152,25 @@ describe "The idea index page" do
       end
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The description
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "The description" do
+    let!(:some_owner) { FactoryGirl.create(:user) }
+    let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner,
+                                              summary: "Twitter for
+                                              rodents with hats") }
+
+    before {  ideas_page.visit_page_as nil }
+
+    it 'should display the short summary' do
+      expect(ideas_page).to have_text someones_idea.summary
+    end
+
+    it 'should not have the description' do
+      expect(ideas_page).not_to have_text someones_idea.description
+    end
+  end
 end
