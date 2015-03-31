@@ -2,7 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it 'should have a unique email'
+  it 'should have a unique email' do
+    first = FactoryGirl.create(:user, email: "tester@example.com")
+    second = FactoryGirl.build(:user, email: "tester@example.com")
+
+    expect(second).not_to be_valid
+  end
+
 
   describe "#voted_for?" do
     let(:user) { FactoryGirl.create(:user) }
