@@ -21,7 +21,16 @@
 
 <p><%= upvote_link_for @idea %></p>
 <p><%= downvote_link_for @idea %></p>
-<p><%= add_email_link_for(@idea) %></p>
+<p>
+  <%# <% if @idea.belongs_to? current_user %>
+  <% if current_user == @idea.owner %><%# todo: use @idea.belongs_to? %>
+    <%= list_emails_link_for @idea %>
+    <%# <%= link_to "Show subscribers", email_list_idea_path(@idea), class: "list_emails" %>
+  <% else %>
+    <%= subscribe_link_for(@idea) %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |
 <%= link_to 'Back', ideas_path %>
+

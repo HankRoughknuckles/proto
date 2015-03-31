@@ -52,4 +52,34 @@ RSpec.describe Idea, type: :model do
     idea = FactoryGirl.build(:idea, title: "")
     expect(idea).not_to be_valid
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Idea#belongs_to?
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "#belongs_to?" do
+    let(:owner) { FactoryGirl.create(:user) }
+    let(:idea) { FactoryGirl.create(:idea, owner: owner ) }
+
+    it "should return false when passed a non user" do
+      inputs = [
+        nil,
+        "a string",
+        4,
+        Idea.new
+      ]
+
+      inputs.each do |input|
+        expect(idea.belongs_to? input).to eq false
+      end
+    end
+
+    it "should return false when the passed user is not the owner" do
+      expect(idea.belongs_to? User.new).to eq false
+    end
+
+    it "should return true when the passed user is the owner" do
+      expect(idea.belongs_to? owner).to eq true
+    end
+  end
 end

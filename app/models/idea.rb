@@ -1,6 +1,6 @@
 class Idea < ActiveRecord::Base
   acts_as_votable
-  belongs_to :user
+  belongs_to :owner, class_name: "User"
   belongs_to :category
 
   # each idea can have several different subscribers
@@ -34,5 +34,12 @@ class Idea < ActiveRecord::Base
   # Registers the passed user as a subscriber to the idea
   def add_subscriber!(user)
     self.subscribers << user
+  end
+
+
+  # returns true if the instance of idea belongs to the passed user
+  def belongs_to?(user)
+    return false unless user.instance_of? User
+    return self.owner == user
   end
 end

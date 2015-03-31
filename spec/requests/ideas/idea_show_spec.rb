@@ -1,13 +1,15 @@
 require "spec_helper"
 
 describe "The idea show page" do
-  let(:idea_owner)    { FactoryGirl.create(:user) }
-  let(:some_user)     { FactoryGirl.create(:user) }
-  let(:idea)          { FactoryGirl.create(:idea, user: idea_owner,
-                                           main_image_file_name: "img.png"
-                                          ) }
-  let(:idea_page)     { IdeaShowPage.new(idea) }
-  let(:login_page)    { LoginPage.new }
+  let!(:idea_owner)   { FactoryGirl.create(:user) }
+  let!(:some_user)    { FactoryGirl.create(:user) }
+  let!(:idea)         { FactoryGirl.create(:idea, owner: idea_owner,
+                                          main_image_file_name: "img.png"
+                                         ) }
+  let(:idea_page)         { IdeaShowPage.new(idea) }
+  let(:email_list_page)   { EmailListPage.new(idea) }
+  let(:login_page)        { LoginPage.new }
+
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Static page elements
@@ -63,25 +65,45 @@ describe "The idea show page" do
     end
   end
 
+
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% The email button
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "the add email button" do
-    context 'when signed in' do
+    context 'when signed in as someone who is not the idea owner' do
       it "should add the current user to the contact list" do
         idea_page.visit_page_as some_user
-        expect{ idea_page.click_add_email_button }
-          .to change{idea.subscribers.count}.by 1
+        expect{ idea_page.click_subscribe_button }
+          .to change{ idea.subscribers.count }.by 1
+      end
+    end
+
+    context 'when signed in as the idea owner' do
+      before { idea_page.visit_page_as idea_owner }
+
+      it 'should not be present' do
+        expect(idea_page).not_to have_subscribe_button
+      end
+
+      it 'should be replaced by the email list link' do
+        expect(idea_page).to have_email_list_button
       end
     end
 
     context 'when not signed in' do
       it "should take the user to the sign in page" do
         idea_page.visit_page_as nil
-        idea_page.click_add_email_button
+        idea_page.click_subscribe_button
 
         expect(page.title).to match /#{login_page.title}/
       end
     end
+  end
+
+  it 'the email list button should take you to the email list page' do
+    idea_page.visit_page_as idea_owner
+    idea_page.click_email_list_button
+
+    expect(page.title).to match /#{email_list_page.title}/
   end
 end

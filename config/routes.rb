@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     member do
       put     "upvote",           to: "ideas#upvote"
       put     "downvote",         to: "ideas#downvote"
-      post    "add_email",        to: "ideas#add_email"
+      post    "subscribe",        to: "ideas#subscribe"
+      get     "email_list",       to: "ideas#email_list"
     end
   end
 

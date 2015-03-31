@@ -11,6 +11,15 @@ module IdeasHelper
   end
 
 
+  # displays the link for taking the user to the list of email subscribers
+  # for the idea
+  def list_emails_link_for(idea)
+    path = email_list_idea_path(idea)
+    attrs = { class: "list_emails" }
+    return link_to "Show subscribers", path, attrs
+  end
+
+
   # displays the link for upvoting for the passed idea
   def upvote_link_for(idea)
     if user_signed_in?
@@ -37,18 +46,18 @@ module IdeasHelper
   end
 
 
-  def add_email_link_for(idea)
+  def subscribe_link_for(idea)
     if user_signed_in?
-      path = add_email_idea_path(idea)
+      path = subscribe_idea_path(idea)
       attrs = {
         method: :post,
         # remote: true,
-        class: "add_email"
+        class: "subscribe"
       }
     else
       path = new_user_session_path
       attrs = {
-        class: "add_email"
+        class: "subscribe"
       }
     end
 

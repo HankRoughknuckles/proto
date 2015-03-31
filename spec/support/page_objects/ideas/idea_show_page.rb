@@ -5,13 +5,14 @@ class IdeaShowPage
   attr_reader :title
 
   def initialize(idea)
-    @idea                           = idea
-    @page_url                       = idea_path idea
-    @title                          = "page_title"
-    @vote_tally_prefix              = ".votes.votes-"
-    @upvote_button                  = ".upvote"
-    @downvote_button                = ".downvote"
-    @add_email_button               = ".add_email"
+    @idea =                         idea
+    @page_url =                     idea_path idea
+    @title =                        "page_title"
+    @vote_tally_prefix =            ".votes.votes-"
+    @upvote_button =                ".upvote"
+    @downvote_button =              ".downvote"
+    @subscribe_button =             ".subscribe"
+    @email_list_button =            ".list_emails"
   end
 
   def visit_page
@@ -46,7 +47,23 @@ class IdeaShowPage
     find(@downvote_button).click
   end
 
-  def click_add_email_button
-    find(@add_email_button).click
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The email buttons
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_subscribe_button?
+    has_css? @subscribe_button
+  end
+
+  def click_subscribe_button
+    find(@subscribe_button).click
+  end
+
+  def has_email_list_button?
+    has_css? @email_list_button
+  end
+
+  def click_email_list_button
+    find(@email_list_button).click
   end
 end

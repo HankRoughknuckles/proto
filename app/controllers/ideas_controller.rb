@@ -1,8 +1,10 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy,
-                                  :upvote, :downvote, :add_email]
+                                  :upvote, :downvote, :subscribe,
+                                  :email_list]
   before_action :authenticate_user!, only: [:upvote, :downvote,
-                                            :add_email]
+                                            :subscribe]
+  before_action :correct_user, only: [:destroy, :email_list]
 
   # GET /ideas
   # GET /ideas/?category=Technology
@@ -31,6 +33,11 @@ class IdeasController < ApplicationController
 
   # GET /ideas/1/edit
   def edit
+  end
+
+  # GET /ideas/1/email_list
+  def email_list
+    @subscribers = @idea.subscribers
   end
 
   # POST /ideas
@@ -95,8 +102,8 @@ class IdeasController < ApplicationController
   end
 
 
-  # POST /ideas/1/add_email
-  def add_email
+  # POST /ideas/1/subscribe
+  def subscribe
     @idea.add_subscriber! current_user
 
     respond_to do |format|
@@ -123,5 +130,13 @@ class IdeasController < ApplicationController
 
     def ideas_index_params
       params.permit(:category)
+    end
+
+    def correct_user
+      if current_user.nil? 
+        redirect_to new_user_session_path
+      elsif @idea.owner != current_user
+        redirect_to root_path
+      end
     end
 end

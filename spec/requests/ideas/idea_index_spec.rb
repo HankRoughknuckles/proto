@@ -58,7 +58,7 @@ describe "The idea index page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'the upvote buttons' do
     let!(:some_owner) { FactoryGirl.create(:user) }
-    let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
+    let!(:someones_idea) { FactoryGirl.create(:idea, owner: some_owner) }
     let!(:user) { FactoryGirl.create(:user) }
 
     it 'should load on the page as selected if previously upvoted' do
@@ -76,7 +76,7 @@ describe "The idea index page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'the downvote buttons' do
     let!(:some_owner) { FactoryGirl.create(:user) }
-    let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner) }
+    let!(:someones_idea) { FactoryGirl.create(:idea, owner: some_owner) }
     let!(:user) { FactoryGirl.create(:user) }
 
     it 'should redirect to the landing page when signed out' do
@@ -161,7 +161,7 @@ describe "The idea index page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "The description" do
     let!(:some_owner) { FactoryGirl.create(:user) }
-    let!(:someones_idea) { FactoryGirl.create(:idea, user: some_owner,
+    let!(:someones_idea) { FactoryGirl.create(:idea, owner: some_owner,
                                               summary: "Twitter for cats")
     }
 
