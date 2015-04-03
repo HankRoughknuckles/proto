@@ -1,4 +1,6 @@
 class Idea < ActiveRecord::Base
+  MAX_SUMMARY_LENGTH = 50
+
   acts_as_votable
   belongs_to :owner, class_name: "User"
   belongs_to :category
@@ -8,9 +10,8 @@ class Idea < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, source: :user
 
 
-
   validates_presence_of   :title
-  validates               :summary, length: { maximum: 50 }
+  validates               :summary, length: { maximum: MAX_SUMMARY_LENGTH }
 
   has_attached_file :main_image, 
     :styles => { :poster => "100x300>", 

@@ -3,7 +3,7 @@ class IdeasController < ApplicationController
                                   :upvote, :downvote, :subscribe,
                                   :email_list]
   before_action :authenticate_user!, only: [:upvote, :downvote,
-                                            :subscribe]
+                                            :subscribe, :new]
   before_action :correct_user, only: [:destroy, :email_list]
 
   # GET /ideas
@@ -44,6 +44,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
+    @idea.owner = current_user
 
     respond_to do |format|
       if @idea.save

@@ -5,8 +5,9 @@ class NewIdeaPage
   attr_reader :title
 
   def initialize
-    @page_url = new_idea_path
-    @title = "New Idea"
+    @page_url =         new_idea_path
+    @title =            "New Idea"
+    @error =            "#error_explanation"
   end
 
   def visit_page
@@ -16,5 +17,9 @@ class NewIdeaPage
   def visit_page_as(user)
     user.present? ? login_as(user) : logout
     visit @page_url
+  end
+
+  def has_title_missing_error?
+    has_css? @error, text: "Title"
   end
 end
