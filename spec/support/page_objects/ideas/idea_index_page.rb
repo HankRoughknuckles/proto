@@ -19,6 +19,8 @@ class IdeaIndexPage
     @detail_link_prefix =             ".idea.idea-"
     @category_button_prefix =         ".category.category-"
     @all_categories_button =          "#{@category_button_prefix}all"
+
+    @feedback_link =                  ".feedback"
   end
 
   def visit_page
@@ -97,5 +99,11 @@ class IdeaIndexPage
 
   def category_button_for(category)
     @category_button_prefix + category.id.to_s
+  end
+
+
+  #Feedback link
+  def click_feedback_link
+    find(@feedback_link).click
   end
 end

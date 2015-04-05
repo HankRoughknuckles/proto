@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'static_pages#landing_page'
+  root        'static_pages#landing_page'
+  get         "feedback" => "static_pages#feedback"
+
   resources :ideas do
     member do
       put     "upvote",           to: "ideas#upvote"

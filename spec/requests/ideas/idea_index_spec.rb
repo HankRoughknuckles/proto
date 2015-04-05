@@ -175,4 +175,19 @@ describe "The idea index page" do
       expect(ideas_page).not_to have_text someones_idea.description
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The "feedback" link
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "the feedback link" do
+    it 'should go to the feedback page' do
+      feedback_page = FeedbackPage.new
+
+      ideas_page.visit_page_as nil
+      ideas_page.click_feedback_link
+
+      expect(page.title).to match /#{feedback_page.title}/
+    end
+  end
 end
