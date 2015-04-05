@@ -22,13 +22,15 @@
 <p><%= upvote_link_for @idea %></p>
 <p><%= downvote_link_for @idea %></p>
 <p>
-  <%# <% if @idea.belongs_to? current_user %>
-  <% if current_user == @idea.owner %><%# todo: use @idea.belongs_to? %>
+  <% if @idea.belongs_to? current_user %>
     <%= list_emails_link_for @idea %>
-    <%# <%= link_to "Show subscribers", email_list_idea_path(@idea), class: "list_emails" %>
   <% else %>
     <%= subscribe_link_for(@idea) %>
   <% end %>
+</p>
+
+<p>
+<iframe width="560" height="315" src="<%= @idea.embed_link %>" frameborder="0" allowfullscreen></iframe>
 </p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |

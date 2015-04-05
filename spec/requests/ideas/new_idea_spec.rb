@@ -2,6 +2,7 @@ require "spec_helper"
 
 describe "The new page" do
   let(:user)              { FactoryGirl.create(:user) }
+  let!(:idea)             { FactoryGirl.build(:idea) }
   let!(:new_idea_page)    { NewIdeaPage.new }
   let!(:form)             { IdeaForm.new }
   let!(:login_page)       { LoginPage.new }
@@ -23,16 +24,30 @@ describe "The new page" do
     #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     describe "with proper information" do
       it 'should make a new idea' do
-        form.fill_form_with FactoryGirl.attributes_for :idea 
+        form.fill_form_with idea.attributes
 
         expect{ form.click_submit_button }.to change{ Idea.count }.by 1
       end
 
       it 'new idea should belong to owner' do
-        form.fill_form_with FactoryGirl.attributes_for :idea 
+        form.fill_form_with idea.attributes
         form.click_submit_button 
 
         expect(Idea.first.owner).to eq user
+      end
+    end
+
+
+    #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    #%% Creating with a youtube video
+    #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    describe "with a youtube video" do
+      it 'should have a video iframe after saving' do
+        form.fill_form_with idea.attributes
+        form.click_submit_button
+
+        expect(IdeaShowPage.new(Idea.first))
+          .to have_youtube_video_with_address idea.embed_link
       end
     end
 
@@ -42,7 +57,7 @@ describe "The new page" do
     #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     describe "with improper information" do
       it 'should not work without a title' do
-        form.fill_form_with FactoryGirl.attributes_for :idea 
+        form.fill_form_with idea.attributes
         form.fill_title_input_with nil
         form.click_submit_button
 

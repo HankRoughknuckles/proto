@@ -82,4 +82,64 @@ RSpec.describe Idea, type: :model do
       expect(idea.belongs_to? owner).to eq true
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Idea#embed_link
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "#embed_link" do
+    let(:idea) { FactoryGirl.create(:idea) }
+
+    it 'should return nil if passed a non-youtube link' do
+      inputs = [
+        "http://google.com",
+        nil,
+        "",
+        3,
+        "ww.youtub.com/watch?v=x9ECN-R428A",
+      ]
+
+      inputs.each do |input|
+        idea.youtube_link = input
+
+        expect(idea.embed_link).to eq nil
+      end
+    end
+
+
+    it 'should return the proper embed link when there is no http' do
+      idea = FactoryGirl.create(:idea, youtube_link: 
+                                "www.youtube.com/watch?v=x9ECN-R428A")
+
+      expect(idea.embed_link)
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+    end
+
+
+    it 'should return the proper embed link when http is present' do
+      idea = FactoryGirl.create(:idea, youtube_link: 
+        "http://www.youtube.com/watch?v=x9ECN-R428A")
+
+      expect(idea.embed_link)
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+    end
+
+
+    it 'should return the proper embed link when www is missing' do
+      idea = FactoryGirl.create(:idea, youtube_link: 
+        "youtube.com/watch?v=x9ECN-R428A")
+
+      expect(idea.embed_link)
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+    end
+
+
+    it 'should work when the youtube link is shortened' do
+      idea = FactoryGirl.create(
+        :idea, youtube_link: "http://youtu.be/t-ZRX8984sc")
+
+      expect(idea.embed_link)
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}t-ZRX8984sc"
+    end
+  end
 end

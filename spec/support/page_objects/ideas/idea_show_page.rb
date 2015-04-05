@@ -36,6 +36,14 @@ class IdeaShowPage
     has_css?(@vote_tally_prefix + @idea.id.to_s, text: @idea.vote_tally)
   end
 
+  def youtube_video_with_address(url)
+    "iframe[src=\"#{url}\"]"
+  end
+
+  def has_youtube_video_with_address?(url)
+    has_css? youtube_video_with_address url
+  end
+
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% The vote buttons
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

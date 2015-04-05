@@ -1,5 +1,6 @@
 class Idea < ActiveRecord::Base
-  MAX_SUMMARY_LENGTH = 50
+  MAX_SUMMARY_LENGTH  = 50
+  YOUTUBE_EMBED_PREFIX        = "https://www.youtube.com/embed/"
 
   acts_as_votable
   belongs_to :owner, class_name: "User"
@@ -42,5 +43,17 @@ class Idea < ActiveRecord::Base
   def belongs_to?(user)
     return false unless user.instance_of? User
     return self.owner == user
+  end
+
+  # converts idea.youtube_link into the form needed to make the video
+  # embeddable
+  def embed_link
+    return nil if self.youtube_link.nil?
+
+    id_regex = /(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/
+    youtube_id = self.youtube_link.match(id_regex)
+    return nil if youtube_id.nil?
+
+    return YOUTUBE_EMBED_PREFIX + youtube_id[1]
   end
 end
