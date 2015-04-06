@@ -36,9 +36,15 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    acts_as_commentable_with_threading (2.0.0)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      awesome_nested_set (>= 3.0)
     acts_as_votable (0.10.0)
     addressable (2.3.6)
     arel (6.0.0)
+    awesome_nested_set (3.0.2)
+      activerecord (>= 4.0.0, < 5)
     aws-sdk (1.63.0)
       aws-sdk-v1 (= 1.63.0)
     aws-sdk-v1 (1.63.0)
@@ -235,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading (= 2.0.0)
   acts_as_votable (= 0.10.0)
   aws-sdk (< 2.0)
   byebug

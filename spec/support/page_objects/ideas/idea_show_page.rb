@@ -13,6 +13,10 @@ class IdeaShowPage
     @downvote_button =              ".downvote"
     @subscribe_button =             ".subscribe"
     @email_list_button =            ".list_emails"
+    @add_comment_button =           ".add_comment"
+    @comment_form =                 "#comment_body"
+    @listed_comment =               ".comment"
+    @submit_comment_button =        'form.new_comment input[type="submit"]'
   end
 
   def visit_page
@@ -73,5 +77,28 @@ class IdeaShowPage
 
   def click_email_list_button
     find(@email_list_button).click
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% The comment elements
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_add_comment_button?
+    has_css? @add_comment_button
+  end
+
+  def has_a_comment_form?
+    has_css? @comment_form
+  end
+
+  def fill_comment_form_with(input)
+    find(@comment_form).set input
+  end
+
+  def click_submit_comment_button
+    find(@submit_comment_button).click
+  end
+
+  def has_a_comment_with_text?(text)
+    has_css? @listed_comment, text: text
   end
 end

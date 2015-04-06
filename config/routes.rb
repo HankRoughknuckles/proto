@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       post    "subscribe",        to: "ideas#subscribe"
       get     "email_list",       to: "ideas#email_list"
     end
+
+    resources :comments, only: [:create, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

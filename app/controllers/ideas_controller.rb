@@ -24,6 +24,9 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    unless current_user.nil?
+      @comment = Comment.build_from( @idea, current_user.id, "")
+    end
   end
 
   # GET /ideas/new

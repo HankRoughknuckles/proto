@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+<iframe width="560" height="315" src="<%= @idea.embed_link %>" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
   <strong>Title:</strong>
   <%= @idea.title %>
 </p>
@@ -24,7 +28,9 @@
 </p>
 
 <p><%= upvote_link_for @idea %></p>
+
 <p><%= downvote_link_for @idea %></p>
+
 <p>
   <% if @idea.belongs_to? current_user %>
     <%= list_emails_link_for @idea %>
@@ -34,7 +40,8 @@
 </p>
 
 <p>
-<iframe width="560" height="315" src="<%= @idea.embed_link %>" frameborder="0" allowfullscreen></iframe>
+  <%= render 'comments_list' %>
+  <%= render 'comment_form' %>
 </p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |

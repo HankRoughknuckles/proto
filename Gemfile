@@ -34,6 +34,8 @@ gem "paperclip", "~> 4.2"
 gem "rails_12factor", group: :production
 #use amazon aws for storing images
 gem 'aws-sdk', '< 2.0'
+#make commenting possible
+gem 'acts_as_commentable_with_threading', '2.0.0'
 
 
 group :development do
