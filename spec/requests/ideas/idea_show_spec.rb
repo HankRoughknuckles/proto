@@ -22,6 +22,7 @@ describe "The idea show page" do
       it { expect(page).to          have_text idea.description }
       it { expect(idea_page).to     have_main_image }
       it { expect(idea_page).to     have_vote_tally }
+      it { expect(idea_page).to     have_text idea.summary }
       it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
     end
 
@@ -33,6 +34,7 @@ describe "The idea show page" do
       it { expect(page).to          have_text idea.description }
       it { expect(idea_page).to     have_main_image }
       it { expect(idea_page).to     have_vote_tally }
+      it { expect(idea_page).to     have_text idea.summary }
       it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
     end
   end
