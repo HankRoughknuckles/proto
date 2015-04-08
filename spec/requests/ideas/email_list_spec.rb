@@ -4,10 +4,10 @@ describe "The email list page" do
   let!(:idea_owner)   { FactoryGirl.create(:user) }
   let!(:non_owner)    { FactoryGirl.create(:user) }
   let(:subscriber)    { FactoryGirl.create(:user) }
-  let!(:idea)         { FactoryGirl.create(:idea, owner: idea_owner,
-                                          main_image_file_name: "img.png",
-                                          subscribers: [subscriber]
-                                         ) }
+  let!(:idea)         { FactoryGirl.create(:idea_with_image, 
+                                           owner: idea_owner,
+                                           subscribers: [subscriber]
+                                          ) }
 
   let(:email_list_page)   { EmailListPage.new(idea) }
   let(:ideas_page)        { IdeaIndexPage.new }

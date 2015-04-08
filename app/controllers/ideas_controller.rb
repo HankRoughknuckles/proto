@@ -4,7 +4,7 @@ class IdeasController < ApplicationController
                                   :email_list]
   before_action :authenticate_user!, only: [:upvote, :downvote,
                                             :subscribe, :new]
-  before_action :correct_user, only: [:destroy, :email_list]
+  before_action :correct_user, only: [:edit, :destroy, :email_list]
 
   # GET /ideas
   # GET /ideas/?category=Technology

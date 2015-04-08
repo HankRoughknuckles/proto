@@ -13,6 +13,7 @@ class IdeaForm
     # @category_input =           "#idea_category"
     @summary_input =            "#idea_summary"
     @submit_button =            "input[type=submit]"
+    @error =                    "#error_explanation"
   end
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,5 +49,20 @@ class IdeaForm
 
   def click_submit_button
     find(@submit_button).click
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Error messages
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_title_missing_error?
+    has_css? @error, text: "Title"
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Finders for contents
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_image_for?(idea)
+    has_css? "img[src=\"#{idea.main_image.url(:poster)}\"]"
   end
 end

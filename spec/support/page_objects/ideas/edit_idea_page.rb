@@ -1,13 +1,13 @@
-class NewIdeaPage
+class EditIdeaPage
   include Capybara::DSL
   include Rails.application.routes.url_helpers
 
   attr_reader :title
 
-  def initialize
-    @page_url =         new_idea_path
-    @title =            "New Idea"
-    @error =            "#error_explanation"
+  def initialize(idea)
+    @idea =             idea
+    @page_url =         edit_idea_path idea
+    @title =            "Edit Idea"
   end
 
   def visit_page

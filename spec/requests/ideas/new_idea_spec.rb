@@ -61,7 +61,7 @@ describe "The new page" do
         form.fill_title_input_with nil
         form.click_submit_button
 
-        expect(new_idea_page).to have_title_missing_error
+        expect(form).to have_title_missing_error
       end
     end
   end
