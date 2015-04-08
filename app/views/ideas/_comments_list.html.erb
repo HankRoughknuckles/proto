@@ -1,5 +1,6 @@
 <% @idea.comment_threads.all.each do |comment| %>
   <div class="comment">
-    <%= comment.body %>
+    <%= image_tag comment.author.profile_picture.url(:thumb) %>
+    <%= comment.body %> -- by <%= comment.author.username %>
   </div>
 <% end %>

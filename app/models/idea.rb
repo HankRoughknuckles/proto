@@ -2,8 +2,8 @@ class Idea < ActiveRecord::Base
   acts_as_votable
   acts_as_commentable
 
-  MAX_SUMMARY_LENGTH  = 50
-  YOUTUBE_EMBED_PREFIX        = "https://www.youtube.com/embed/"
+  MAX_SUMMARY_LENGTH =          50
+  YOUTUBE_EMBED_PREFIX =        "https://www.youtube.com/embed/"
 
 
   belongs_to :owner, class_name: "User"

@@ -15,6 +15,14 @@ describe "The idea index page" do
 
       expect(page.title).to match /^#{landing_page.title}$/
     end
+
+    it 'should have a user profile button' do
+      user_edit_page = UserEditPage.new
+
+      ideas_page.click_user_profile_button
+
+      expect(page.title).to match /#{user_edit_page.title}/
+    end
   end
 
   context 'when not signed in' do
@@ -22,6 +30,10 @@ describe "The idea index page" do
 
     it 'should not have a sign out button' do
       expect(ideas_page).not_to have_sign_out_button
+    end
+
+    it 'should not have a user profile button' do
+      expect(ideas_page).not_to have_user_profile_button
     end
   end
 

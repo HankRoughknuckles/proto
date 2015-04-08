@@ -19,6 +19,7 @@ class IdeaIndexPage
     @detail_link_prefix =             ".idea.idea-"
     @category_button_prefix =         ".category.category-"
     @all_categories_button =          "#{@category_button_prefix}all"
+    @user_profile_button =            ".edit_user"
 
     @feedback_link =                  ".feedback"
   end
@@ -105,5 +106,15 @@ class IdeaIndexPage
   #Feedback link
   def click_feedback_link
     find(@feedback_link).click
+  end
+
+
+  # User profile page
+  def click_user_profile_button
+    find(@user_profile_button).click
+  end
+
+  def has_user_profile_button?
+    has_css? @user_profile_button
   end
 end

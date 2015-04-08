@@ -4,8 +4,8 @@ describe "The idea show page" do
   let!(:idea_owner)   { FactoryGirl.create(:user) }
   let!(:non_owner)    { FactoryGirl.create(:user) }
   let!(:idea)         { FactoryGirl.create(:idea, owner: idea_owner,
-                                          main_image_file_name: "img.png"
-                                         ) }
+                                           main_image_file_name: "img.png"
+                                          ) }
   let(:idea_page)         { IdeaShowPage.new(idea) }
   let(:email_list_page)   { EmailListPage.new(idea) }
   let(:login_page)        { LoginPage.new }

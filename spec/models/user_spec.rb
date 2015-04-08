@@ -9,6 +9,30 @@ RSpec.describe User, type: :model do
     expect(second).not_to be_valid
   end
 
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Username
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "username" do
+    it 'should be required' do
+      user = FactoryGirl.build(:user, username: "")
+
+      expect(user).not_to be_valid
+    end
+
+    it 'should be unique' do
+      user = FactoryGirl.create(:user, username: "taken")
+      user2 = FactoryGirl.build(:user, username: "Taken")
+
+      expect(user2).not_to be_valid
+    end
+
+    it 'should be less than 30 characters' do
+      user = FactoryGirl.build(:user, username: "a" * 31)
+
+      expect(user).not_to be_valid
+    end
+  end
+
 
   describe "#voted_for?" do
     let(:user) { FactoryGirl.create(:user) }

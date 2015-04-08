@@ -15,6 +15,4 @@
 # Ignore application configuration
 /config/application.yml
 
-/public/system/**/*.png
-/public/system/**/*.jpg
-/public/system/**/*.gif
+/public/system/**
