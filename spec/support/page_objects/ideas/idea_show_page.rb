@@ -17,6 +17,9 @@ class IdeaShowPage
     @comment_form =                 "#comment_body"
     @listed_comment =               ".comment"
     @submit_comment_button =        'form.new_comment input[type="submit"]'
+
+    @edit_idea_link =               '.edit_idea'
+    @delete_idea_link =             '.delete_idea'
   end
 
   def visit_page
@@ -100,5 +103,20 @@ class IdeaShowPage
 
   def has_a_comment_with_text?(text)
     has_css? @listed_comment, text: text
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Edit / Destroy buttons
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_edit_idea_link?
+    has_css? @edit_idea_link
+  end
+
+  def has_delete_idea_link?
+    has_css? @delete_idea_link
+  end
+
+  def click_delete_idea_link
+    find(@delete_idea_link).click
   end
 end

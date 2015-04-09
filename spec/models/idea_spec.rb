@@ -112,7 +112,7 @@ RSpec.describe Idea, type: :model do
                                 "www.youtube.com/watch?v=x9ECN-R428A")
 
       expect(idea.embed_link)
-        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A?rel=0"
     end
 
 
@@ -121,7 +121,7 @@ RSpec.describe Idea, type: :model do
         "http://www.youtube.com/watch?v=x9ECN-R428A")
 
       expect(idea.embed_link)
-        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A?rel=0"
     end
 
 
@@ -130,7 +130,7 @@ RSpec.describe Idea, type: :model do
         "youtube.com/watch?v=x9ECN-R428A")
 
       expect(idea.embed_link)
-        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A"
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}x9ECN-R428A?rel=0"
     end
 
 
@@ -139,7 +139,7 @@ RSpec.describe Idea, type: :model do
         :idea, youtube_link: "http://youtu.be/t-ZRX8984sc")
 
       expect(idea.embed_link)
-        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}t-ZRX8984sc"
+        .to eq "#{Idea::YOUTUBE_EMBED_PREFIX}t-ZRX8984sc?rel=0"
     end
   end
 end

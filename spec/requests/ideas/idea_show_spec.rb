@@ -15,7 +15,7 @@ describe "The idea show page" do
   #%% Static page elements
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'static elements' do
-    context 'when signed in' do
+    context 'when signed in as someone other than the owner' do
       before { idea_page.visit_page_as non_owner }
 
       it { expect(page).to          have_text idea.title }
@@ -24,8 +24,29 @@ describe "The idea show page" do
       it { expect(idea_page).to     have_vote_tally }
       it { expect(idea_page).to     have_text idea.summary }
       it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
+      it { expect(idea_page).not_to have_edit_idea_link }
+      it { expect(idea_page).not_to have_delete_idea_link }
     end
 
+    context 'when signed in as the owner' do
+      before { idea_page.visit_page_as idea_owner }
+
+      it { expect(idea_page).to have_edit_idea_link }
+
+      #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      #%% The "Delete Idea" button
+      #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      describe "the delete link" do
+        it 'should be present' do
+          expect(idea_page).to have_delete_idea_link
+        end
+
+        it 'should delete the idea' do
+          expect{ idea_page.click_delete_idea_link }
+            .to change { Idea.count }.by -1
+        end
+      end
+    end
 
     context 'when not signed in' do
       before { idea_page.visit_page_as nil }
@@ -36,6 +57,8 @@ describe "The idea show page" do
       it { expect(idea_page).to     have_vote_tally }
       it { expect(idea_page).to     have_text idea.summary }
       it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
+      it { expect(idea_page).not_to have_edit_idea_link }
+      it { expect(idea_page).not_to have_delete_idea_link }
     end
   end
 
