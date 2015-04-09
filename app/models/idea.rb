@@ -57,6 +57,6 @@ class Idea < ActiveRecord::Base
     youtube_id = self.youtube_link.match(id_regex)
     return nil if youtube_id.nil?
 
-    return YOUTUBE_EMBED_PREFIX + youtube_id[1]
+    return YOUTUBE_EMBED_PREFIX + youtube_id[1] + "?rel=0"
   end
 end
