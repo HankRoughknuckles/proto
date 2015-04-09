@@ -36,6 +36,8 @@ gem "rails_12factor", group: :production
 gem 'aws-sdk', '< 2.0'
 #make commenting possible
 gem 'acts_as_commentable_with_threading', '2.0.0'
+#use the foundation to help us make the front-end
+gem 'foundation-rails', '5.5.1.1'
 
 
 group :development do
