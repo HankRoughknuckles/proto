@@ -9,4 +9,9 @@ class StaticPagesController < ApplicationController
   # GET /feedback
   def feedback
   end
+
+
+  # GET /gold_activation
+  def gold_activation
+  end
 end

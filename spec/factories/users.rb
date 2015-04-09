@@ -4,5 +4,12 @@ FactoryGirl.define do
     sequence(:username)       { |n| "username#{n}" }
     password                  "asdfasdf"
     password_confirmation     "asdfasdf"
+    gold_status               false
+    gold_status_expiration    nil
+
+    factory :gold_user do
+      gold_status             true
+      gold_status_expiration  User.gold_expiration_time
+    end
   end
 end

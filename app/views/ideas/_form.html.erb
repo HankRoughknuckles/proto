@@ -11,6 +11,13 @@
     </div>
   <% end %>
 
+  <% if current_user_has_gold_status? %>
+    <div class="field">
+      <%= f.check_box :preferred %>
+      <%= f.label :preferred, 'Make this idea "sponsored"' %>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>

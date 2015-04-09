@@ -11,6 +11,8 @@ class UserEditPage
     @username_input =               "#user_username"
     @password_input =               "#user_current_password"
     @save_button =                  ".save_user"
+
+    @activate_gold_status_link =    ".activate_gold_status"
   end
 
   def visit_page
@@ -35,5 +37,16 @@ class UserEditPage
 
   def click_save_button
     find(@save_button).click
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Links
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_activate_gold_status_link?
+    has_css? @activate_gold_status_link
+  end
+
+  def click_activate_gold_status_link
+    find(@activate_gold_status_link).click
   end
 end

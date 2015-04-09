@@ -12,6 +12,7 @@ class IdeaForm
     @youtube_link_input =       "#idea_youtube_link"
     # @category_input =           "#idea_category"
     @summary_input =            "#idea_summary"
+    @preferred_checkbox =       "#idea_preferred"
     @submit_button =            "input[type=submit]"
     @error =                    "#error_explanation"
   end
@@ -49,6 +50,14 @@ class IdeaForm
 
   def click_submit_button
     find(@submit_button).click
+  end
+
+  def has_preferred_checkbox?
+    has_css? @preferred_checkbox
+  end
+
+  def set_preferred_checkbox(value)
+    find(@preferred_checkbox).set value
   end
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

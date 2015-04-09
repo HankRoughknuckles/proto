@@ -65,4 +65,27 @@ describe "The new page" do
       end
     end
   end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Preferred Status for ideas
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "Preferred status" do
+    it 'should work if user has gold status' do
+      gold_user = FactoryGirl.create(:gold_user)
+      new_idea_page.visit_page_as gold_user
+
+      form.fill_form_with idea.attributes
+      form.set_preferred_checkbox true
+      form.click_submit_button
+
+      expect(Idea.first.preferred).to eq true
+    end
+
+
+    it "should not be available if user doesn't have gold status" do
+      new_idea_page.visit_page_as user
+
+      expect(form).not_to have_preferred_checkbox
+    end
+  end
 end

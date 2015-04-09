@@ -2,6 +2,11 @@
 
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
+<% if current_user && current_user.has_gold_credit? %>
+  <%= link_to "Activate Gold Status!", 
+    gold_activation_path, { class: "activate_gold_status" } %>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 

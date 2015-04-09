@@ -8,7 +8,11 @@ FactoryGirl.define do
     category
 
     factory :idea_with_image do
-      main_image_file_name       "img.png"
+      main_image_file_name    "img.png"
+    end
+
+    factory :preferred_idea do
+      preferred               true
     end
   end
 end

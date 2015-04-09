@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
   end
 
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  #%% Username
+  #%% username
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "username" do
     it 'should be required' do
@@ -34,6 +34,9 @@ RSpec.describe User, type: :model do
   end
 
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User#voted_for?
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "#voted_for?" do
     let(:user) { FactoryGirl.create(:user) }
     let(:idea) { FactoryGirl.create(:idea) }
@@ -54,6 +57,9 @@ RSpec.describe User, type: :model do
   end
 
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User#upvoted?
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "#upvoted?" do
     let(:user) { FactoryGirl.create(:user) }
     let(:idea) { FactoryGirl.create(:idea) }
@@ -74,6 +80,9 @@ RSpec.describe User, type: :model do
   end
 
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User#downvoted?
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "#downvoted?" do
     let(:user) { FactoryGirl.create(:user) }
     let(:idea) { FactoryGirl.create(:idea) }
@@ -91,5 +100,50 @@ RSpec.describe User, type: :model do
     it 'should return false if the user has not voted' do
       expect(user.downvoted?(idea)).to eq false
     end
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User.give_free_gold_status_to
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe ".give_free_gold_status_to" do
+    let(:user) { FactoryGirl.create(:user, {gold_status: false, 
+                                            gold_status_expiration: nil})}
+
+    before { User.give_free_gold_status_to user }
+
+    it { expect(user.gold_status).to eq true }
+    it { expect(user.gold_status_expiration)
+      .to eq User.gold_expiration_time }
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User.remove_gold_status_from
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe ".take_gold_status_from" do
+    let(:user) { FactoryGirl.create(:gold_user) }
+
+    before { User.take_gold_status_from user }
+
+    it { expect(user.gold_status).to eq false }
+    it { expect(user.gold_status_expiration).to eq nil }
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% User's ideas
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "ideas" do
+    it "should be deleted when user is deleted"
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Gold status at creation
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  it 'new users should automatically have 1 gold credit' do
+    user = FactoryGirl.build(:user, gold_credit: 0)
+
+    expect{ user.save }.to change{ user.gold_credit }.by 1
   end
 end

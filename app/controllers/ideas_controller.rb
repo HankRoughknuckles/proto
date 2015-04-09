@@ -4,7 +4,7 @@ class IdeasController < ApplicationController
                                   :email_list]
   before_action :authenticate_user!, only: [:upvote, :downvote,
                                             :subscribe, :new]
-  before_action :correct_user, only: [:edit, :destroy, :email_list]
+  before_action :correct_user, only: [:edit, :destroy, :update, :email_list]
 
   # GET /ideas
   # GET /ideas/?category=Technology
@@ -17,7 +17,7 @@ class IdeasController < ApplicationController
       category = Category.find_by_name category_name
       @ideas = category.ideas
     else
-      @ideas = Idea.all
+      @ideas = Idea.all.order(hotness: :desc)
     end
   end
 
@@ -48,6 +48,7 @@ class IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.owner = current_user
+    @idea.preferred = false unless current_user_has_gold_status?
 
     respond_to do |format|
       if @idea.save
@@ -63,8 +64,10 @@ class IdeasController < ApplicationController
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
+    @idea.assign_attributes idea_params
+    @idea.preferred = false unless current_user_has_gold_status?
     respond_to do |format|
-      if @idea.update(idea_params)
+      if @idea.save
         format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
         format.json { render :show, status: :ok, location: @idea }
       else
@@ -130,7 +133,7 @@ class IdeasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:title, :description, :main_image,
-                                   :summary, :youtube_link)
+                                   :summary, :youtube_link, :preferred)
     end
 
     def ideas_index_params

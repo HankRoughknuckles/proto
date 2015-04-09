@@ -4,6 +4,40 @@ RSpec.describe Idea, type: :model do
 
   it { expect(Idea.new).to respond_to :category }
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% hotness
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "hotness" do
+    it 'should be higher for newer items of equal votes' do
+      older = Idea.create(title: "older", created_at: 2.days.ago)
+      newer = Idea.create(title: "newer", created_at: Time.now)
+
+      expect(newer.hotness).to be > older.hotness
+    end
+
+    it 'should be higher for higher voted items of equal staleness' do
+      user1 =         FactoryGirl.create(:user)
+      user2 =         FactoryGirl.create(:user)
+      time =          DateTime.parse("1-1-2015")
+      popular =       Idea.create(title: "popular", created_at: time)
+      not_popular =   Idea.create(title: "not_popular", created_at: time)
+
+      popular.upvote_and_update user1
+      popular.upvote_and_update user2
+
+      expect(popular.hotness).to be > not_popular.hotness
+    end
+
+    it 'should be higher for preferred ideas' do
+      time =        DateTime.parse("1-1-2015")
+      preferred =   Idea.create(title: "pref", created_at: time,
+                                preferred: true)
+      regular =     Idea.create(title: "not_pref", created_at: time)
+
+      expect(preferred.hotness).to be > regular.hotness
+    end
+  end
+
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Idea#vote_tally
