@@ -40,6 +40,8 @@ gem 'acts_as_commentable_with_threading', '2.0.0'
 gem 'foundation-rails', '5.5.1.1'
 #make random names and strings with Forgery
 gem 'forgery', '0.6.0'
+#schedule tasks
+gem "rufus-scheduler", '3.0.9'
 
 
 group :development do
