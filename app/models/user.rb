@@ -80,6 +80,12 @@ class User < ActiveRecord::Base
   end
 
 
+  # returns true if the user currently has gold_status
+  def has_gold_status?
+    self.gold_status == true && self.gold_status_expiration.present?
+  end
+
+
   def self.generate_username
     name = [
       Forgery::Basic.color, 
@@ -148,6 +154,14 @@ class User < ActiveRecord::Base
   def self.take_gold_status_from(user)
     user.update_attributes( gold_status: false,
                             gold_status_expiration: nil )
+  end
+
+
+  # returns true if the passed user has gold status, but it is expired and
+  # time to remove it
+  def self.has_expired_gold_status?(user)
+    return false if user.nil?
+    user.has_gold_status? && user.gold_status_expiration.past?
   end
 
 

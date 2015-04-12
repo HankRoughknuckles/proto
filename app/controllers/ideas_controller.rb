@@ -5,6 +5,7 @@ class IdeasController < ApplicationController
   before_action :authenticate_user!, only: [:upvote, :downvote,
                                             :subscribe, :new]
   before_action :correct_user, only: [:edit, :destroy, :update, :email_list]
+  before_action :check_gold_status, only: [:new]
 
   # GET /ideas
   # GET /ideas/?category=Technology
@@ -145,6 +146,12 @@ class IdeasController < ApplicationController
         redirect_to new_user_session_path
       elsif @idea.owner != current_user
         redirect_to root_path
+      end
+    end
+
+    def check_gold_status
+      if User.has_expired_gold_status? current_user
+        User.take_gold_status_from current_user
       end
     end
 end

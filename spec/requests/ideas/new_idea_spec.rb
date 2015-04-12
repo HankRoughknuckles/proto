@@ -88,4 +88,18 @@ describe "The new page" do
       expect(form).not_to have_preferred_checkbox
     end
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Expiring gold status
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "Gold status" do
+    it 'should turn to false on entering page if expired' do
+      user = FactoryGirl.create(:gold_user)
+      user.update_attributes gold_status_expiration: 1.hour.ago
+
+      expect{ new_idea_page.visit_page_as user }
+        .to change{ user.gold_status }.to false
+    end
+  end
 end
