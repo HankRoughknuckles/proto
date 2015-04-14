@@ -17,7 +17,7 @@ describe "The idea index page" do
     end
 
     it 'should have a user profile button' do
-      user_edit_page = UserEditPage.new
+      user_edit_page = UserEditPage.new(user)
 
       ideas_page.click_user_profile_button
 

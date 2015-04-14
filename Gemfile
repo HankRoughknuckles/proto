@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -42,6 +42,8 @@ gem 'foundation-rails', '5.5.1.1'
 gem 'forgery', '0.6.0'
 #Make jquery play nice with turbolinks
 gem 'jquery-turbolinks', '2.1.0'
+#Allow "login with facebook"
+gem 'omniauth-facebook', '2.0.1'
 
 
 group :development do

@@ -1,14 +1,11 @@
+require 'open-uri'
+
 class User < ActiveRecord::Base
   acts_as_voter
 
   MAX_USERNAME_LENGTH =       30 #characters
   GOLD_STATUS_DURATION =      7 #days
   PROMOTIONAL_FREE_CREDIT =   true
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
 
 
   has_attached_file :profile_picture, 
@@ -21,6 +18,16 @@ class User < ActiveRecord::Base
                       "image/jpeg", 
                       "image/png",  
                       "image/gif"]
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Devise authentication
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+  # Make the ability to log in with facebook using omniauth
+  devise :omniauthable, :omniauth_providers => [:facebook]
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -40,9 +47,9 @@ class User < ActiveRecord::Base
                          length: { maximum: MAX_USERNAME_LENGTH } }
 
 
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Validations
-  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # NOTE: giving gold credit to new users is just promotional for the time
   # being, this will have to be stopped soon after launch. To do this,
   # set User.PROMOTIONAL_FREE_CREDIT to false
@@ -50,9 +57,9 @@ class User < ActiveRecord::Base
   before_create       :add_gold_credit if PROMOTIONAL_FREE_CREDIT
 
 
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Instance Methods
-  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def fill_username_if_blank!
     if username.nil?
       name = User.generate_username
@@ -118,6 +125,24 @@ class User < ActiveRecord::Base
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Class Methods
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.profile_picture = auth.info.image + "?type=large"
+    end
+  end
+
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
+
+
   # Gives gold status to a user (doesn't decrement user.gold_credit) and
   # sets xyr gold_status_expiration to GOLD_STATUS_DURATION in the future
   def self.give_free_gold_status_to(user)

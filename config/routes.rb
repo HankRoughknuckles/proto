@@ -12,8 +12,13 @@ Rails.application.routes.draw do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Users
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  devise_for :users, :controllers => { :omniauth_callbacks =>
+                                       "users/omniauth_callbacks" }
+  get         "users/:id" =>          "users#show", as: :user
+  get         "users/:id/edit" =>     "users#edit", as: :edit_user
+  patch       "users/:id" =>          "users#update"
   put         "add_gold_status" =>    "users#add_gold_status"
-  devise_for  :users
+
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

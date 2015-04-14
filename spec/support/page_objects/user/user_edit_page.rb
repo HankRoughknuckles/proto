@@ -4,9 +4,10 @@ class UserEditPage
 
   attr_reader :title
 
-  def initialize
-    @page_url = edit_user_registration_path
-    @title = "Profile"
+  def initialize(user)
+    @user =                         user
+    @page_url =                     edit_user_path user
+    @title =                        "Profile"
 
     @username_input =               "#user_username"
     @password_input =               "#user_current_password"
@@ -24,9 +25,9 @@ class UserEditPage
     visit @page_url
   end
 
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Form filling
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def fill_username_input_with(username)
     find(@username_input).set username
   end
@@ -39,9 +40,9 @@ class UserEditPage
     find(@save_button).click
   end
 
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Links
-  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def has_activate_gold_status_link?
     has_css? @activate_gold_status_link
   end
