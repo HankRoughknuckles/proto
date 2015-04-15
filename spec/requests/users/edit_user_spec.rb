@@ -7,11 +7,11 @@ describe "The Edit User page" do
 
   context 'when not logged in' do
     it 'should redirect to the login page' do
-      login_page = LoginPage.new
+      auth_page = AuthenticationPage.new
 
       edit_page.visit_page_as nil
 
-      expect(page.title).to match /#{login_page.title}/
+      expect(page.title).to match /#{auth_page.title}/
     end
   end
 

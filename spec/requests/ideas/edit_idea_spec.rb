@@ -11,11 +11,11 @@ describe "The idea edit page" do
 
   context 'when not logged in' do
     it "should redirect to the landing page" do
-      login_page = LoginPage.new
+      authentication_page = AuthenticationPage.new
 
       edit_page.visit_page_as nil
       
-      expect(page.title).to match /#{login_page.title}/
+      expect(page.title).to match /#{authentication_page.title}/
     end
   end
 

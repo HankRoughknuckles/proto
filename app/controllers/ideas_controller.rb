@@ -143,9 +143,9 @@ class IdeasController < ApplicationController
 
     def correct_user
       if current_user.nil? 
-        redirect_to new_user_session_path
+        redirect_to new_user_registration_path, alert: "Please log in first."
       elsif @idea.owner != current_user
-        redirect_to root_path
+        redirect_to root_path, alert: "Wait a sec, you can't do that!"
       end
     end
 

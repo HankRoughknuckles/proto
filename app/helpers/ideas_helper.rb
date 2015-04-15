@@ -27,7 +27,7 @@ module IdeasHelper
       return link_to 'Upvote', path, upvote_attrs(idea)
 
     else
-      path = new_user_session_path
+      path = new_user_registration_path
       return link_to "Upvote", path, login_link_attrs(idea, :upvote)
     end
   end
@@ -40,7 +40,7 @@ module IdeasHelper
       return link_to 'Downvote', path, downvote_attrs(idea) 
 
     else
-      path = new_user_session_path
+      path = new_user_registration_path
       return link_to "Downvote", path, login_link_attrs(idea, :downvote)
     end
   end
@@ -55,7 +55,7 @@ module IdeasHelper
         class: "subscribe"
       }
     else
-      path = new_user_session_path
+      path = new_user_registration_path
       attrs = {
         class: "subscribe"
       }

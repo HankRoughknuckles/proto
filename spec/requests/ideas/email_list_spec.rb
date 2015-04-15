@@ -11,7 +11,6 @@ describe "The email list page" do
 
   let(:email_list_page)   { EmailListPage.new(idea) }
   let(:ideas_page)        { IdeaIndexPage.new }
-  let(:login_page)        { LoginPage.new }
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -19,9 +18,11 @@ describe "The email list page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe 'authorization' do
     it 'should redirect to the login page when not logged in' do
+      auth_page = AuthenticationPage.new
+
       email_list_page.visit_page_as nil
 
-      expect(page.title).to match login_page.title
+      expect(page.title).to match auth_page.title
     end
 
     it 'should redirect to the login page when logged in as non-owner' do

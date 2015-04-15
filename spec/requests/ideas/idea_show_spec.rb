@@ -8,7 +8,7 @@ describe "The idea show page" do
                                           ) }
   let(:idea_page)         { IdeaShowPage.new(idea) }
   let(:email_list_page)   { EmailListPage.new(idea) }
-  let(:login_page)        { LoginPage.new }
+  let(:auth_page)         { AuthenticationPage.new }
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,7 +72,7 @@ describe "The idea show page" do
         idea_page.visit_page_as nil
         idea_page.click_upvote_button
 
-        expect(page.title).to match /#{login_page.title}/
+        expect(page.title).to match /#{auth_page.title}/
       end
     end
   end
@@ -87,7 +87,7 @@ describe "The idea show page" do
         idea_page.visit_page_as nil
         idea_page.click_downvote_button
 
-        expect(page.title).to match /#{login_page.title}/
+        expect(page.title).to match /#{auth_page.title}/
       end
     end
   end
@@ -122,7 +122,7 @@ describe "The idea show page" do
         idea_page.visit_page_as nil
         idea_page.click_subscribe_button
 
-        expect(page.title).to match /#{login_page.title}/
+        expect(page.title).to match /#{auth_page.title}/
       end
     end
   end

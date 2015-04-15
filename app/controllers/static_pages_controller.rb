@@ -2,7 +2,11 @@ class StaticPagesController < ApplicationController
 
   # GET /
   def landing_page
-    redirect_to ideas_path if user_signed_in?
+    if user_signed_in?
+      redirect_to ideas_path if user_signed_in?
+    else
+      redirect_to new_user_registration_path
+    end
   end
 
 

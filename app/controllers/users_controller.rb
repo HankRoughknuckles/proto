@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
     def correct_user
       if current_user.nil? 
-        redirect_to new_user_session_path
+        redirect_to new_user_registration_path
       elsif current_user.id != @user.id
         redirect_to root_path
       end

@@ -5,7 +5,7 @@ describe "The new page" do
   let!(:idea)             { FactoryGirl.build(:idea) }
   let!(:new_idea_page)    { NewIdeaPage.new }
   let!(:form)             { IdeaForm.new }
-  let!(:login_page)       { LoginPage.new }
+  let!(:auth_page)        { AuthenticationPage.new }
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Access
@@ -13,7 +13,7 @@ describe "The new page" do
   it 'should redirect to the login page when not signed in' do
     new_idea_page.visit_page_as nil
 
-    expect(page.title).to match login_page.title
+    expect(page.title).to match auth_page.title
   end
 
   describe 'the creation process' do

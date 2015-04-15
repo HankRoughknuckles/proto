@@ -1,10 +1,9 @@
 require "spec_helper"
 
 describe "The idea index page" do
-  let(:ideas_page)            { IdeaIndexPage.new() }
-  let(:landing_page)          { LandingPage.new() }
-  let(:login_page)            { LoginPage.new() }
-  let(:new_idea_page)         { NewIdeaPage.new() }
+  let(:ideas_page)            { IdeaIndexPage.new }
+  let(:new_idea_page)         { NewIdeaPage.new }
+  let(:auth_page)             { AuthenticationPage.new }
 
   context 'when signed in' do
     let(:user) { FactoryGirl.create(:user) }
@@ -13,7 +12,7 @@ describe "The idea index page" do
     it 'should have a sign out button' do
       ideas_page.click_sign_out_button
 
-      expect(page.title).to match /^#{landing_page.title}$/
+      expect(page.title).to match /#{auth_page.title}/
     end
 
     it 'should have a user profile button' do
@@ -43,11 +42,13 @@ describe "The idea index page" do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "the new idea button" do
     it 'should go to sign up page when not signed in' do
-      idea = FactoryGirl.create(:idea)
+      auth_page =     AuthenticationPage.new
+      idea =          FactoryGirl.create(:idea)
+
       ideas_page.visit_page_as nil
       ideas_page.click_upvote_button_for(idea)
 
-      expect(page.title).to match /#{login_page.title}/
+      expect(page.title).to match /#{auth_page.title}/
     end
 
 
@@ -95,7 +96,7 @@ describe "The idea index page" do
       ideas_page.visit_page_as nil
       ideas_page.click_downvote_button_for someones_idea
 
-      expect(page).to have_title "Sign in"
+      expect(page).to have_title auth_page.title
     end
 
 
