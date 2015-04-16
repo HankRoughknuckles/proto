@@ -146,4 +146,14 @@ RSpec.describe User, type: :model do
 
     expect{ user.save }.to change{ user.gold_credit }.by 1
   end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Profile picture
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  it 'should be assigned if not provided by the user' do
+    image_url = "original/default_profile_pic.png"
+    user = FactoryGirl.create(:user)
+
+    expect(user.profile_picture.url).to eq image_url
+  end
 end
