@@ -53,7 +53,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to @idea, notice: 'Your idea is ready to go! Tell your friends and family about it on social media!' }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }
