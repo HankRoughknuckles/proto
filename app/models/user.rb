@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Database Relations
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  has_many :ideas
+  has_many :ideas, foreign_key: "owner_id", dependent: :destroy
 
   # each user can be subscribed to several ideas (i.e. - give their email
   # address for several ideas), these are called a user's followed_ideas

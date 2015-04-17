@@ -118,6 +118,20 @@ RSpec.describe Idea, type: :model do
   end
 
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Idea's subscribers
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  describe "followed_ideas" do
+    it 'should be deleted when a user is deleted' do
+      idea =            FactoryGirl.create(:idea)
+      subscriber =      FactoryGirl.create(:user)
+      idea.add_subscriber! subscriber
+
+      expect{ subscriber.destroy }.to change { idea.subscribers.count }.by -1
+    end
+  end
+
+
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Idea#embed_link
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
