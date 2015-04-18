@@ -11,7 +11,7 @@
 
 <% if user_signed_in? %>
   Hi, <%= link_to "#{current_user.username}", 
-          edit_user_path(current_user), class: "edit_user" %>
+          current_user, class: "show_user" %>
   <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "sign_out" %> 
 <% else %>
   <%= link_to "Log in",   new_user_session_path %>

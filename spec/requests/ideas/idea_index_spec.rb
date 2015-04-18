@@ -16,11 +16,11 @@ describe "The idea index page" do
     end
 
     it 'should have a user profile button' do
-      user_edit_page = UserEditPage.new(user)
+      user_show_page = UserShowPage.new(user)
 
       ideas_page.click_user_profile_button
 
-      expect(page.title).to match /#{user_edit_page.title}/
+      expect(page.title).to match /#{user_show_page.title}/
     end
   end
 

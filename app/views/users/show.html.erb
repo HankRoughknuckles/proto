@@ -1,0 +1,38 @@
+<% provide :title, "Profile - #{@user.username}" %>
+
+<div>
+  <%= activate_gold_status_link_for @user %>
+</div>
+
+<div>
+  <%= image_tag @user.profile_picture.url(:medium) %>
+</div>
+
+<% if current_user == @user %>
+  <%= link_to "Edit Settings", edit_user_path(@user), class: "edit_user" %>
+<% end %>
+
+
+<h2>Ideas</h2>
+<table>
+  <tr>
+    <th></th>
+    <th>Idea name</th>
+    <th>Votes</th>
+    <th>Subscribers</th>
+    <th>Time Created</th>
+  </tr>
+  <% @user_ideas.each do |idea| %>
+    <tr>
+      <td>
+          <%= image_tag idea.main_image.url(:thumb) %>
+      </td>
+      <td>
+        <%= link_to idea.title, idea, class: "idea_#{idea.id}" %>
+      </td>
+      <td><%= idea.vote_tally %></td>
+      <td><%= idea.subscribers.count %></td>
+      <td><%= time_ago_in_words idea.created_at %> ago</td>
+    </tr>
+  <% end %>
+</table>

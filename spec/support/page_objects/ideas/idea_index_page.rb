@@ -19,7 +19,7 @@ class IdeaIndexPage
     @detail_link_prefix =             ".idea.idea-"
     @category_button_prefix =         ".category.category-"
     @all_categories_button =          "#{@category_button_prefix}all"
-    @user_profile_button =            ".edit_user"
+    @user_profile_button =            ".show_user"
 
     @feedback_link =                  ".feedback"
   end
