@@ -5,7 +5,7 @@
     <div>
       <%= form_for [@idea, @comment] do |f| %>
         <%= f.text_field :body %>
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", class: "submit_comment" %>
       <% end %>
     </div>
   <% end %>

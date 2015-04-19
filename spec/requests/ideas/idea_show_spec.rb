@@ -174,6 +174,8 @@ describe "The idea show page" do
         expect{ idea_page.click_submit_comment_button }
           .to change { idea.comment_threads.count }.by 1
       end
+
+      it "should not add a comment if the comment body is blank"
     end
   end
 end
