@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to @idea, notice: "Comment submitted" }
         format.json { render :show, status: :created, location: @idea }
       else
-        format.html { render :new }
+        flash[:alert] = "Comment can't be blank"
+        format.html { render template: "ideas/show" }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
     end

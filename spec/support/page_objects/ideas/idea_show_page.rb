@@ -20,6 +20,8 @@ class IdeaShowPage
 
     @edit_idea_link =               '.edit_idea'
     @delete_idea_link =             '.delete_idea'
+
+    @alert_flash_message =          ".alert"
   end
 
   def visit_page
@@ -118,5 +120,10 @@ class IdeaShowPage
 
   def click_delete_idea_link
     find(@delete_idea_link).click
+  end
+
+
+  def has_alert_flash_message?
+    has_css? @alert_flash_message
   end
 end

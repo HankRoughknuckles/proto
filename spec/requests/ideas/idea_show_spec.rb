@@ -175,7 +175,20 @@ describe "The idea show page" do
           .to change { idea.comment_threads.count }.by 1
       end
 
-      it "should not add a comment if the comment body is blank"
+      context 'when the comment is blank' do
+        before { idea_page.fill_comment_form_with "" }
+
+        it "should not add a comment if the comment body is blank" do
+          expect{ idea_page.click_submit_comment_button }
+            .to change { idea.comment_threads.count }.by 0
+        end
+
+        it "should show a flash error" do
+          idea_page.click_submit_comment_button
+
+          expect(idea_page).to have_alert_flash_message
+        end
+      end
     end
   end
 end
