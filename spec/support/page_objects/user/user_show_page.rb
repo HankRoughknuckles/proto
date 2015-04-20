@@ -12,6 +12,7 @@ class UserShowPage
     @edit_user_link =               ".edit_user"
     @idea_link_prefix =             "a.idea_"
     @activate_gold_status_link =    ".activate_gold_status"
+    @new_idea_link =                ".new_idea"
   end
 
   def visit_page
@@ -52,5 +53,9 @@ class UserShowPage
 
   def has_activate_gold_status_link?
     has_css? @activate_gold_status_link
+  end
+
+  def has_a_link_for_making_ideas?
+    has_css? @new_idea_link
   end
 end

@@ -66,8 +66,22 @@ describe "User show page" do
     #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     #%% List of the user's ideas
     ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    it "should have the list of the user's ideas" do
-      expect(user_page).to have_idea_link idea
+    context 'when the user has ideas' do
+      it "should have the list of the user's ideas" do
+        expect(user_page).to have_idea_link idea
+      end
+    end
+
+
+    context 'when the user has no ideas' do
+      before :each do
+        user.ideas.delete_all
+        user_page.visit_page_as user
+      end 
+
+      it 'should have a link to make one' do
+        expect(user_page).to have_a_link_for_making_ideas
+      end
     end
 
 
