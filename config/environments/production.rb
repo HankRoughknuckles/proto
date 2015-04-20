@@ -87,4 +87,6 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
     }
   }
+
+  config.force_ssl =              true  # use ssl by default
 end
