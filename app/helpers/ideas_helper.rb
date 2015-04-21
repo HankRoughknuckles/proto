@@ -67,7 +67,7 @@ module IdeasHelper
 
   # returns a hash of html_attrs to be added to an upvote button
   def upvote_attrs(idea)
-    class_attr = "upvote upvote-#{idea.id}"
+    class_attr = "upvote upvote-#{idea.id} small radius button like"
     class_attr = class_attr + " selected" if current_user.upvoted? idea
 
     return {
@@ -84,7 +84,7 @@ module IdeasHelper
       
   # returns a hash of html_attrs to be added to an downvote button
   def downvote_attrs(idea)
-    class_attr = "downvote downvote-#{idea.id}"
+    class_attr = "downvote downvote-#{idea.id} small radius button dislike"
     class_attr = class_attr + " selected" if current_user.downvoted? idea
 
     return {

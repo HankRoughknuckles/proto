@@ -3,19 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= full_title yield(:title)%></title>
-
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application", 
+      'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= render 'layouts/font_links' %>
     <%= render 'layouts/google_analytics_setup' %>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <%= yield %>
-    <%= link_to "Feedback", feedback_path, class: "feedback" %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

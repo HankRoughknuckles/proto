@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :profile_picture, 
     :styles => { :medium => "300x300>", 
-                 :thumb => "100x100>" }, 
+                 :thumb => "52x52>" }, 
                  :default_url => ":style/default_profile_pic.png"
 
   validates_attachment_content_type :profile_picture, 
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  #%% Validations
+  #%% Callbacks
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   # NOTE: giving gold credit to new users is just promotional for the time
   # being, this will have to be stopped soon after launch. To do this,

@@ -1,0 +1,19 @@
+<table border="" cellspacing="5" cellpadding="5">
+  <% current_user.ideas.each do |idea| %>
+    <tr>
+      <td>
+        <%= link_to idea_path(idea), class: "idea idea_#{idea.id}" do %>
+          <%= image_tag idea.main_image.url(:poster) %>
+        <% end %>
+      </td>
+      <td><%= vote_tally_for idea %></td>
+      <td><%= idea.title %></td>
+      <td><%= idea.summary %></td>
+      <td><%= upvote_link_for idea %></td>
+      <td><%= downvote_link_for idea %></td>
+      <td><%= link_to 'Show', idea %></td>
+      <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+      <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

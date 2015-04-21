@@ -1,0 +1,14 @@
+<% page_number = 0 %>
+
+<% @ideas.each_slice(4) do |idea_group| %>
+
+  <% page_number += 1 %>
+
+  <li data-orbit-slide="headline-<%= page_number %>">
+    <div class="row">
+      <% idea_group.each do |idea| %>
+          <%= render 'slider_tile', idea: idea %>
+        <% end %>
+    </div>
+  </li>
+<% end %>

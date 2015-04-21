@@ -180,10 +180,6 @@ describe "The idea index page" do
 
     before {  ideas_page.visit_page_as nil }
 
-    it 'should display the short summary' do
-      expect(ideas_page).to have_text someones_idea.summary
-    end
-
     it 'should not have the description' do
       expect(ideas_page).not_to have_text someones_idea.description
     end

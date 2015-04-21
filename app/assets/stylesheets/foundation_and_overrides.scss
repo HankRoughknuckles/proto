@@ -79,7 +79,7 @@ $include-html-global-classes: $include-html-classes;
 // $include-html-grid-classes: $include-html-classes;
 // $include-xl-html-grid-classes: false;
 
-// $row-width: rem-calc(1000);
+$row-width: rem-calc(1200);
 // $total-columns: 12;
 // $column-gutter: rem-calc(30);
 
@@ -1108,12 +1108,12 @@ $include-html-global-classes: $include-html-classes;
 // $include-html-reveal-classes: $include-html-classes;
 
 // We use these to control the style of the reveal overlay.
-// $reveal-overlay-bg: rgba($black, .45);
+$reveal-overlay-bg: rgba(#000, .85);
 // $reveal-overlay-bg-old: $black;
 
 // We use these to control the style of the modal itself.
 // $reveal-modal-bg: $white;
-// $reveal-position-top: rem-calc(100);
+$reveal-position-top: rem-calc(140);
 // $reveal-default-width: 80%;
 // $reveal-max-width: $row-width;
 // $reveal-modal-padding: rem-calc(20);

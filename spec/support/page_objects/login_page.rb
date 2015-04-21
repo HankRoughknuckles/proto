@@ -18,7 +18,7 @@ class AuthenticationPage
     @signin_password_input =            ".signin_password"
     @submit_signin_button =             ".signin_submit"
 
-    @notice_flash =                     "#notice"
+    @notice_flash =                     ".notice"
     @alert_flash =                      ".alert"
     @error_message =                    "#error_explanation"
   end
@@ -93,12 +93,12 @@ class AuthenticationPage
   #%% Flash messages
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def has_signup_successful_flash?
-    has_css? @notice_flash, text: "successfully"
+    has_css? @notice_flash, text: "Welcome"
   end
 
 
   def has_signin_successful_flash?
-    has_css? @notice_flash, text: "successfully"
+    has_css? @notice_flash, text: "Signed in successfully"
   end
 
 

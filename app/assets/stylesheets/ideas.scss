@@ -1,6 +1,312 @@
 // Place all the styles related to the ideas controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.selected {
-  color: cadetblue !important;
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
+
+$white:                     #FFFFFF;
+$ghost:                     #FAFAFA;
+$snow:                      #F9F9F9;
+$vapor:                     #F6F6F6;
+$white-smoke:               #F5F5F5;
+$silver:                    #EFEFEF;
+$smoke:                     #EEEEEE;
+$gainsboro:                 #DDDDDD;
+$iron:                      #CCCCCC;
+$base:                      #AAAAAA;
+$aluminum:                  #999999;
+$jumbo:                     #888888;
+$monsoon:                   #777777;
+$steel:                     #666666;
+$charcoal:                  #555555;
+$tuatara:                   #444444;
+$OIL:                       #333333;
+$JET:                       #222222;
+$black:                     #000000;
+
+$proto-color-red:           #f7293d;
+$proto-color-blue:          #5f3b7f;
+$proto-color-fb:            #3c5a99;
+$random-color:              #7ebaa1;
+
+
+body { font-family: 'Roboto', sans-serif !important; background: $vapor }
+
+
+
+h1, h2, h3, h4, h5 { font-family: 'Roboto'}
+h2 { color: $proto-color-red; font-weight: 100; }
+h3 { color: $proto-color-blue;}
+
+a { color: $proto-color-blue;
+
+  &:hover { color: darken($proto-color-blue, 15%);}
+}
+
+label {  font-size: 1.1em}
+input { 
+  border-radius: 3px !important; 
+  box-shadow: none !important;
+  font-size: 1em;
+  font-weight: 100;
+  min-height: 3.6em;
+  font-style: italic;
+}
+textarea {
+  border-radius: 3px !important; 
+  box-shadow: none !important;
+}
+
+.red { border:1px solid red;}
+.up { text-transform: uppercase}
+.panel { border-radius: 3px; background: $white-smoke}
+
+/* BUTTONS */
+.proto-button--blue {
+  color: #fff;
+  padding: 0.5em;
+  font-style: normal;
+  font-family: 'Roboto';  
+  background: $proto-color-blue;
+  font-weight: 700;
+  font-size: 1.2em !important;
+  border:1px solid darken($proto-color-blue, 10%);
+  &:hover { background: darken($proto-color-blue, 7%); color: #fff;}
+  &:visited { background: darken($proto-color-blue, 7%); color: #fff;}
+}
+
+.proto-button--red {
+  color: #fff;
+  padding: 0.5em;
+  font-family: 'Roboto';  
+  background: $proto-color-red;
+  font-weight: 700;
+  font-size: 0.9em !important;
+  border:1px solid darken($proto-color-red, 10%);
+  &:hover { background: darken($proto-color-red, 7%); color: #fff;}
+  &:visited { background: darken($proto-color-red, 7%); color: #fff;}
+}
+
+.proto-button--fb {
+  @extend .proto-button--blue;
+  background: $proto-color-fb;
+  &:hover { background: darken($proto-color-fb, 7%); }
+}
+
+.notify-button { 
+  font-size:1.2em !important; 
+  padding:0.5em 0 !important; 
+  height:51px; 
+  margin-left:-2px;
+}
+
+.large-button { font-size:2em !important; font-weight: 700;}
+.medium-button { font-size:1.4em !important; font-weight: 700;}
+
+
+
+
+/* LOGIN & SIGNUP */
+.login-container {
+  padding-top:1.5em;
+  padding-left:2.5em;
+  p { margin-top: 0.5em;}
+  
+  .login-button a {
+    font-weight: 700;
+    color: $proto-color-red;
+    padding-right: 1em;
+    margin-top:10px;
+
+  }
+
+  .proto-button--blue {
+    padding:0.7em 1em;
+  }
+}
+
+
+/* MODAL WINDOW for LOGIN & SIGNUP */
+#loginWindow {  p { color: $steel}}
+
+
+
+/* NAVIGATON */
+.navigation, .navigation-footer {
+  padding:0 !important;
+
+  .inline-list {
+    padding-left: 3.3em;
+    padding-top:1em;
+    a { color:#333; 
+      &:hover {color:$proto-color-blue;}
+    }
+  }
+
+  h3 { padding-top:0.4em;
+    a { color:$proto-color-red;; 
+      &:hover {color:#333;}
+    }
+  }
+} 
+
+.copy { font-size: 0.8em;}
+
+
+//-- LANDING PAGE CAROUSEL -- //
+/* SLIDER */
+.orbit-slide-number { display: none !important}
+.example-orbit-content li {
+  .row {
+
+  width: 92% !important;
+  margin-left:4% !important;    
+
+    .column, .columns {
+      padding-left:0.5em;
+      padding-right: 0.5em;
+    }
+  }
+}
+
+.orbit-container .orbit-next > span {  border-left-color:$proto-color-blue !important; }
+.orbit-container .orbit-prev > span { border-right-color:$proto-color-blue !important; }
+.orbit-timer { display: none;}
+
+/* ELEMENT */
+.item {
+
+  font-family: 'Roboto';  
+  background: $random-color;
+  position: relative;
+  border-radius:0.2em;
+  height: 350px;
+  min-height: 350px;
+
+  .top {
+    position: absolute;
+    background: rgba($white-smoke, 0.9);
+    top:3px;
+    width: 98%;
+    left:1%;
+    text-align: center;
+    text-transform: uppercase;    
+
+    .left {
+      color:$proto-color-red; 
+      text-align: center;
+      padding:1em 0 0 0.5em;
+      margin-bottom: 0.8em !important;
+      line-height: 1.1em;
+      font-size:0.8em;
+      strong { font-size:2em; }
+    }
+    .right { padding:1.2em 0.5em 0 ; line-height: 1em; }
+
+    a {color:#333; &:hover{color:$proto-color-blue;}}
+  }
+
+  .bottom { 
+    font-family: 'Roboto';    
+    position: absolute;
+    bottom:0.7em;
+    left:3%;
+    text-align: center;
+    width: 94%;
+      
+    .button { 
+      font-family: 'Roboto';
+      margin:0.2em 0.4em 0; 
+      padding:1em; 
+    }
+
+    .like {
+      /* font-weight: 700; */
+      /* font-size:1.1em; */
+      /* border: 3px $proto-color-blue; */
+      background: $proto-color-blue;
+      &:hover{
+        background: darken($proto-color-blue, 7%);
+      }     
+
+    }
+
+    .dislike {
+      /* font-weight: 500 !important; */
+      /* font-size:0.9em; */
+      /* border: 3px $proto-color-red; */
+      background: $proto-color-red; 
+        /* margin-top:7px; */
+      &:hover{
+        background: darken($proto-color-red, 10%);
+      }
+    }   
+
+    .selected {
+      margin-top:-20px;
+      font-size: 1.2em;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+
+  h1 {
+    font-family: 'Roboto';
+    font-size:3.2em;
+    color: #fff;
+    font-weight: 100;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3em 0.5em;
+    a { 
+      color:#fff; 
+      &:hover {color:$white-smoke};
+    }
+  }
+}
+
+
+
+
+.details-project 
+{
+  input { border-color:$proto-color-red !important;}
+  .item { background:url('../img/product.jpg'); min-height: 28em; margin-bottom: 1em;}
+
 }

@@ -1,0 +1,7 @@
+<p class="left login-button">
+  <% if user_signed_in? %>
+    Hi, <%= link_to "#{current_user.username}", current_user, class: "show_user" %> | <%= sign_out_button %>
+  <% else %>
+      <%= link_to "Login", new_user_registration_path %>
+  <% end %>
+</p>

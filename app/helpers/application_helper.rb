@@ -19,4 +19,9 @@ module ApplicationHelper
   def continue_with_facebook_link
     link_to "Continue with Facebook", user_omniauth_authorize_path(:facebook), class: "continue_with_facebook"
   end
+
+  def sign_out_button
+    link_to "Sign Out", destroy_user_session_path, { method: :delete, 
+                                                     class: "sign_out" }
+  end
 end

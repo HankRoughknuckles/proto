@@ -1,0 +1,10 @@
+<div class="top">
+  <p class="left"> 
+    <strong class="votes votes-<%= idea.id %>">
+      <%= idea.vote_tally %>
+    </strong><br />
+    votes 
+  </p>
+  <p class="right"> <a href="#"> <%= pluralize idea.comment_threads.count, "Comment" %> </a> </p>
+  <div class="clear"></div>
+</div>
