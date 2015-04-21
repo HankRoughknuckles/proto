@@ -18,7 +18,9 @@ class IdeasController < ApplicationController
       category = Category.find_by_name category_name
       @ideas = category.ideas
     else
-      @ideas = Idea.all.order(hotness: :desc)
+      @ideas = Idea.paginate(:page => params[:page], :per_page => 4)
+      # @ideas = Idea.paginate(:page => params[:page], :per_page => 4).order(hotness: :desc)
+      # @ideas = Idea.all.order(hotness: :desc)
     end
   end
 

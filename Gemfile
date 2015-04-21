@@ -44,6 +44,8 @@ gem 'forgery', '0.6.0'
 gem 'jquery-turbolinks', '2.1.0'
 #Allow "login with facebook"
 gem 'omniauth-facebook', '2.0.1'
+#allow for pagination
+gem 'will_paginate', '3.0.5'
 
 
 group :development do
