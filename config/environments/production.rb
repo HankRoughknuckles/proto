@@ -88,7 +88,7 @@ Rails.application.configure do
     }
   }
 
-  # config.force_ssl =              true  # use ssl by default
+  config.force_ssl =              true  # use ssl by default
 
   Proto::Application.configure do
     config.action_mailer.smtp_settings = {
