@@ -1,6 +1,13 @@
-<h1>Editing Idea</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <h1>Editing Idea</h1>
+</div>
 
-<%= link_to 'Show', @idea %> |
-<%= link_to 'Back', ideas_path %>
+<div class="row">
+  <%= render 'form' %>
+</div>
+
+<div class="row">
+  <%= link_to 'Back', ideas_path, class: "button proto-button--blue" %> |
+  <%= link_to 'Show', @idea, class: "button proto-button--red" %>
+</div>

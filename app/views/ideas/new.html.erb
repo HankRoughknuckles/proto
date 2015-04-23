@@ -1,6 +1,13 @@
-<h1>New Idea</h1>
 <% provide :title, "New Idea" %>
 
-<%= render 'form' %>
+<div class="row">
+  <h1>New Idea</h1>
+</div>
 
-<%= link_to 'Back', ideas_path %>
+<div class="row">
+  <%= render 'form' %>
+</div>
+
+<div class="row">
+  <%= link_to 'Back', ideas_path, class: "button proto-button--red" %>
+</div>

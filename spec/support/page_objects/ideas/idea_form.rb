@@ -24,7 +24,7 @@ class IdeaForm
     fill_title_input_with         attributes["title"]
     fill_description_input_with   attributes["description"]
     fill_summary_input_with       attributes["summary"]
-    fill_youtube_link_with        attributes["youtube_link"]
+    # fill_youtube_link_with        attributes["youtube_link"]
     # fill_category_input_with      attributes[:category]
   end
 

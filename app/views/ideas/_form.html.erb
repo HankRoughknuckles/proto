@@ -30,10 +30,11 @@
     <%= f.label :summary, "A quick description (max #{Idea::MAX_SUMMARY_LENGTH} chars)" %><br>
     <%= f.text_field :summary, maxlength: Idea::MAX_SUMMARY_LENGTH %> 
   </div>
-  <div class="field">
-    <%= f.label :youtube_link %><br>
-    <%= f.text_field :youtube_link %>
-  </div>
+
+  <!-- <div class="field"> -->
+  <!--   <%= f.label :youtube_link %><br> -->
+  <!--   <%= f.text_field :youtube_link %> -->
+  <!-- </div> -->
   <!--    
   <div class="field">
     <%# <%= f.label :category %><br>
@@ -46,6 +47,6 @@
     <%= f.file_field :main_image %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "button" %>
   </div>
 <% end %>

@@ -75,13 +75,15 @@ describe "The idea edit page" do
       end
 
 
-      it 'should edit youtube_link properly' do
-        url = "https://www.youtube.com/watch?v=MNyG-xu-7SQ"
-        form.fill_youtube_link_with url
+      it 'should edit youtube_link properly'
 
-        expect { form.click_submit_button }
-          .to change { Idea.first.youtube_link }
-      end
+      # it 'should edit youtube_link properly' do
+      #   url = "https://www.youtube.com/watch?v=MNyG-xu-7SQ"
+      #   form.fill_youtube_link_with url
+      #
+      #   expect { form.click_submit_button }
+      #     .to change { Idea.first.youtube_link }
+      # end
     end
   end
 end
