@@ -20,7 +20,7 @@ module IdeasHelper
     class_attr += " #{options[:class]}" unless options[:class].nil?
     attrs = { class: class_attr}
 
-    return link_to "Show subscribers", path, attrs
+    return link_to "You have #{pluralize idea.subscribers.count, "Subscriber"}", path, attrs
   end
 
 

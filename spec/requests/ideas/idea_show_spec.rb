@@ -122,6 +122,8 @@ describe "The idea show page" do
         expect{ idea_page.click_subscribe_button }
           .to change{ ActionMailer::Base.deliveries.count }.by 1
       end
+
+      it 'should only sign the user up once'
     end
 
 

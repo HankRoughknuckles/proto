@@ -3,7 +3,7 @@
     <div>
       <%= form_for [@idea, @comment] do |f| %>
         <%= f.label :body, "Leave a comment" %>
-        <%= f.text_field :body, placeholder: "Whaddya think?"  %>
+        <%= f.text_area :body, placeholder: "Whaddya think?"  %>
         <%= f.submit "Submit", class: "submit_comment" %>
       <% end %>
     </div>

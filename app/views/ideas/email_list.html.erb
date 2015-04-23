@@ -1,13 +1,20 @@
 <% provide(:title, "Subscribers for #{@idea.title}") %>
 
-<p>
-  <span class="subscriber_amount"><%= pluralize @subscribers.count, "person" %></span> subscribed to your idea.
-</p>
+<div class="row text-center">
+  <h4>
+    <span class="subscriber_amount"><%= pluralize @subscribers.count, "person" %></span> subscribed to your idea.
+  </h4>
+</div>
 
-<table>
-  <% @subscribers.each do |subscriber| %>
-    <tr><td><%= subscriber.email %></td></tr>
-  <% end %>
-</table>
+<div class="row text-center">
+  <table>
+    <% @subscribers.each do |subscriber| %>
+      <tr><td><%= subscriber.email %></td></tr>
+    <% end %>
+  </table>
+</div>
 
-<%= link_to "Back to the idea", idea_path(@idea) %>
+<div class="row">
+  <%= link_to "Back to the idea", idea_path(@idea), 
+    class: "button proto-button--red" %>
+</div>

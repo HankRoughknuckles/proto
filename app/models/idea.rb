@@ -89,7 +89,7 @@ class Idea < ActiveRecord::Base
 
   # Registers the passed user as a subscriber to the idea
   def add_subscriber!(user)
-    self.subscribers << user
+    self.subscribers << user unless self.subscribers.include? user
   end
 
 
