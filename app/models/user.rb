@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
 
   MAX_USERNAME_LENGTH =       30 #characters
   GOLD_STATUS_DURATION =      7 #days
-  PROMOTIONAL_FREE_CREDIT =   true
+  PROMOTIONAL_FREE_CREDIT =   false
+  # PROMOTIONAL_FREE_CREDIT =   true
 
 
   has_attached_file :profile_picture, 

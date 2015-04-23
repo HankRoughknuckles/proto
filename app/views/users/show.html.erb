@@ -1,21 +1,27 @@
 <% provide :title, "Profile - #{@user.username}" %>
 
-<div>
-  <%= activate_gold_status_link_for @user %>
-</div>
+<div class="row">
+  <h1 class="text-center">Profile - <%= @user.username %></h1>
 
-<div>
-  <%= image_tag @user.profile_picture.url(:medium) %>
-</div>
+  <div>
+    <%= activate_gold_status_link_for @user %>
+  </div>
 
-<% if current_user == @user %>
-  <%= link_to "Edit Settings", edit_user_path(@user), class: "edit_user" %>
+  <div>
+    <%= image_tag @user.profile_picture.url(:medium) %>
+  </div>
+
+  <% if current_user == @user %>
+    <%= link_to "Edit Settings", edit_user_path(@user), class: "edit_user button proto-button--blue" %>
 <% end %>
 
 
-<h2>Ideas</h2>
-<% if current_user && current_user.ideas.count > 0 %>
-  <%= render 'user_idea_list' %>
-<% else %>
-  You haven't posted any ideas yet! <%= link_to "Make one here", new_idea_path, class: "new_idea" %>
-<% end %>
+  <h2>Ideas</h2>
+  <% if current_user && current_user.ideas.count > 0 %>
+    <%= render 'user_idea_list' %>
+  <% else %>
+    <h4>
+      You haven't posted any ideas yet! <%= link_to "Make one here", new_idea_path, class: "new_idea" %>
+    </h4>
+  <% end %>
+</div>

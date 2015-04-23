@@ -1,4 +1,16 @@
+/* TODO: fix this, make it only have to declare the variable in one place (it's already declared in ideas.scss */
+$proto-color-red:           #f7293d;
+
 .continue_with_facebook {
   color: white;
   &:visited { color: white }
+}
+
+.login-button {
+  margin-top: 50px;
+  font-size: 1.5em;
+  a {
+    color: $proto-color-red;
+    &:visited { color: $proto-color-red; }
+  }
 }
