@@ -35,6 +35,12 @@ describe "The new page" do
 
         expect(Idea.first.owner).to eq user
       end
+
+      it 'should send an email to the admins' do
+        form.fill_form_with idea.attributes
+        expect{ form.click_submit_button }
+          .to change{ ActionMailer::Base.deliveries.count }.by(1)
+      end
     end
 
 

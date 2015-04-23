@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>
+      <%= link_to @idea_owner.username, @idea_owner %> 
+      has created a new idea
+    </h1>
+
+    <h2><%= @idea.title %></h2>
+    view it <%= link_to "here", idea_url(@idea) %>
+  </body>
+</html>

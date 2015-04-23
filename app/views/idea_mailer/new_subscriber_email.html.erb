@@ -1,0 +1,16 @@
+<h3>You've got a new subscriber!</h3>
+
+<p>
+  Good news! <%= link_to @subscriber.username, user_url(@subscriber) %>
+  subscribed to your idea!  That's one more person to add to your list of
+  early adopters!
+</p>
+
+<p>
+Go to <%= link_to "the idea page", idea_url(@idea) %> and click the email list button to see their email address.
+</p>
+
+<br />
+<br />
+Here's to many more,<br />
+The Proto Team

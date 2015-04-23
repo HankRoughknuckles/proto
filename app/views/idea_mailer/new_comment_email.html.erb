@@ -1,0 +1,11 @@
+<h2><%= @commenter.username %> commented on your idea!</h2>
+
+<h4>Here's what they said:</h4>
+<p>
+  <%= @comment.body %><br />
+  <%= link_to @commenter.username, user_url(@commenter) %>
+</p>
+
+<p>
+  See the full conversation <%= link_to "here", idea_url(@idea) %>
+</p>

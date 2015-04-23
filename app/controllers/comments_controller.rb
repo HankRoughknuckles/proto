@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
+        IdeaMailer.new_comment_email(@comment, @idea).deliver_now
         format.html { redirect_to @idea, notice: "Comment submitted" }
         format.json { render :show, status: :created, location: @idea }
       else

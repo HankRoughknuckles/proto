@@ -89,4 +89,19 @@ Rails.application.configure do
   }
 
   config.force_ssl =              true  # use ssl by default
+
+  Proto::Application.configure do
+    config.action_mailer.smtp_settings = {
+      :address   => "smtp.mandrillapp.com",
+      :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+      :enable_starttls_auto => true, # detects and uses STARTTLS
+      :user_name => ENV['MANDRILL_USERNAME_DEV'],
+      :password  => ENV['MANDRILL_PASSWORD_DEV'], # SMTP password is any valid API key
+      :authentication => 'login', # Mandrill supports 'plain' or 'login'
+      :domain => 'mealapp.com', # your domain to identify your server when connecting
+    }
+  end
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'goproto.herokuapp.com' }
 end

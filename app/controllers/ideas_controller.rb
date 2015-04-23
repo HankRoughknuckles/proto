@@ -53,6 +53,7 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
+        IdeaMailer.new_idea_email(@idea).deliver_now
         format.html { redirect_to @idea, notice: 'Your idea is ready to go! Tell your friends and family about it on social media!' }
         format.json { render :show, status: :created, location: @idea }
       else
@@ -113,6 +114,7 @@ class IdeasController < ApplicationController
   # POST /ideas/1/subscribe
   def subscribe
     @idea.add_subscriber! current_user
+    IdeaMailer.new_subscriber_email(current_user, @idea).deliver_now
 
     respond_to do |format|
       format.html { redirect_to(@idea, 

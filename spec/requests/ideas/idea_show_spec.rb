@@ -97,13 +97,25 @@ describe "The idea show page" do
   #%% The email button
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   describe "the add email button" do
+
     context 'when signed in as someone who is not the idea owner' do
+
       it "should add the current user to the contact list" do
         idea_page.visit_page_as non_owner
+
         expect{ idea_page.click_subscribe_button }
           .to change{ idea.subscribers.count }.by 1
       end
+
+
+      it "should send an email to the idea owner" do
+        idea_page.visit_page_as non_owner
+
+        expect{ idea_page.click_subscribe_button }
+          .to change{ ActionMailer::Base.deliveries.count }.by 1
+      end
     end
+
 
     context 'when signed in as the idea owner' do
       before { idea_page.visit_page_as idea_owner }
@@ -159,20 +171,25 @@ describe "The idea show page" do
     end
 
     describe 'the comment making process' do
-      before { idea_page.visit_page_as non_owner }
+      before :each do
+        idea_page.visit_page_as non_owner
+        idea_page.fill_comment_form_with "asdf"
+      end 
 
       it 'should show a new comment on screen when created' do
-        idea_page.fill_comment_form_with "asdf"
         idea_page.click_submit_comment_button
 
         expect(idea_page).to have_a_comment_with_text "asdf"
       end
 
       it "should add a new comment to the model" do 
-        idea_page.fill_comment_form_with "asdf"
-
         expect{ idea_page.click_submit_comment_button }
           .to change { idea.comment_threads.count }.by 1
+      end
+
+      it "should send an email to the idea owner" do
+        expect{ idea_page.click_submit_comment_button }
+          .to change { ActionMailer::Base.deliveries.count }.by 1
       end
 
       context 'when the comment is blank' do
