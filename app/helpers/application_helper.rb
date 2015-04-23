@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def continue_with_facebook_link
-    link_to "Continue with Facebook", user_omniauth_authorize_path(:facebook), class: "continue_with_facebook"
+    link_to "Continue with Facebook", user_omniauth_authorize_path(:facebook), class: "continue_with_facebook button"
   end
 
   def sign_out_button
