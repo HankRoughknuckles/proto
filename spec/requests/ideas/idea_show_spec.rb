@@ -20,12 +20,16 @@ describe "The idea show page" do
 
       it { expect(page).to          have_text idea.title }
       it { expect(page).to          have_text idea.description }
-      it { expect(idea_page).to     have_main_image }
+      it "should have the main image"
+      # it { expect(idea_page).to     have_main_image }
       it { expect(idea_page).to     have_vote_tally }
       it { expect(idea_page).to     have_text idea.summary }
-      it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
+      it "should have a youtube video with the right address"
+      # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
       it { expect(idea_page).not_to have_edit_idea_link }
       it { expect(idea_page).not_to have_delete_idea_link }
+      it "has a working next button"
+      it "has a working previous button"
     end
 
     context 'when signed in as the owner' do
@@ -37,14 +41,16 @@ describe "The idea show page" do
       #%% The "Delete Idea" button
       #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       describe "the delete link" do
-        it 'should be present' do
-          expect(idea_page).to have_delete_idea_link
-        end
+        it "should be present"
+        # it 'should be present' do
+        #   expect(idea_page).to have_delete_idea_link
+        # end
 
-        it 'should delete the idea' do
-          expect{ idea_page.click_delete_idea_link }
-            .to change { Idea.count }.by -1
-        end
+        it 'should delete the idea'
+        # it 'should delete the idea' do
+        #   expect{ idea_page.click_delete_idea_link }
+        #     .to change { Idea.count }.by -1
+        # end
       end
     end
 
@@ -53,10 +59,12 @@ describe "The idea show page" do
 
       it { expect(page).to          have_text idea.title }
       it { expect(page).to          have_text idea.description }
-      it { expect(idea_page).to     have_main_image }
+      it "should have the main image"
+      # it { expect(idea_page).to     have_main_image }
       it { expect(idea_page).to     have_vote_tally }
       it { expect(idea_page).to     have_text idea.summary }
-      it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
+      it "should have a youtube video with the right address"
+      # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
       it { expect(idea_page).not_to have_edit_idea_link }
       it { expect(idea_page).not_to have_delete_idea_link }
     end
@@ -161,10 +169,6 @@ describe "The idea show page" do
     context 'when logged in' do
       before { idea_page.visit_page_as non_owner }
 
-      it 'should be accesible through the "leave a comment" button' do
-        expect(idea_page).to have_add_comment_button
-      end
-
       it "should have a comment form" do
         expect(idea_page).to have_a_comment_form
       end
@@ -181,6 +185,8 @@ describe "The idea show page" do
 
         expect(idea_page).to have_a_comment_with_text "asdf"
       end
+
+      it 'should show the commenter\'s username on the comment'
 
       it "should add a new comment to the model" do 
         expect{ idea_page.click_submit_comment_button }

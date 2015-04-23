@@ -13,18 +13,22 @@ module IdeasHelper
 
   # displays the link for taking the user to the list of email subscribers
   # for the idea
-  def list_emails_link_for(idea)
+  def list_emails_link_for(idea, options = {})
     path = email_list_idea_path(idea)
-    attrs = { class: "list_emails" }
+
+    class_attr = "list_emails"
+    class_attr += " #{options[:class]}" unless options[:class].nil?
+    attrs = { class: class_attr}
+
     return link_to "Show subscribers", path, attrs
   end
 
 
   # displays the link for upvoting for the passed idea
-  def upvote_link_for(idea)
+  def upvote_link_for(idea, options = {})
     if user_signed_in?
       path = upvote_idea_path(idea)
-      return link_to 'Upvote', path, upvote_attrs(idea)
+      return link_to 'Upvote', path, upvote_attrs(idea, options)
 
     else
       path = new_user_registration_path
@@ -34,10 +38,10 @@ module IdeasHelper
 
 
   # displays the link for downvoting for the passed idea
-  def downvote_link_for(idea)
+  def downvote_link_for(idea, options = {})
     if user_signed_in?
       path = downvote_idea_path(idea)
-      return link_to 'Downvote', path, downvote_attrs(idea) 
+      return link_to 'Downvote', path, downvote_attrs(idea, options) 
 
     else
       path = new_user_registration_path
@@ -46,29 +50,33 @@ module IdeasHelper
   end
 
 
-  def subscribe_link_for(idea)
+  def subscribe_link_for(idea, options = {})
+    class_attr = "subscribe"
+    class_attr += " #{options[:class]}" unless options[:class].nil?
+
     if user_signed_in?
       path = subscribe_idea_path(idea)
       attrs = {
         method: :post,
         # remote: true,
-        class: "subscribe"
+        class: class_attr
       }
     else
       path = new_user_registration_path
       attrs = {
-        class: "subscribe"
+        class: class_attr
       }
     end
 
-    return link_to "Let me know when this happens", path, attrs
+    return link_to "Send my email address to the creator", path, attrs
   end
 
 
   # returns a hash of html_attrs to be added to an upvote button
-  def upvote_attrs(idea)
-    class_attr = "upvote upvote-#{idea.id} small radius button like"
-    class_attr = class_attr + " selected" if current_user.upvoted? idea
+  def upvote_attrs(idea, options = {})
+    class_attr =    "upvote upvote-#{idea.id}"
+    class_attr +=   " #{options[:class]}"   unless options[:class].nil?
+    class_attr +=   " selected"             if current_user.upvoted? idea
 
     return {
       method:       :put, 
@@ -83,9 +91,10 @@ module IdeasHelper
 
       
   # returns a hash of html_attrs to be added to an downvote button
-  def downvote_attrs(idea)
-    class_attr = "downvote downvote-#{idea.id} small radius button dislike"
-    class_attr = class_attr + " selected" if current_user.downvoted? idea
+  def downvote_attrs(idea, options = {})
+    class_attr =    "downvote downvote-#{idea.id}"
+    class_attr +=   " #{options[:class]}"   unless options[:class].nil?
+    class_attr +=   " selected"             if current_user.downvoted? idea
 
     return {
       method:       :put, 

@@ -24,10 +24,10 @@ class Idea < ActiveRecord::Base
   validates               :summary, length: { maximum: MAX_SUMMARY_LENGTH }
 
   has_attached_file :main_image, 
-    :styles => { :poster => "100x300>", 
+    :styles => { :poster => "600x350>", 
                  :medium => "300x300>", 
                  :thumb => "100x100>" }, 
-                 :default_url => "/images/:style/missing.png"
+                 :default_url => "/images/:style/missing.jpg"
 
   validates_attachment_content_type :main_image, 
     :content_type => ["image/jpg", 

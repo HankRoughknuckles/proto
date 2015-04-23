@@ -1,10 +1,9 @@
 <% unless current_user.nil? %>
-  <%= link_to "Leave a comment", nil, class: "add_comment" %>
-
   <% if user_signed_in? %>
     <div>
       <%= form_for [@idea, @comment] do |f| %>
-        <%= f.text_field :body %>
+        <%= f.label :body, "Leave a comment" %>
+        <%= f.text_field :body, placeholder: "Whaddya think?"  %>
         <%= f.submit "Submit", class: "submit_comment" %>
       <% end %>
     </div>

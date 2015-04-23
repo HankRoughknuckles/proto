@@ -1,5 +1,5 @@
 class IdeasController < ApplicationController
-  before_action :set_idea, only: [:show, :edit, :update, :destroy,
+  before_action :set_idea, only: [:edit, :update, :destroy,
                                   :upvote, :downvote, :subscribe,
                                   :email_list]
   before_action :authenticate_user!, only: [:upvote, :downvote,
@@ -25,9 +25,17 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @ideas = Idea.all.order(hotness: :desc)
+    @idea = @ideas.find params[:id]
+    # TODO: this index command will get slow as @ideas gets big, fix that
+    @index = @ideas.index @idea
+    @previous = @index - 1 < 0 ? @ideas.last : @ideas[@index - 1]
+    @next = @index + 1 >= @ideas.length ? @ideas.first : @ideas[@index + 1]
+
     unless current_user.nil?
       @comment = Comment.build_from( @idea, current_user.id, "")
     end
+    render :layout => "next_previous"
   end
 
   # GET /ideas/new

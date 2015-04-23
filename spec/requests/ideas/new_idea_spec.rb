@@ -48,13 +48,14 @@ describe "The new page" do
     #%% Creating with a youtube video
     #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     describe "with a youtube video" do
-      it 'should have a video iframe after saving' do
-        form.fill_form_with idea.attributes
-        form.click_submit_button
-
-        expect(IdeaShowPage.new(Idea.first))
-          .to have_youtube_video_with_address idea.embed_link
-      end
+      it 'should have a video iframe after saving'
+      # it 'should have a video iframe after saving' do
+      #   form.fill_form_with idea.attributes
+      #   form.click_submit_button
+      #
+      #   expect(IdeaShowPage.new(Idea.first))
+      #     .to have_youtube_video_with_address idea.embed_link
+      # end
     end
 
 
