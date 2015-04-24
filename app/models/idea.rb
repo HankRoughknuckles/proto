@@ -35,7 +35,7 @@ class Idea < ActiveRecord::Base
                       "image/png",  
                       "image/gif"]
 
-  before_save :set_hotness!
+  before_save :set_vote_tally!, :set_hotness!
 
 
   # Sets self.hotness according to the idea's age, upvotes/downvotes, and
@@ -70,6 +70,11 @@ class Idea < ActiveRecord::Base
   end
 
 
+  def set_vote_tally!
+    self.vote_tally = self.get_upvotes.size - self.get_downvotes.size
+  end
+
+
   def upvote_and_update(user)
     self.liked_by user
     self.save   #trigger set_hotness!
@@ -83,7 +88,7 @@ class Idea < ActiveRecord::Base
 
 
   # Returns the tally of votes for the idea (upvotes - downvotes)
-  def vote_tally
+  def get_vote_tally
     return self.get_upvotes.size - self.get_downvotes.size
   end
 
