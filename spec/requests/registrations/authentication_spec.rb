@@ -66,7 +66,8 @@ describe "The authentication process" do
     end
   end
 
-  it "should have a 'continue with facebook' link" do
-    expect(auth_page).to have_continue_with_facebook_link
-  end
+  it "should have a 'continue with facebook' link"
+  # it "should have a 'continue with facebook' link" do
+  #   expect(auth_page).to have_continue_with_facebook_link
+  # end
 end

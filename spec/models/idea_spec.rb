@@ -51,14 +51,14 @@ RSpec.describe Idea, type: :model do
 
     it 'should return 1 if there is just one upvote' do
       upvoter = FactoryGirl.create(:user)
-      idea.liked_by upvoter
+      idea.upvote_and_update upvoter
 
       expect(idea.vote_tally).to eq 1
     end
 
     it 'should return -1 if there is just one downvote' do
       downvoter = FactoryGirl.create(:user)
-      idea.disliked_by downvoter
+      idea.downvote_and_update downvoter
 
       expect(idea.vote_tally).to eq -1
     end

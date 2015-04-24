@@ -61,9 +61,8 @@ class Idea < ActiveRecord::Base
     vote_weight =           vote_tally + preferred_weight
 
     newness =               self.created_at.to_f || Time.now.to_f 
-    # sign =                  vote_weight <=> 0
     sign =                  vote_weight < 0 ? -1 : 1
-    upvote_magnitude =      [ vote_weight.abs, 2 ].max
+    upvote_magnitude =      [ vote_weight.abs, 1.1 ].max
     order =                 Math.log upvote_magnitude, 10
 
     self.hotness = sign * order + newness / 45000
