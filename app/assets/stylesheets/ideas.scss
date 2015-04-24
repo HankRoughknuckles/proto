@@ -66,6 +66,10 @@ $proto-color-fb:            #3c5a99;
 $random-color:              #7ebaa1;
 
 
+.proto-red {
+  color: $proto-color-red !important;
+}
+
 body { font-family: 'Roboto', sans-serif !important; background: $vapor }
 
 
