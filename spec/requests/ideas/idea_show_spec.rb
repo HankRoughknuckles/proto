@@ -28,6 +28,7 @@ describe "The idea show page" do
       # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
       it { expect(idea_page).not_to have_edit_idea_link }
       it { expect(idea_page).not_to have_delete_idea_link }
+      it "should have a link to the owner's profile"
       it "has a working next button"
       it "has a working previous button"
     end
@@ -64,6 +65,7 @@ describe "The idea show page" do
       it { expect(idea_page).to     have_vote_tally }
       it { expect(idea_page).to     have_text idea.summary }
       it "should have a youtube video with the right address"
+      it "should have a link to the owner's profile"
       # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
       it { expect(idea_page).not_to have_edit_idea_link }
       it { expect(idea_page).not_to have_delete_idea_link }
