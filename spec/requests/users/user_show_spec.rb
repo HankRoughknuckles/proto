@@ -20,6 +20,12 @@ describe "User show page" do
     it "should not have an activate gold status link" do
       expect(user_page).not_to have_activate_gold_status_link
     end
+
+    it "should have the user's list of ideas"
+
+    context 'when the user has no ideas' do
+      it "should not have a link to create ideas"
+    end
   end
 
 
@@ -33,6 +39,8 @@ describe "User show page" do
     it "should not have an activate gold status link" do
       expect(user_page).not_to have_activate_gold_status_link
     end
+
+    it "should have the user's list of ideas"
   end
 
 

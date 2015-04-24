@@ -18,10 +18,10 @@
 
   <h2>Ideas</h2>
   <% if current_user && current_user.ideas.count > 0 %>
-    <%= render 'user_idea_list' %>
+    <%= render 'user_idea_list', user: @user %>
   <% else %>
     <h4>
-      You haven't posted any ideas yet! <%= link_to "Make one here", new_idea_path, class: "new_idea" %>
+      You haven't posted any ideas yet! <%= link_to "Make one here", new_idea_path, class: "new_idea proto-red" %>
     </h4>
   <% end %>
 </div>

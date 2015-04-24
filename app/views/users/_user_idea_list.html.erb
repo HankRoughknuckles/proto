@@ -5,7 +5,7 @@
     <th>Title</th>
   </tr>
   <tr>
-  <% current_user.ideas.each do |idea| %>
+  <% @user.ideas.each do |idea| %>
       <td>
         <%= link_to idea_path(idea), class: "idea idea_#{idea.id}" do %>
           <%= image_tag idea.main_image.url(:medium) %>
