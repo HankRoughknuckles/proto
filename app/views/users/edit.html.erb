@@ -13,6 +13,9 @@
       <div class="field">
         <%= image_tag @user.profile_picture.url(:medium) %>
         <%= f.label :profile_picture %><br>
+        <span class="proto-blue">
+          If you change your image, it might not show up on this page immediately but it'll appear after pressing "Update" - We're still in beta. Sorry!
+        </span>
         <%= f.file_field :profile_picture %>
       </div>
 

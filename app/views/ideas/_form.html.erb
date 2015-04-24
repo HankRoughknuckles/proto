@@ -27,7 +27,7 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :summary, "A quick description (max #{Idea::MAX_SUMMARY_LENGTH} chars)" %><br>
+    <%= f.label :summary, "A quick summary (max #{Idea::MAX_SUMMARY_LENGTH} chars)" %><br>
     <%= f.text_field :summary, maxlength: Idea::MAX_SUMMARY_LENGTH %> 
   </div>
 
@@ -42,8 +42,12 @@
   </div>
   -->
   <div class="field">
+    <%= f.label :main_image do %>
     <%= image_tag @idea.main_image.url(:poster) %>
-    <%= f.label :main_image %><br>
+    <% end %>
+    <span class="proto-blue">
+      The image might not show up on this page, but it'll appear after pressing "Create idea" - we're still in beta. Sorry!
+    </span>
     <%= f.file_field :main_image %>
   </div>
   <div class="actions">
