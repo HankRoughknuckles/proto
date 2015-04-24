@@ -18,6 +18,7 @@ class IdeasController < ApplicationController
       category = Category.find_by_name category_name
       @ideas = category.ideas
     else
+      # @ideas = Idea.all.sort { |a,b| b.vote_tally <=> a.vote_tally } 
       @ideas = Idea.all.order(hotness: :desc)
     end
   end
@@ -101,6 +102,7 @@ class IdeasController < ApplicationController
   # PUT /ideas/1/upvote.json
   def upvote
     @idea.liked_by current_user
+    @idea.save
     respond_to do |format|
       format.json { render(text: @idea.vote_tally, 
                            status: :ok, 
@@ -111,6 +113,7 @@ class IdeasController < ApplicationController
   # PUT /ideas/1/downvote.json
   def downvote
     @idea.disliked_by current_user
+    @idea.save
     respond_to do |format|
       format.json { render(text: @idea.vote_tally, 
                            status: :ok, 
