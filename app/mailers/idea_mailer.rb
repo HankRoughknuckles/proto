@@ -10,7 +10,12 @@ class IdeaMailer < ApplicationMailer
   def new_idea_email(idea)
     @idea =         idea
     @idea_owner =   idea.owner
-    mail(subject: "#{@idea_owner.username} has created a new idea on Proto")
+    @recipients =   User.where "id != ?", @idea_owner.id
+
+    mail(
+      to:       @recipients
+      subject:  "#{@idea_owner.username} has created a new idea on Proto"
+    )
   end
 
   def new_comment_email(comment, idea)

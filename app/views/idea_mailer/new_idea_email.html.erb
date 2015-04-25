@@ -6,10 +6,11 @@
   <body>
     <h1>
       <%= link_to @idea_owner.username, @idea_owner %> 
-      has created a new idea
+      has created a new idea. 
     </h1>
 
     <h2><%= @idea.title %></h2>
-    view it <%= link_to "here", idea_url(@idea) %>
+    <h3>view it at <%= link_to "here", idea_url(@idea) %></h3>
+    <h3>Check it out and tell them what you think!</h3>
   </body>
 </html>
