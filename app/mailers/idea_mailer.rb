@@ -11,9 +11,10 @@ class IdeaMailer < ApplicationMailer
     @idea =         idea
     @idea_owner =   idea.owner
     @recipients =   User.where "id != ?", @idea_owner.id
+    @emails =       @recipients.collect(&:email).join(",")
 
     mail(
-      to:       @recipients,
+      to:       @emails,
       subject:  "#{@idea_owner.username} has created a new idea on Proto"
     )
   end
