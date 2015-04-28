@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
 
 
   has_attached_file :profile_picture, 
-    :styles => { :medium => "300x300>", 
-                 :thumb => "52x52>" }, 
+    :styles => { :medium =>   "300x300>", 
+                 :thumb =>    "52x52>" }, 
                  :default_url => ":style/default_profile_pic.png"
 
   validates_attachment_content_type :profile_picture, 

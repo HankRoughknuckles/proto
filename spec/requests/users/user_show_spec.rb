@@ -12,6 +12,8 @@ describe "User show page" do
     before { user_page.visit_page_as other_user }
 
 
+    it "should not show '-you- have x subscribers'"
+
     it "should not have a link to the edit user page" do
       expect(user_page).not_to have_edit_user_link
     end

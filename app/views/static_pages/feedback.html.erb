@@ -1,11 +1,21 @@
 <% provide :title, "Feedback" %>
 
+<div class="row text-center">
+  <h2 class="black">How do you like Proto?  What can we do to make it better?</h2>
+</div>
+<br>
 
-<p>
-<%= link_to "Contact us through email", 
-  "mailto:gogoprototastic@gmail.com?subject=Feedback" %>
-</p>
-<p>
-<%= link_to "Send us a message on facebook", 
-  "http://www.facebook.com/gogoprototastic" %>
-</p>
+<div class="row">
+  <div class="medium-6 columns text-center">
+    <%= link_to "mailto:gogoprototastic@gmail.com?subject=Feedback" do %>
+      <%= image_tag "direct-mail-icon-red.png", width: 150 %><br />
+      <h4>Tell us through email</h4>
+    <% end %>
+  </div>
+  <div class="medium-6 columns text-center">
+    <%= link_to "http://www.facebook.com/gogoprototastic" do %>
+      <%= image_tag "facebook-wide.png", width: 200 %><br />
+      <h4>Write to us on facebook</h4>
+    <% end %>
+  </div>
+</div>
