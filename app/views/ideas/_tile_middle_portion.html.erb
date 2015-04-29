@@ -1,2 +1,9 @@
-<h1><%= link_to idea.title, idea %></h1>
+<h1>
+<% if idea.preferred? %>
+  <%= image_tag 'crown-icon.png', class: "crown-tile" %>
+  <%= link_to idea.title, idea %>
+<% else %>
+  <%= link_to idea.title, idea, class: "proto-blue" %>
+<% end %>
+</h1>
 <div class="clear"></div>

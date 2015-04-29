@@ -79,8 +79,24 @@ $random-color:              #7ebaa1;
 }
 
 
-body { font-family: 'Roboto', sans-serif !important; background: $vapor }
 
+/* Simple buttons */
+.simple-red-button, .simple-blue-button {
+  color:            #fff    !important;
+  font-size:        1.1em   !important;
+  font-weight:      bold;
+}
+
+.simple-red-button {
+  background-color: $proto-color-red !important;
+}
+
+.simple-blue-button {
+  background-color: $proto-color-blue !important;
+}
+
+
+body { font-family: 'Roboto', sans-serif !important; background: $vapor }
 
 
 h1, h2, h3, h4, h5 { font-family: 'Roboto'}
@@ -231,6 +247,15 @@ textarea {
   border-radius:0.2em;
   height: 350px;
   min-height: 350px;
+
+
+  .crown-tile {
+    width:              35px;
+    -ms-transform:      rotate(-38deg); /* IE 9 */
+    -webkit-transform:  rotate(-38deg); /* Chrome, Safari, Opera */
+    transform:          rotate(-38deg);
+  }
+
 
   .top {
     position: absolute;

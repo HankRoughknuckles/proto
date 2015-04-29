@@ -1,7 +1,18 @@
 <% provide :title, "Activate Gold Status" %>
 
-<h1>Congratulations! You have enough credit to activate gold status!</h1>
+<div class="row text-center">
+  <h1>Click the link below to activate gold status for free</h1>
+</div>
+<div class="row text-center">
+    <h3 class="proto-red">Gold status allows your business ideas to get noticed by more people, help getting you more feedback and more potential to build your audience!</h3>
+</div>
+<div class="row text-center">
+  <div class="medium-4 medium-offset-4">
+    <p>Once you've activated it, when you post a new idea, you'll have the option of having it be "preferred," giving it more of spotlight and attracting more people to it.</p>
+  </div>
+  <h2>
+    <%= link_to "Activate Gold Status Now", add_gold_status_path, method: :put, class: "proto-button--red radius button" %>
+  </h2>
+</div>
 
-<p>
-<%= link_to "Activate Now", add_gold_status_path, method: :put %>
-</p>
+

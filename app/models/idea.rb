@@ -37,6 +37,9 @@ class Idea < ActiveRecord::Base
 
   before_save :set_vote_tally!, :set_hotness!
 
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Instance methods
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   # Sets self.hotness according to the idea's age, upvotes/downvotes, and
   # whether or not the idea has 'preferred' status.
@@ -69,17 +72,23 @@ class Idea < ActiveRecord::Base
   end
 
 
+  # sets the idea's vote_tally field to be equal to the number upvotes
+  # minus the number of downvotes it has
   def set_vote_tally!
     self.vote_tally = self.get_upvotes.size - self.get_downvotes.size
   end
 
 
+  # Adds a upvote to the idea and then saves it, causing the idea's
+  # hotness to update
   def upvote_and_update(user)
     self.liked_by user
     self.save   #trigger set_hotness!
   end
 
 
+  # Adds a downvote to the idea and then saves it, causing the idea's
+  # hotness to update
   def downvote_and_update(user)
     self.disliked_by user
     self.save
@@ -114,5 +123,11 @@ class Idea < ActiveRecord::Base
     return nil if youtube_id.nil?
 
     return YOUTUBE_EMBED_PREFIX + youtube_id[1] + "?rel=0"
+  end
+
+
+  # Returns true if the idea has preferred status, false otherwise
+  def preferred?
+    self.preferred
   end
 end

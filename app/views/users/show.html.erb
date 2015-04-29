@@ -1,12 +1,18 @@
 <% provide :title, "Profile - #{@user.username}" %>
 
+<div class="row text-center">
+  <h1 class=>Profile - <%= @user.username %></h1>
+  <h3>
+    <% if current_user == @user && current_user.has_gold_credit?  %>
+      <span class="black">
+        You have enough credit to activate gold status!
+      </span>
+      <%= activate_gold_status_link "Activate it here", class: "proto-blue" %>
+    <% end %>
+  </h3>
+</div>
+
 <div class="row">
-  <h1 class="text-center">Profile - <%= @user.username %></h1>
-
-  <div>
-    <%= activate_gold_status_link_for @user %>
-  </div>
-
   <div>
     <%= image_tag @user.profile_picture.url(:medium) %>
   </div>
