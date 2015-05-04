@@ -8,6 +8,9 @@ class IdeaShowPage
     @idea =                         idea
     @page_url =                     idea_path idea
     @title =                        "page_title"
+
+    @profile_link_prefix =          ".user_"
+    @link_to_owners_profile =       ".owner_profile"
     @vote_tally_prefix =            ".votes.votes-"
     @upvote_button =                ".upvote"
     @downvote_button =              ".downvote"
@@ -17,6 +20,9 @@ class IdeaShowPage
     @comment_form =                 "#comment_body"
     @listed_comment =               ".comment"
     @submit_comment_button =        'form.new_comment input[type="submit"]'
+
+    @next_idea_link =               ".next_idea"
+    @previous_idea_link =           ".previous_idea"
 
     @edit_idea_link =               '.edit_idea'
     @delete_idea_link =             '.delete_idea'
@@ -53,9 +59,34 @@ class IdeaShowPage
     has_css? youtube_video_with_address url
   end
 
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_link_to_owners_profile?
+    has_css? @link_to_owners_profile
+  end
+
+  def has_a_link_to_profile_of? user
+    has_css? link_to_profile_of user
+  end
+
+  def link_to_profile_of(user)
+    @profile_link_prefix + user.id.to_s
+  end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Next / previous links
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def click_next_idea_link
+    find(@next_idea_link).click
+  end
+
+
+  def click_previous_idea_link
+    find(@previous_idea_link).click
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% The vote buttons
-  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def click_upvote_button
     find(@upvote_button).click
   end

@@ -1,6 +1,6 @@
 <% @idea.comment_threads.all.each do |comment| %>
   <div class="comment">
     <%= image_tag comment.author.profile_picture.url(:thumb) %>
-    <%= comment.body %> -- by <%= link_to comment.author.username, user_path(comment.author) %>
+    <%= comment.body %> -- by <%= link_to comment.author.username, user_path(comment.author), class: "user_#{comment.author.id}" %>
   </div>
 <% end %>

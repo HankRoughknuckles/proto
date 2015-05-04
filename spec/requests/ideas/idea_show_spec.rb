@@ -3,9 +3,16 @@ require "spec_helper"
 describe "The idea show page" do
   let!(:idea_owner)   { FactoryGirl.create(:user) }
   let!(:non_owner)    { FactoryGirl.create(:user) }
-  let!(:idea)         { FactoryGirl.create(:idea, owner: idea_owner,
-                                           main_image_file_name: "img.png"
-                                          ) }
+  let!(:previous_idea) { FactoryGirl.create(:idea, 
+                                            title: "The Previous",
+                                            created_at: 3.days.ago) }
+  let!(:idea)         { FactoryGirl.create(:idea, 
+                                           owner: idea_owner,
+                                           main_image_file_name: "img.png",
+                                           created_at: 2.days.ago) }
+  let!(:next_idea)     { FactoryGirl.create(:idea, title: "The Next", 
+                                            created_at: Time.now) }
+
   let(:idea_page)         { IdeaShowPage.new(idea) }
   let(:email_list_page)   { EmailListPage.new(idea) }
   let(:auth_page)         { AuthenticationPage.new }
@@ -18,19 +25,29 @@ describe "The idea show page" do
     context 'when signed in as someone other than the owner' do
       before { idea_page.visit_page_as non_owner }
 
-      it { expect(page).to          have_text idea.title }
-      it { expect(page).to          have_text idea.description }
-      it "should have the main image"
-      # it { expect(idea_page).to     have_main_image }
-      it { expect(idea_page).to     have_vote_tally }
-      it { expect(idea_page).to     have_text idea.summary }
+      it { expect(page).to            have_text idea.title }
+      it { expect(page).to            have_text idea.description }
+      it { expect(idea_page).to       have_vote_tally }
+      it { expect(idea_page).to       have_text idea.summary }
+      it { expect(idea_page).to       have_a_link_to_profile_of idea_owner }
       it "should have a youtube video with the right address"
       # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
-      it { expect(idea_page).not_to have_edit_idea_link }
-      it { expect(idea_page).not_to have_delete_idea_link }
-      it "should have a link to the owner's profile"
-      it "has a working next button"
-      it "has a working previous button"
+      it { expect(idea_page).not_to   have_edit_idea_link }
+      it { expect(idea_page).not_to   have_delete_idea_link }
+
+
+      it "has a working next button" do
+        idea_page.click_next_idea_link
+
+        expect(title).to match /#{next_idea.title}/
+      end
+
+
+      it "has a working previous button" do
+        idea_page.click_previous_idea_link
+
+        expect(title).to match /#{previous_idea.title}/
+      end
     end
 
     context 'when signed in as the owner' do
@@ -58,17 +75,14 @@ describe "The idea show page" do
     context 'when not signed in' do
       before { idea_page.visit_page_as nil }
 
-      it { expect(page).to          have_text idea.title }
-      it { expect(page).to          have_text idea.description }
-      it "should have the main image"
-      # it { expect(idea_page).to     have_main_image }
-      it { expect(idea_page).to     have_vote_tally }
-      it { expect(idea_page).to     have_text idea.summary }
+      it { expect(page).to            have_text idea.title }
+      it { expect(page).to            have_text idea.description }
+      it { expect(idea_page).to       have_vote_tally }
+      it { expect(idea_page).to       have_text idea.summary }
       it "should have a youtube video with the right address"
-      it "should have a link to the owner's profile"
-      # it { expect(idea_page).to     have_youtube_video_with_address idea.embed_link }
-      it { expect(idea_page).not_to have_edit_idea_link }
-      it { expect(idea_page).not_to have_delete_idea_link }
+      it { expect(idea_page).to       have_a_link_to_profile_of idea_owner }
+      it { expect(idea_page).not_to   have_edit_idea_link }
+      it { expect(idea_page).not_to   have_delete_idea_link }
     end
   end
 
@@ -109,23 +123,27 @@ describe "The idea show page" do
   describe "the add email button" do
 
     context 'when signed in as someone who is not the idea owner' do
+      before :each do
+        idea_page.visit_page_as non_owner
+      end
 
       it "should add the current user to the contact list" do
-        idea_page.visit_page_as non_owner
-
         expect{ idea_page.click_subscribe_button }
           .to change{ idea.subscribers.count }.by 1
       end
 
 
       it "should send an email to the idea owner" do
-        idea_page.visit_page_as non_owner
-
         expect{ idea_page.click_subscribe_button }
           .to change{ ActionMailer::Base.deliveries.count }.by 1
       end
 
-      it 'should only sign the user up once'
+      it 'should only sign the user up once' do
+        idea_page.click_subscribe_button # first time click
+
+        expect{ idea_page.click_subscribe_button }
+          .to change{ idea.subscribers.count }.by 0
+      end
     end
 
 
@@ -190,7 +208,11 @@ describe "The idea show page" do
         expect(idea_page).to have_a_comment_with_text "asdf"
       end
 
-      it 'should show the commenter\'s username on the comment'
+      it 'should show the commenter\'s username on the comment' do
+        idea_page.click_submit_comment_button
+
+        expect(idea_page).to have_a_link_to_profile_of non_owner
+      end
 
       it "should add a new comment to the model" do 
         expect{ idea_page.click_submit_comment_button }

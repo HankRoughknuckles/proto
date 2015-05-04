@@ -159,12 +159,11 @@ RSpec.describe User, type: :model do
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Gold status at creation
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  it 'new users should automatically have 1 gold credit'
-  # it 'new users should automatically have 1 gold credit' do
-  #   user = FactoryGirl.build(:user, gold_credit: 0)
-  #
-  #   expect{ user.save }.to change{ user.gold_credit }.by 1
-  # end
+  it 'new users should automatically have 1 gold credit' do
+    user = FactoryGirl.build(:user, gold_credit: 0)
+
+    expect{ user.save }.to change{ user.gold_credit }.by 1
+  end
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Profile picture

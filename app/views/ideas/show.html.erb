@@ -1,3 +1,5 @@
+<% provide :title, @idea.title %>
+
 <div class="row details-project">
   <div class="large-6 columns">
     <div class="item" style='background: url("<%= @idea.main_image.url(:poster) %>") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;'>
@@ -22,7 +24,7 @@
       <%= link_to "Edit this idea", edit_idea_path(@idea), class: "edit_idea radius button" %> 
     <% end %>
     <p><%= @idea.summary %></p>
-    <p>--created by: <%= link_to "#{@idea.owner.username}", user_path(@idea.owner), class: "proto-red" %></p>
+    <p>--created by: <%= link_to "#{@idea.owner.username}", user_path(@idea.owner), class: "user_#{@idea.owner.id} proto-red" %></p>
 
     <div class="panel">
       <%= upvote_link_for @idea, class: "radius button proto-button--blue" %>
