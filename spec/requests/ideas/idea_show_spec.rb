@@ -234,6 +234,24 @@ describe "The idea show page" do
           .to change { ActionMailer::Base.deliveries.count }.by 1
       end
 
+      it "should send an email to the others who commented" do
+        first_commenter =     FactoryGirl.create(:user, username: "first")
+        second_commenter =    FactoryGirl.create(:user, username: "second")
+
+        # make comment as the first commenter
+        idea_page.visit_page_as first_commenter
+        idea_page.fill_comment_form_with "asdf"
+        idea_page.click_submit_comment_button 
+
+        # make comment as the second commenter
+        idea_page.visit_page_as second_commenter
+        idea_page.fill_comment_form_with "asdf"
+        idea_page.click_submit_comment_button 
+
+        # send one to owner and the other to the second person
+        expect(ActionMailer::Base.deliveries.last.bcc.count).to eq 2
+      end
+
       context 'when the comment is blank' do
         before { idea_page.fill_comment_form_with "" }
 

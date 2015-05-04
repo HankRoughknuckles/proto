@@ -137,4 +137,30 @@ class Idea < ActiveRecord::Base
   def preferred?
     self.preferred
   end
+
+
+  # Returns an array of all the users who have commented on the idea
+  def all_commenters
+    commenters = []
+    for comment in self.comment_threads
+      commenters << comment.author
+    end
+
+    return commenters
+  end
+
+
+  # returns an array of all the users who have commented on an idea except
+  # for the passed user
+  # NOTE: this only works on a single user for now.  This doesn't work if
+  # passed multiple users
+  def all_commenters_except(user)
+    commenters = self.all_commenters
+    commenters.delete_if { |commenter| commenter == user }
+  end
+
+
+  def all_commenter_and_owner
+    self.all_commenters << self.owner
+  end
 end
