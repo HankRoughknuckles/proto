@@ -1,17 +1,13 @@
 class IdeaMailer < ApplicationMailer
-  default to: "thomas.imorris@gmail.com"
-  # default to: ["thomas.imorris@gmail.com", 
-  #              "ina.kiss1@gmail.com", 
-  #              "vlad.balan@mylift.ro"]
-
-  default from: "gogoprototastic@gmail.com"
+  default to:     "thomas.imorris@gmail.com"
+  default from:   "gogoprototastic@gmail.com"
 
 
   def new_idea_email(idea)
     @idea =         idea
     @idea_owner =   idea.owner
-    @recipients =   User.where "id != ?", @idea_owner.id
-    @emails =       @recipients.collect(&:email).join(",")
+    @recipients =   User.where("id != ?", @idea_owner.id)
+    @emails =       @recipients.collect(&:email).join(",") + ", #{admin_emails}"
 
     mail(
       to:       @emails,
@@ -35,4 +31,9 @@ class IdeaMailer < ApplicationMailer
     mail(to:        idea.owner.email,
          subject:   "#{@subscriber.username} just subscribed to your idea on Proto")
   end
+
+  private
+    def admin_emails
+      "thomas.imorris@gmail.com, ina.kiss1@gmail.com, vlad.balan@mylift.ro"
+    end
 end

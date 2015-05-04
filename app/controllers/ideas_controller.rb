@@ -18,7 +18,7 @@ class IdeasController < ApplicationController
       category = Category.find_by_name category_name
       @ideas = category.ideas
     else
-      @ideas = Idea.all.sort { |a,b| b.vote_tally <=> a.vote_tally } 
+      @ideas = Idea.all.order(hotness: :desc)
     end
   end
 
