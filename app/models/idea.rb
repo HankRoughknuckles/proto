@@ -107,7 +107,10 @@ class Idea < ActiveRecord::Base
 
   # Registers the passed user as a subscriber to the idea
   def add_subscriber!(user)
-    self.subscribers << user unless self.subscribers.include? user
+    unless self.subscribers.include? user
+      self.subscribers << user unless self.subscribers.include? user
+      IdeaMailer.new_subscriber_email(user, self).deliver_now
+    end
   end
 
 

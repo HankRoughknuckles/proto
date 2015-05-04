@@ -124,7 +124,6 @@ class IdeasController < ApplicationController
   # POST /ideas/1/subscribe
   def subscribe
     @idea.add_subscriber! current_user
-    IdeaMailer.new_subscriber_email(current_user, @idea).deliver_now
 
     respond_to do |format|
       format.html { redirect_to(@idea, 

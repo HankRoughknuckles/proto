@@ -138,11 +138,21 @@ describe "The idea show page" do
           .to change{ ActionMailer::Base.deliveries.count }.by 1
       end
 
-      it 'should only sign the user up once' do
-        idea_page.click_subscribe_button # first time click
 
-        expect{ idea_page.click_subscribe_button }
-          .to change{ idea.subscribers.count }.by 0
+      context 'clicking the subscribe button twice' do
+        it 'should only sign the user up once' do
+          idea_page.click_subscribe_button # first time click
+
+          expect{ idea_page.click_subscribe_button }
+            .to change{ idea.subscribers.count }.by 0
+        end
+
+        it 'should only send one email' do
+          idea_page.click_subscribe_button # first time click
+          
+          expect{ idea_page.click_subscribe_button }
+            .to change{ ActionMailer::Base.deliveries.count }.by 0
+        end
       end
     end
 
