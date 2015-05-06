@@ -65,5 +65,5 @@ Rails.application.configure do
     }
   }
 
-  config.force_ssl =              false  # use ssl by default
+  config.force_ssl =              true  # use ssl by default
 end
