@@ -35,6 +35,9 @@ describe "The idea show page" do
       it { expect(idea_page).not_to   have_edit_idea_link }
       it { expect(idea_page).not_to   have_delete_idea_link }
 
+      # Social media buttons
+      it { expect(idea_page).to       have_facebook_share_button }
+
 
       it "has a working next button" do
         idea_page.click_next_idea_link

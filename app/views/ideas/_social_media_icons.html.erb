@@ -1,0 +1,4 @@
+<div>
+  <%= link_to "Share on Facebook", "http://www.facebook.com/sharer/sharer.php?u=#{request.original_url}", target: "_blank" %> |
+  <%= link_to "Share on Twitter", "http://twitter.com/intent/tweet?status=Check out my business idea on #proto - #{@idea.title}+#{request.original_url}", target: "_blank" %>
+</div>

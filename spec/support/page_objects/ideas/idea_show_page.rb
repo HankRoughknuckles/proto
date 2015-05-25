@@ -28,6 +28,9 @@ class IdeaShowPage
     @delete_idea_link =             '.delete_idea'
 
     @alert_flash_message =          ".alert"
+
+    # Social buttons
+    @facebook_share_button =        ".facebook_share"
   end
 
   def visit_page
@@ -156,5 +159,13 @@ class IdeaShowPage
 
   def has_alert_flash_message?
     has_css? @alert_flash_message
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Social networking buttons
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def has_facebook_share_button?
+    has_css? @facebook_share_button
   end
 end

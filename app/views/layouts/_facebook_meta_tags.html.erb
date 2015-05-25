@@ -1,0 +1,5 @@
+<meta property="og:type"          content="article" />
+<meta property="og:url"           content="<%= request.original_url %>" />
+<meta property="og:title"         content="<%= @idea.title %>" />
+<meta property="og:description"   content="<%= @idea.summary %>" />
+<meta property="og:image"         content="<%= URI(request.url) + @idea.main_image.url(:poster) %>" />
