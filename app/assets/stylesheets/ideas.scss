@@ -103,9 +103,11 @@ h1, h2, h3, h4, h5 { font-family: 'Roboto'}
 h2 { color: $proto-color-red; font-weight: 100; }
 h3 { color: $proto-color-blue;}
 
-a { color: $proto-color-blue;
-
-  &:hover { color: darken($proto-color-blue, 15%);}
+a { 
+  color: $proto-color-blue;
+  &:hover { 
+    color: darken($proto-color-blue, 15%);
+  }
 }
 
 label {  font-size: 1.1em}

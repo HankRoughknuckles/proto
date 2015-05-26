@@ -37,6 +37,7 @@ describe "The idea show page" do
 
       # Social media buttons
       it { expect(idea_page).to       have_facebook_share_button }
+      it { expect(idea_page).to       have_twitter_share_button }
 
 
       it "has a working next button" do

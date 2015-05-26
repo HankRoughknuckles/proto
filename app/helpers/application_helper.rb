@@ -24,4 +24,20 @@ module ApplicationHelper
     link_to "Sign Out", destroy_user_session_path, { method: :delete, 
                                                      class: "sign_out" }
   end
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% facebook_share_url
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def facebook_share_url
+    "http://www.facebook.com/sharer/sharer.php?u=#{request.original_url}"
+  end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% twitter_share_url
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  def twitter_share_url(idea)
+    body = CGI.escape("Check out my business idea on #proto - #{idea.title} - #{request.original_url}")
+    return "http://twitter.com/intent/tweet?status=#{body}"
+  end
 end

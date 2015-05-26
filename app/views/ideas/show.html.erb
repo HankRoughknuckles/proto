@@ -1,5 +1,11 @@
 <% provide :title, @idea.title %>
 
+<div class="row">
+  <div class="small-12 columns">
+    <%= render 'ideas/social_media_icons' %>
+  </div>
+</div>
+
 <div class="row details-project">
   <div class="large-6 columns">
     <div class="item" style='background: url("<%= @idea.main_image.url(:poster) %>") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;'>
@@ -29,7 +35,6 @@
     <div class="panel">
       <%= upvote_link_for @idea, class: "radius button proto-button--blue" %>
       <%= downvote_link_for @idea, class: "radius button proto-button--red" %>
-      <%= render 'social_media_icons' %>
     </div>
 
     <div class="row collapse">

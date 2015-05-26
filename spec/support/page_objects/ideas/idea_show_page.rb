@@ -31,6 +31,7 @@ class IdeaShowPage
 
     # Social buttons
     @facebook_share_button =        ".facebook_share"
+    @twitter_share_button =         ".twitter_share"
   end
 
   def visit_page
@@ -167,5 +168,9 @@ class IdeaShowPage
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def has_facebook_share_button?
     has_css? @facebook_share_button
+  end
+
+  def has_twitter_share_button?
+    has_css? @twitter_share_button
   end
 end
