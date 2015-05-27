@@ -17622,11 +17622,33 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
   };
 
 }).call(this);
+(function ($) {
+  var ready = $.fn.ready;
+  $.fn.ready = function (fn) {
+    if (this.context === undefined) {
+      // The $().ready(fn) case.
+      ready(fn);
+    } else if (this.selector) {
+      ready($.proxy(function(){
+        $(this.selector, this.context).each(fn);
+      }, this));
+    } else {
+      ready($.proxy(function(){
+        $(this).each(fn);
+      }, this));
+    }
+  }
+})(jQuery);
 (function() {
   $(function() {
-    return $(".submit_comment").click(function(e) {
+    return $("form.new_comment").submit(function(e) {
+      var ideaTitle;
+      ideaTitle = $(".idea_title").text();
       if ($("#comment_body").val().length > 0) {
-        return _gaq.push(['_trackEvent', 'comment', 'submitted']);
+        return ga('send', 'event', 'Comment on Idea', 'Create', ideaTitle);
+      } else {
+        alert("Please leave a comment first!");
+        return false;
       }
     });
   });
@@ -17634,18 +17656,29 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
 }).call(this);
 (function() {
   $(function() {
-    var title_input_not_blank;
-    $('input[value="Create Idea"]').click(function(e) {
-      if (title_input_not_blank()) {
-        return _gaq.push(['_trackEvent', 'Create idea', 'clicked']);
+    return $(".ideas.edit form").submit(function() {
+      var title;
+      title = $("#idea_title").val();
+      if (title.length > 0) {
+        return ga('send', 'event', 'Idea', 'Update', title);
       }
     });
-    $('input[value="Update Idea"]').click(function(e) {
-      return _gaq.push(['_trackEvent', 'Update idea', 'clicked']);
+  });
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+  $(function() {
+    return $(".ideas.new form").submit(function() {
+      var title;
+      title = $("#idea_title").val();
+      if (title.length > 0) {
+        return ga('send', 'event', 'Idea', 'Create', title);
+      }
     });
-    return title_input_not_blank = function() {
-      return $("#idea_title").val().length > 0;
-    };
   });
 
 }).call(this);
@@ -17660,8 +17693,7 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
       var ideaId;
       ideaId = $(this).attr("data-dbid");
       if (!$(this).hasClass("selected")) {
-        console.log("sending to GA");
-        _gaq.push(['_trackEvent', 'upvote', 'clicked']);
+        ga('send', 'event', 'Idea', 'Upvote', '<%= idea_title %>');
         if (downvoteButtonFor(ideaId).hasClass("selected")) {
           changeVoteFor(ideaId, 2);
         } else {
@@ -17675,7 +17707,7 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
       var ideaId;
       ideaId = $(this).attr("data-dbid");
       if (!$(this).hasClass("selected")) {
-        _gaq.push(['_trackEvent', 'downvote', 'clicked']);
+        ga('send', 'event', 'Idea', 'Downvote', '<%= idea_title %>');
         if (upvoteButtonFor(ideaId).hasClass("selected")) {
           changeVoteFor(ideaId, -2);
         } else {
@@ -17715,6 +17747,7 @@ Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 
 
 

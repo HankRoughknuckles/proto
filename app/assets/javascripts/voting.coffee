@@ -13,7 +13,7 @@ $ ->
     ideaId = $(this).attr("data-dbid")
 
     if not $(this).hasClass("selected")
-      _gaq.push(['_trackEvent', 'upvote', 'clicked'])
+      ga('send', 'event', 'Idea', 'Upvote', '<%= idea_title %>' );
 
       if downvoteButtonFor(ideaId).hasClass("selected")
         changeVoteFor ideaId, 2
@@ -34,7 +34,7 @@ $ ->
     ideaId = $(this).attr("data-dbid")
 
     if not $(this).hasClass("selected")
-      _gaq.push(['_trackEvent', 'downvote', 'clicked'])
+      ga('send', 'event', 'Idea', 'Downvote', '<%= idea_title %>' );
 
       if upvoteButtonFor(ideaId).hasClass("selected")
         changeVoteFor ideaId, -2

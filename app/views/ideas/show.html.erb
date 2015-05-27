@@ -25,7 +25,7 @@
   </div>
 
   <div class="large-6 columns">
-    <h2><%= @idea.title %></h2>
+    <h2 class="idea_title"><%= @idea.title %></h2>
     <% if current_user == @idea.owner %>
       <%= link_to "Edit this idea", edit_idea_path(@idea), class: "edit_idea radius button" %> 
     <% end %>

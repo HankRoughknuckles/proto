@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require jquery-readyselector
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

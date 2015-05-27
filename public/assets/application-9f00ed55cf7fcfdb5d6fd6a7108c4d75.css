@@ -9059,25 +9059,25 @@ th.hide-for-touch {
   }
 }
 /* TODO: fix this, make it only have to declare the variable in one place (it's already declared in ideas.scss */
-/* line 5, /Users/thomas/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
+/* line 5, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
 .continue_with_facebook {
   color: white;
 }
-/* line 7, /Users/thomas/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
+/* line 7, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
 .continue_with_facebook:visited {
   color: white;
 }
 
-/* line 10, /Users/thomas/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
+/* line 10, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
 .login-button {
   margin-top: 50px;
   font-size: 1.5em;
 }
-/* line 13, /Users/thomas/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
+/* line 13, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
 .login-button a {
   color: #f7293d;
 }
-/* line 15, /Users/thomas/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
+/* line 15, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/authentication.scss */
 .login-button a:visited {
   color: #f7293d;
 }
@@ -18125,53 +18125,76 @@ th.hide-for-touch {
     display: table-cell !important;
   }
 }
-/* line 69, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 69, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-red {
   color: #f7293d !important;
 }
 
-/* line 73, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 73, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-blue {
   color: #5f3b7f !important;
 }
 
-/* line 78, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 77, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+.black {
+  color: black !important;
+}
+
+/* Simple buttons */
+/* line 84, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+.simple-red-button, .simple-blue-button {
+  color: #fff    !important;
+  font-size: 1.1em   !important;
+  font-weight: bold;
+}
+
+/* line 90, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+.simple-red-button {
+  background-color: #f7293d !important;
+}
+
+/* line 94, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+.simple-blue-button {
+  background-color: #5f3b7f !important;
+}
+
+/* line 99, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 body {
   font-family: 'Roboto', sans-serif !important;
   background: #F6F6F6;
 }
 
-/* line 82, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 102, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 h1, h2, h3, h4, h5 {
   font-family: 'Roboto';
 }
 
-/* line 83, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 103, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 h2 {
   color: #f7293d;
   font-weight: 100;
 }
 
-/* line 84, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 104, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 h3 {
   color: #5f3b7f;
 }
 
-/* line 86, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 106, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 a {
   color: #5f3b7f;
 }
-/* line 88, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 108, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 a:hover {
   color: #38234b;
 }
 
-/* line 91, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 113, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 label {
   font-size: 1.1em;
 }
 
-/* line 92, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 114, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 input {
   border-radius: 3px !important;
   box-shadow: none !important;
@@ -18181,30 +18204,30 @@ input {
   font-style: italic;
 }
 
-/* line 100, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 122, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 textarea {
   border-radius: 3px !important;
   box-shadow: none !important;
 }
 
-/* line 105, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 127, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .red {
   border: 1px solid red;
 }
 
-/* line 106, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 128, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .up {
   text-transform: uppercase;
 }
 
-/* line 107, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 129, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .panel {
   border-radius: 3px;
   background: #F5F5F5;
 }
 
 /* BUTTONS */
-/* line 110, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 132, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--blue, .proto-button--fb {
   color: #fff;
   padding: 0.5em;
@@ -18215,18 +18238,18 @@ textarea {
   font-size: 1.2em !important;
   border: 1px solid #452b5c;
 }
-/* line 119, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 141, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--blue:hover, .proto-button--fb:hover {
   background: #4d3067;
   color: #fff;
 }
-/* line 120, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 142, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--blue:visited, .proto-button--fb:visited {
   background: #4d3067;
   color: #fff;
 }
 
-/* line 123, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 145, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--red {
   color: #fff;
   padding: 0.5em;
@@ -18236,27 +18259,27 @@ textarea {
   font-size: 0.9em !important;
   border: 1px solid #e4091e;
 }
-/* line 131, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 153, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--red:hover {
   background: #f30920;
   color: #fff;
 }
-/* line 132, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 154, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--red:visited {
   background: #f30920;
   color: #fff;
 }
 
-/* line 135, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 157, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--fb {
   background: #3c5a99;
 }
-/* line 138, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 160, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .proto-button--fb:hover {
   background: #324b7f;
 }
 
-/* line 141, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 163, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .notify-button {
   font-size: 1.2em !important;
   padding: 0.5em 0 !important;
@@ -18264,116 +18287,116 @@ textarea {
   margin-left: -2px;
 }
 
-/* line 148, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 170, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .large-button {
   font-size: 2em !important;
   font-weight: 700;
 }
 
-/* line 149, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 171, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .medium-button {
   font-size: 1.4em !important;
   font-weight: 700;
 }
 
 /* LOGIN & SIGNUP */
-/* line 155, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 177, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .login-container {
   padding-top: 1.5em;
   padding-left: 2.5em;
 }
-/* line 158, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 180, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .login-container p {
   margin-top: 0.5em;
 }
-/* line 160, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 182, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .login-container .login-button a {
   font-weight: 700;
   color: #f7293d;
   padding-right: 1em;
   margin-top: 10px;
 }
-/* line 168, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 190, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .login-container .proto-button--blue, .login-container .proto-button--fb {
   padding: 0.7em 1em;
 }
 
 /* MODAL WINDOW for LOGIN & SIGNUP */
-/* line 175, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 197, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 #loginWindow p {
   color: #666666;
 }
 
 /* NAVIGATON */
-/* line 180, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 202, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation, .navigation-footer {
   padding: 0 !important;
 }
-/* line 183, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 205, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation .inline-list, .navigation-footer .inline-list {
   padding-left: 3.3em;
   padding-top: 1em;
 }
-/* line 186, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 208, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation .inline-list a, .navigation-footer .inline-list a {
   color: #333;
 }
-/* line 187, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 209, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation .inline-list a:hover, .navigation-footer .inline-list a:hover {
   color: #5f3b7f;
 }
-/* line 191, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 213, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation h3, .navigation-footer h3 {
   padding-top: 0.4em;
 }
-/* line 192, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 214, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation h3 a, .navigation-footer h3 a {
   color: #f7293d;
 }
-/* line 193, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 215, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .navigation h3 a:hover, .navigation-footer h3 a:hover {
   color: #333;
 }
 
-/* line 198, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 220, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .copy {
   font-size: 0.8em;
 }
 
 /* SLIDER */
-/* line 203, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 225, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .orbit-slide-number {
   display: none !important;
 }
 
-/* line 205, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 227, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .example-orbit-content li .row {
   width: 92% !important;
   margin-left: 4% !important;
 }
-/* line 210, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 232, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .example-orbit-content li .row .column, .example-orbit-content li .row .columns {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
 
-/* line 217, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 239, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .orbit-container .orbit-next > span {
   border-left-color: #5f3b7f !important;
 }
 
-/* line 218, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 240, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .orbit-container .orbit-prev > span {
   border-right-color: #5f3b7f !important;
 }
 
-/* line 219, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 241, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .orbit-timer {
   display: none;
 }
 
 /* ELEMENT */
-/* line 222, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 244, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item {
   font-family: 'Roboto';
   background: #7ebaa1;
@@ -18382,7 +18405,16 @@ textarea {
   height: 350px;
   min-height: 350px;
 }
-/* line 231, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 254, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+.item .crown-tile {
+  width: 35px;
+  -ms-transform: rotate(-38deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-38deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(-38deg);
+}
+/* line 262, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top {
   position: absolute;
   background: rgba(245, 245, 245, 0.9);
@@ -18392,7 +18424,7 @@ textarea {
   text-align: center;
   text-transform: uppercase;
 }
-/* line 240, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 271, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top .left {
   color: #f7293d;
   text-align: center;
@@ -18401,24 +18433,24 @@ textarea {
   line-height: 1.1em;
   font-size: 0.8em;
 }
-/* line 247, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 278, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top .left strong {
   font-size: 2em;
 }
-/* line 249, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 280, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top .right {
   padding: 1.2em 0.5em 0;
   line-height: 1em;
 }
-/* line 251, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 282, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top a {
   color: #333;
 }
-/* line 251, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 282, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .top a:hover {
   color: #5f3b7f;
 }
-/* line 254, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 285, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom {
   font-family: 'Roboto';
   position: absolute;
@@ -18427,24 +18459,24 @@ textarea {
   text-align: center;
   width: 94%;
 }
-/* line 262, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 293, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .button {
   font-family: 'Roboto';
   margin: 0.2em 0.4em 0;
   padding: 1em;
 }
-/* line 268, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 299, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .like {
   /* font-weight: 700; */
   /* font-size:1.1em; */
   /* border: 3px $proto-color-blue; */
   background: #5f3b7f;
 }
-/* line 273, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 304, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .like:hover {
   background: #4d3067;
 }
-/* line 279, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 310, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .dislike {
   /* font-weight: 500 !important; */
   /* font-size:0.9em; */
@@ -18452,18 +18484,18 @@ textarea {
   background: #f7293d;
   /* margin-top:7px; */
 }
-/* line 285, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 316, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .dislike:hover {
   background: #e4091e;
 }
-/* line 290, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 321, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item .bottom .selected {
   margin-top: -20px;
   font-size: 1.2em;
   text-decoration: underline;
   font-weight: bold;
 }
-/* line 298, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 329, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item h1 {
   font-family: 'Roboto';
   font-size: 3.2em;
@@ -18473,26 +18505,26 @@ textarea {
   text-transform: uppercase;
   padding: 3em 0.5em;
 }
-/* line 306, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 337, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item h1 a {
   color: #fff;
 }
-/* line 308, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 339, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .item h1 a:hover {
   color: #F5F5F5;
 }
 
-/* line 318, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 349, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .details-project input {
   border-color: #f7293d !important;
 }
-/* line 319, /Users/thomas.morris/Dropbox/Programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
+/* line 350, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/ideas.scss */
 .details-project .item {
   background: url("../img/product.jpg");
   min-height: 28em;
   margin-bottom: 1em;
 }
-/* line 1, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 1, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 body {
   background-color: #fff;
   color: #333;
@@ -18501,52 +18533,52 @@ body {
   line-height: 18px;
 }
 
-/* line 9, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 9, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
 }
 
-/* line 15, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 15, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
 }
 
-/* line 21, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 21, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 a {
   color: #000;
 }
-/* line 23, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 23, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 a:visited {
   color: #666;
 }
-/* line 26, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 26, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 a:hover {
   color: #fff;
   background-color: #000;
 }
 
-/* line 33, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 33, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 38, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 38, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 #notice {
   color: green;
 }
 
-/* line 42, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 42, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 48, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 48, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -18555,7 +18587,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 55, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 55, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -18566,8 +18598,17 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 65, /Users/thomas/Dropbox/Programming/Projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
+/* line 65, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/scaffolds.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
+}
+/* line 2, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/social_media.scss */
+.social_share:hover {
+  background-color: transparent;
+}
+/* line 6, /Users/thomas.morris/Dropbox/programming/projects/validate_me/proto/app/assets/stylesheets/social_media.scss */
+.social_share img {
+  width: 50px;
+  height: 50px;
 }
