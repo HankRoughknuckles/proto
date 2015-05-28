@@ -252,7 +252,7 @@ describe "The idea show page" do
         idea_page.fill_comment_form_with "asdf"
         idea_page.click_submit_comment_button 
 
-        # send one to owner and the other to the second person
+        # send one to owner and the other to the first commenter
         expect(ActionMailer::Base.deliveries.last.bcc.count).to eq 2
       end
 
