@@ -1,0 +1,14 @@
+/* The div that covers the preview of the crop to give the image-sliding
+effect the user manipulates the shape of the cropbox */
+.crop-preview-viewport {
+  width:      <%= Idea::MEDIUM_WIDTH %>px; 
+  height:     <%= Idea::MEDIUM_HEIGHT %>px; 
+  overflow:   hidden
+}
+
+
+/* The image inside the .crop-preview-viewport div.  Shows what the image
+will look like after being cropped */
+img#preview {
+  max-width: none;
+}

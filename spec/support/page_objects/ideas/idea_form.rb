@@ -72,6 +72,6 @@ class IdeaForm
   #%% Finders for contents
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   def has_image_for?(idea)
-    has_css? "img[src=\"#{idea.main_image.url(:poster)}\"]"
+    has_css? "img[src=\"#{idea.main_image.url(:medium)}\"]"
   end
 end

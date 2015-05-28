@@ -8,7 +8,7 @@
 
 <div class="row details-project">
   <div class="large-6 columns">
-    <div class="item" style='background: url("<%= @idea.main_image.url(:poster) %>") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;'>
+    <div class="item" style='background: url("<%= @idea.main_image.url(:medium) %>") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;'>
       <div class="top">
         <p class="left"><%= render 'ideas/tile_vote_count', idea: @idea %></p>
         <p class="right"><%= render 'ideas/tile_comment_count', idea: @idea %></p>

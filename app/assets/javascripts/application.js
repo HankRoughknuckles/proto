@@ -16,6 +16,7 @@
 //= require foundation
 //= require turbolinks
 //= require jquery-readyselector
+//= require jquery.Jcrop
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

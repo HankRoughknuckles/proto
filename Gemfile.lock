@@ -116,6 +116,7 @@ GEM
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jcrop-rails-v2 (0.9.12.3)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -285,6 +286,7 @@ DEPENDENCIES
   forgery (= 0.6.0)
   foundation-rails (= 5.5.1.0)
   jbuilder (~> 2.0)
+  jcrop-rails-v2 (~> 0.9.12.3)
   jquery-rails
   jquery-turbolinks (= 2.1.0)
   launchy (~> 2.4.3)

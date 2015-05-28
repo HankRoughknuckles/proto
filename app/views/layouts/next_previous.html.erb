@@ -12,6 +12,7 @@
     <%= render 'layouts/font_links' %>
     <%= render 'layouts/google_analytics_setup' %>
     <%= render 'layouts/facebook_meta_tags' %>
+    <%= yield(:head) %>
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">

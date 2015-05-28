@@ -61,9 +61,13 @@ class IdeasController < ApplicationController
 
     respond_to do |format|
       if @idea.save
-        IdeaMailer.new_idea_email(@idea).deliver_now
-        format.html { redirect_to @idea, notice: 'Your idea is ready to go! Tell your friends and family about it on social media!' }
-        format.json { render :show, status: :created, location: @idea }
+        if params[:idea][:main_image].blank?
+          IdeaMailer.new_idea_email(@idea).deliver_now
+          format.html { redirect_to @idea, notice: 'Your idea is ready to go! Tell your friends and family about it on social media!' }
+          format.json { render :show, status: :created, location: @idea }
+        else
+          format.html { render :action => "crop" }
+        end
       else
         format.html { render :new }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
@@ -78,8 +82,13 @@ class IdeasController < ApplicationController
     @idea.preferred = false unless current_user_has_gold_status?
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
-        format.json { render :show, status: :ok, location: @idea }
+        if params[:idea][:main_image].blank?
+          # @idea.reprocess_main_image if @idea.cropping?
+          format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+          format.json { render :show, status: :ok, location: @idea }
+        else
+          format.html { render :action => "crop" }
+        end
       else
         format.html { render :edit }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
@@ -145,7 +154,8 @@ class IdeasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:title, :description, :main_image,
-                                   :summary, :youtube_link, :preferred)
+                                   :summary, :youtube_link, :preferred,
+                                   :crop_x, :crop_y, :crop_h, :crop_w)
     end
 
     def ideas_index_params

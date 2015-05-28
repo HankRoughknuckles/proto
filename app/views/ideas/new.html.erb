@@ -1,4 +1,8 @@
 <% provide :title, "New Idea" %>
+<% content_for(:head) do  %>
+  <%= stylesheet_link_tag     "jquery.Jcrop.min" %>
+  <%= javascript_include_tag  "jquery.Jcrop.min" %>
+<% end %>
 
 <div class="row text-center">
   <h2>Spread your business idea and grow your list of subscribers here</h2>

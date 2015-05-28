@@ -11,6 +11,9 @@ class Idea < ActiveRecord::Base
   YOUTUBE_EMBED_PREFIX =        "https://www.youtube.com/embed/"
   PREFERRED_MAGNITUDE =         5000
 
+  MEDIUM_WIDTH =                570
+  MEDIUM_HEIGHT =               374
+
 
   belongs_to :owner, class_name: "User"
   belongs_to :category
@@ -23,17 +26,26 @@ class Idea < ActiveRecord::Base
   validates_presence_of   :title
   validates               :summary, length: { maximum: MAX_SUMMARY_LENGTH }
 
-  has_attached_file :main_image, 
-    :styles => { :poster => "600x350>", 
-                 :medium => "300x300>", 
-                 :thumb => "100x100>" }, 
-                 :default_url => "/images/:style/missing.jpg"
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Images
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  has_attached_file :main_image,
+    # :styles => { :poster => "600x350#",
+    :styles => {
+                 :medium => "570x374#",
+                 :large =>  "627x411>" },
+                 :default_url =>  "/images/:style/missing.jpg",
+                 :processors =>   [:cropper]
 
-  validates_attachment_content_type :main_image, 
-    :content_type => ["image/jpg", 
-                      "image/jpeg", 
-                      "image/png",  
+  validates_attachment_content_type :main_image,
+    :content_type => ["image/jpg",
+                      "image/jpeg",
+                      "image/png",
                       "image/gif"]
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_main_image, :if => :cropping?
+
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #%% Callbacks
@@ -45,13 +57,26 @@ class Idea < ActiveRecord::Base
   #%% Instance methods
   ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+  # returns true if any of the crop attrs are not blank
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+
+  def main_image_geometry(style = :original)
+    @geometry ||= {}
+    main_image_path = (main_image.options[:storage] == :s3) ? main_image.url(style) : main_image.path(style)
+    @geometry[style] ||= Paperclip::Geometry.from_file(main_image_path)
+  end
+
+
   # Sets self.hotness according to the idea's age, upvotes/downvotes, and
   # whether or not the idea has 'preferred' status.
   # Hotness is used to determine where in the list the idea will appear.
   # We've used the same algorithm as reddit does for sorting its contents.
   # At present, having posting an idea later gives more hotness to the
   # idea than upvotes, since vote_weight is calculated using log(10),
-  # while the newness of the idea is just newness / 45000.  
+  # while the newness of the idea is just newness / 45000.
   #
   # If an idea has preferred status, it is the equivalent of the idea
   # having PREFERRED_MAGNITUDE extra upvotes when it comes to sorting it
@@ -67,7 +92,7 @@ class Idea < ActiveRecord::Base
     preferred_weight =      self.preferred ? PREFERRED_MAGNITUDE : 0
     vote_weight =           vote_tally + preferred_weight
 
-    newness =               self.created_at.to_f || Time.now.to_f 
+    newness =               self.created_at.to_f || Time.now.to_f
     sign =                  vote_weight < 0 ? -1 : 1
     upvote_magnitude =      [ vote_weight.abs, 1.1 ].max
     order =                 Math.log upvote_magnitude, 10
@@ -150,6 +175,19 @@ class Idea < ActiveRecord::Base
   end
 
 
+  # Returns true if any of the crop attrs are not blank, indicating that
+  # an image fo the idea is being cropped.
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+
+
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
+
+
   # returns an array of all the users who have commented on an idea except
   # for the passed user
   # NOTE: this only works on a single user for now.  This doesn't work if
@@ -163,4 +201,12 @@ class Idea < ActiveRecord::Base
   def all_commenter_and_owner
     self.all_commenters << self.owner
   end
+
+
+  def reprocess_main_image
+    # main_image.reprocess!
+    main_image.assign(main_image)
+    main_image.save
+  end
 end
+
