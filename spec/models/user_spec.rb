@@ -174,4 +174,15 @@ RSpec.describe User, type: :model do
 
     expect(user.profile_picture.url).to eq image_url
   end
+
+
+  #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  #%% Emails
+  ##%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  it 'should send an email on signup' do
+    user_attrs = FactoryGirl.attributes_for(:user)
+
+    expect{ User.create user_attrs }
+      .to change{ ActionMailer::Base.deliveries.count }.by 1
+  end
 end

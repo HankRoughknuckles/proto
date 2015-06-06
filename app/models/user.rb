@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
   # set User.PROMOTIONAL_FREE_CREDIT to false
   before_validation   :fill_username_if_blank!  
   before_create       :add_gold_credit if PROMOTIONAL_FREE_CREDIT
+  after_create        :send_signup_notification
 
 
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -119,6 +120,11 @@ class User < ActiveRecord::Base
     vote = self.voted_as_when_voted_for idea
 
     return self.voted_for?(idea) && (vote == false)
+  end
+
+
+  def send_signup_notification
+      UserMailer.signup_notification_email(self).deliver_now
   end
 
 
