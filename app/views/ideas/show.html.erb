@@ -27,7 +27,7 @@
   <div class="large-6 columns">
     <h2 class="idea_title"><%= @idea.title %></h2>
     <% if current_user == @idea.owner %>
-      <%= link_to "Edit this idea", edit_idea_path(@idea), class: "edit_idea radius button" %> 
+      <%= link_to "Edit this idea", edit_idea_path(@idea), class: "background-proto-blue radius button" %> 
     <% end %>
     <p><%= @idea.summary %></p>
     <p>--created by: <%= link_to "#{@idea.owner.username}", user_path(@idea.owner), class: "user_#{@idea.owner.id} proto-red" %></p>

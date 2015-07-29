@@ -61,7 +61,7 @@ $JET:                       #222222;
 $black:                     #000000;
 
 $proto-color-red:           #f7293d;
-$proto-color-blue:          #5f3b7f;
+$proto-color-blue:          #3E4043;
 $proto-color-fb:            #3c5a99;
 $random-color:              #7ebaa1;
 
@@ -76,6 +76,10 @@ $random-color:              #7ebaa1;
 
 .black {
   color: black !important;
+}
+
+.background-proto-blue {
+  background-color: $proto-color-blue !important
 }
 
 
