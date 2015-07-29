@@ -1,11 +1,5 @@
 <% provide :title, @idea.title %>
 
-<div class="row">
-  <div class="small-12 columns">
-    <%= render 'ideas/social_media_icons' %>
-  </div>
-</div>
-
 <div class="row details-project">
   <div class="large-6 columns">
     <div class="item" style='background: url("<%= @idea.main_image.url(:medium) %>") no-repeat center; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;'>
@@ -25,9 +19,17 @@
   </div>
 
   <div class="large-6 columns">
-    <h2 class="idea_title"><%= @idea.title %></h2>
+    <div class="row">
+      <div class="small-9 columns">
+        <h2 class="idea_title"><%= @idea.title %></h2>
+      </div>
+      <div class="small-3 columns">
+        <%= render 'ideas/social_media_icons' %>
+      </div>
+    </div>
+
     <% if current_user == @idea.owner %>
-      <%= link_to "Edit this idea", edit_idea_path(@idea), class: "background-proto-blue radius button" %> 
+      <%= link_to "Edit this idea", edit_idea_path(@idea), class: "background-proto-blue edit_idea radius button" %> 
     <% end %>
     <p><%= @idea.summary %></p>
     <p>--created by: <%= link_to "#{@idea.owner.username}", user_path(@idea.owner), class: "user_#{@idea.owner.id} proto-red" %></p>
