@@ -28,11 +28,14 @@ module IdeasHelper
   def upvote_link_for(idea, options = {})
     if user_signed_in?
       path = upvote_idea_path(idea)
-      return link_to 'Upvote', path, upvote_attrs(idea, options)
-
+      attrs = upvote_attrs(idea, options)
     else
       path = new_user_registration_path
-      return link_to "Upvote", path, login_link_attrs(idea, :upvote)
+      attrs = login_link_attrs(idea, :upvote)
+    end
+
+    return link_to path, attrs do
+      image_tag "chevron-up.png"
     end
   end
 
@@ -41,11 +44,14 @@ module IdeasHelper
   def downvote_link_for(idea, options = {})
     if user_signed_in?
       path = downvote_idea_path(idea)
-      return link_to 'Downvote', path, downvote_attrs(idea, options) 
-
+      attrs = downvote_attrs(idea, options) 
     else
       path = new_user_registration_path
-      return link_to "Downvote", path, login_link_attrs(idea, :downvote)
+      attrs = login_link_attrs(idea, :downvote)
+    end
+
+    return link_to path, attrs do
+      image_tag "chevron-down.png"
     end
   end
 
