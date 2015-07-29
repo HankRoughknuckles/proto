@@ -114,7 +114,8 @@ a {
   }
 }
 
-label {  font-size: 1.1em}
+label { font-size: 1.1em }
+
 input { 
   border-radius: 3px !important; 
   box-shadow: none !important;
@@ -123,9 +124,11 @@ input {
   min-height: 3.6em;
   font-style: italic;
 }
+
 textarea {
   border-radius: 3px !important; 
   box-shadow: none !important;
+  resize: none;
 }
 
 .red { border:1px solid red;}
@@ -353,4 +356,18 @@ textarea {
   input { border-color:$proto-color-red !important;}
   .item { background:url('../img/product.jpg'); min-height: 28em; margin-bottom: 1em;}
 
+}
+
+
+/* ========================= */
+/* Comment Form */
+/* ========================= */
+.comment_form {
+  .button { 
+    height: 3em;
+  }
+
+  textarea {
+    height: 4em;
+  }
 }
